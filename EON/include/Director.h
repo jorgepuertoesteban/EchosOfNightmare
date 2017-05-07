@@ -1,0 +1,22 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+#include "EventListener.h"
+#include "Pointer.h"
+
+class Scene;
+class Director{
+	public:
+		Director();
+		~Director();
+		bool Update();
+		void Render();
+	private:
+		Pointer<sf::RenderWindow> m_pWindow;
+		Pointer<Scene>		      m_pScene;		
+		sf::RenderWindow         *m_window;
+		Scene        		     *m_scene;
+		EventListener			  m_eventListener;
+		bool				      m_closed;
+};
+
