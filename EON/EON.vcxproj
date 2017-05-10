@@ -142,6 +142,7 @@
     <ClCompile Include="src\scenes\Scene.cpp" />
     <ClCompile Include="src\scenes\SMenu.cpp" />
     <ClCompile Include="src\SoundWave.cpp" />
+    <ClCompile Include="src\Trail.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Director.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="include\scenes\Scene.h" />
     <ClInclude Include="include\scenes\SMenu.h" />
     <ClInclude Include="include\SoundWave.h" />
+    <ClInclude Include="include\Trail.h" />
     <ClInclude Include="include\xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>

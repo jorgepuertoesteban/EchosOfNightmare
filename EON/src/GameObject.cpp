@@ -19,7 +19,7 @@ void GameObject::Update(){
 	m_pVisualBody->SetRotation(m_pPhysicBody->GetRotation()*RadToGrad);
 }
 Vec2 GameObject::GetPosition(){
-    return  Vec2(m_pPhysicBody->GetPosition().x, m_pPhysicBody->GetPosition().y);
+    return  Vec2(m_pPhysicBody->GetPosition().x*PPM, m_pPhysicBody->GetPosition().y*PPM);
 }
 float GameObject::GetRotation(){
     return m_pPhysicBody->GetRotation();

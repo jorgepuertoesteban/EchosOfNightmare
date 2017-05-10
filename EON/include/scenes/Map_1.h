@@ -22,7 +22,7 @@ class Map_1: public Map{
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos);
 		virtual void        CreateWall(Vec2 pos,Vec2 size, int rotation);
 		virtual void        CreatePlayer(Vec2 pos);
-		virtual void        CreateSoundWave(Vec2 pos, Vec2 dir);
+		virtual void        CreateSoundWave(Vec2 pos, Vec2 dir, int lifetime);
 private:
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		PVector<SoundWave>       m_soundWaves;

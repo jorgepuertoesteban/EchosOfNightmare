@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Vec2.h"
+#include "SFML\Graphics.hpp"
 
 class GameObject;
-class Scene;
+class Map;
 
 struct Direction {
 	bool W = false;
@@ -16,7 +17,7 @@ struct Direction {
 
 class Player {
 	public:
-		Player(GameObject * = nullptr, Scene * = nullptr);
+		Player(GameObject * = nullptr, Map * = nullptr);
 		~Player();
 		void Update();
 		void SetW(bool);
@@ -32,7 +33,9 @@ class Player {
 		unsigned int m_speed;
 		float		 m_angle;
 		GameObject   *m_gObj;
-		Scene        *m_scene;
+		Map          *m_map;
 		Direction    m_sDirection;
 		bool         m_sound;
+
+		sf::Clock    m_clockSound;
 };

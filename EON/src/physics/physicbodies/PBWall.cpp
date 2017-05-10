@@ -38,7 +38,7 @@ void PBWall::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 0.01f;
 	fixtureDef.filter.categoryBits = 2;
-	fixtureDef.filter.maskBits = 1|3;
+	fixtureDef.filter.maskBits = 1|3|4;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	//fixture->SetUserData((void*)DATA_PLAYER);
 	polyShape.SetAsBox(tam.x / 4, tam.y / 4, b2Vec2(0, -tam.y / 2), 0);

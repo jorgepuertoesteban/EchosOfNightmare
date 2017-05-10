@@ -1,12 +1,12 @@
 #include "Player.h"
 #include "GameObject.h"
-#include "Scene.h"
+#include "Map.h"
 #include <math.h>
 #include <iostream>
 
 
-Player::Player(GameObject *gObj,Scene *scene)
-	:m_gObj(gObj),m_scene(scene),m_dir(Vec2(0,0)), m_speed(3),m_sound(false){
+Player::Player(GameObject *gObj, Map *map)
+	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(3),m_sound(false){
 }
 Player::~Player() {
 }
@@ -78,11 +78,23 @@ void Player::SetD(bool aux) {
 }
 void Player::MakeSound(bool aux){
 	if(!m_sound && aux){
+		m_clockSound.restart();
 		m_sound = true;
-		//Hacer ruido	
+
 	}
 	if(m_sound && !aux){
 		m_sound = false;
+		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds()/10;
+		int numRays;
+		numRays = time  + 20;
+		numRays -= numRays % 20;
+		if (numRays > 100) {
+			numRays = 100;
+		}
+		for (int i = 0; i < numRays; i++) {
+			float angle = (i / (float)numRays) * 360;
+			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle)*2, cosf(angle)*2), (time*20)  + 2000);
+		}
 
 	}
 }

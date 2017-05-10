@@ -17,6 +17,6 @@ class Map: public Scene {
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos) = 0;
 		virtual void        CreateWall(Vec2 pos, Vec2 size, int rotation) = 0;
 		virtual void        CreatePlayer    (Vec2 pos) = 0;
-		virtual void        CreateSoundWave (Vec2 pos, Vec2 dir) = 0;
+		virtual void        CreateSoundWave (Vec2 pos, Vec2 dir, int lifetime) = 0;
 };
 

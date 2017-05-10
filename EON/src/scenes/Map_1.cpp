@@ -34,6 +34,12 @@ void Map_1::Update(){
 	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
 		m_gameObjects.Get(i)->Update();
 	}
+	for (unsigned int i = 0; i < m_soundWaves.Size(); i++) {
+		m_soundWaves.Get(i)->Update();
+		if (m_soundWaves.Get(i)->GetDead()) {
+			m_soundWaves.Remove(i);
+		}
+	}
 }
 void Map_1::Render(sf::RenderWindow *window){
 	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
@@ -44,12 +50,16 @@ void Map_1::Render(sf::RenderWindow *window){
 		if (m_Walls.Get(i)->Visible())
 			window->draw(*m_Walls.Get(i));
 	}
+	for (unsigned int i = 0; i < m_soundWaves.Size(); i++) {
+		window->draw(*m_soundWaves.Get(i));
+	}
 }
 void Map_1::CheckEvents() {
 	m_player.SetW(m_listener->IsKeyDown(sf::Keyboard::W));
 	m_player.SetS(m_listener->IsKeyDown(sf::Keyboard::S));
 	m_player.SetA(m_listener->IsKeyDown(sf::Keyboard::A));
 	m_player.SetD(m_listener->IsKeyDown(sf::Keyboard::D));
+	m_player.MakeSound(m_listener->IsKeyDown(sf::Keyboard::Space));
 }
 void Map_1::ReadXML() {
 	XMLReader reader;
@@ -78,10 +88,17 @@ void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	pwall->SetRotation(radians);
 	GameObject* gObj = new GameObject();
 	gObj->Inicialize(pwall, vwall);
+	gObj->SetVisible(false);
 	m_Walls.Add(gObj);
 }
-void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir) {
-	GameObject *soundWave = CreateGameObject(new PBSoundWave, new VSoundWave, pos, Vec2(35, 35));
-	soundWave->SetLinearVelocity(dir);
-	SoundWave *swave = m_soundWaves.Add(new SoundWave(soundWave));
+void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, int lifetime) {
+	Vec2 size(5, 5);
+	VSoundWave  *vB = new VSoundWave;
+	PBSoundWave *pB = new PBSoundWave;
+	m_physiworld->CreateBody(pB, pos, size);
+	vB->Initialize(size);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pB, vB);
+	gObj->SetLinearVelocity(dir);
+	m_soundWaves.Add(new SoundWave(gObj,lifetime));
 }

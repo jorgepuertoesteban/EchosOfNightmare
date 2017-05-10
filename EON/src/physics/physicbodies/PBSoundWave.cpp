@@ -32,9 +32,9 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	b2PolygonShape polyShape;
 	polyShape.SetAsBox((tam.x / 2), (tam.y / 2));
 	fixtureDef.shape = &polyShape;
-	fixtureDef.friction = 0.7f;
-	fixtureDef.restitution = 0.3f;
-	fixtureDef.density = 0.9f;
+	fixtureDef.friction = 0 ;
+	fixtureDef.restitution = 1;
+	fixtureDef.density = 1 ;
 	fixtureDef.filter.categoryBits = 4;
 	fixtureDef.filter.maskBits = 2;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
