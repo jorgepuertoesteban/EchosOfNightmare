@@ -87,6 +87,9 @@ float    PBWall::GetRotation(){
 int    PBWall::GetId(){
     return PhysicBody::DefGetId();
 }
+b2Vec2 PBWall::GetVertexPosition(int vertex) {
+	return PhysicBody::DefGetVertexPosition(vertex);
+}
 void   PBWall::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
 }

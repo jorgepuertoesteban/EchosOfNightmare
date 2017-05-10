@@ -34,7 +34,7 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	fixtureDef.shape = &polyShape;
 	fixtureDef.friction = 0 ;
 	fixtureDef.restitution = 1;
-	fixtureDef.density = 1 ;
+	fixtureDef.density = 0 ;
 	fixtureDef.filter.categoryBits = 4;
 	fixtureDef.filter.maskBits = 2;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
@@ -85,6 +85,9 @@ float    PBSoundWave::GetRotation(){
 }
 int    PBSoundWave::GetId(){
     return PhysicBody::DefGetId();
+}
+b2Vec2 PBSoundWave::GetVertexPosition(int vertex) {
+	return PhysicBody::DefGetVertexPosition(vertex);
 }
 void   PBSoundWave::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);

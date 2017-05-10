@@ -10,7 +10,8 @@ class PhysicBody{
         virtual b2Vec2 GetLinearVelocity() = 0;
         virtual float  GetRotation() = 0;
 		virtual int    GetId() = 0;
-        virtual void   SetFixedRotation(bool fixed) = 0;
+		virtual b2Vec2 GetVertexPosition(int vertex) = 0;
+		virtual void   SetFixedRotation(bool fixed) = 0;
         virtual void   SetRotation(float angle) = 0;
 		virtual void   SetAngularVelocity(float imp) = 0;
         virtual void   SetLinearVelocity(b2Vec2 vel) = 0;
@@ -34,7 +35,8 @@ class PhysicBody{
         void    DefSetFixedRotation(bool fixed);
         float   DefGetRotation();
         int     DefGetId();
-        void    DefSetRotation(float angle);
+		b2Vec2  DefGetVertexPosition(int vertex);
+		void    DefSetRotation(float angle);
         void    DefSetPosition(b2Vec2 pos);
 		void    DefSetWorld(b2World* world);
 		void    DefSetAngularVelocity(float imp);

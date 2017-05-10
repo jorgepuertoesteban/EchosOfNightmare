@@ -20,6 +20,7 @@ class GameObject : public sf::Drawable {
         virtual Vec2   GetPosition();
         virtual float  GetRotation();
         virtual Vec2   GetLinearVelocity();
+		virtual Vec2   GetVertexPosition(int vertex);
         virtual int    GetId();
         virtual void   SetFixedRotation(bool fixed);
         virtual void   SetRotation(float angle);

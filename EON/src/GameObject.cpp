@@ -30,6 +30,9 @@ Vec2 GameObject::GetLinearVelocity(){
 int GameObject::GetId(){
     return m_id;
 }
+Vec2 GameObject::GetVertexPosition(int vertex) {
+	return Vec2(m_pPhysicBody->GetVertexPosition(vertex).x, m_pPhysicBody->GetVertexPosition(vertex).y);
+}
 int GameObject::SetMode(PhysicBody* body){
     b2Vec2  pos = m_pPhysicBody->GetPosition();
     b2Vec2  vel = m_pPhysicBody->GetLinearVelocity();

@@ -85,16 +85,17 @@ void Player::MakeSound(bool aux){
 	if(m_sound && !aux){
 		m_sound = false;
 		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds()/10;
-		int numRays;
-		numRays = time  + 20;
-		numRays -= numRays % 20;
-		if (numRays > 100) {
-			numRays = 100;
+		if (time > 20) {
+			int numRays;
+			numRays = time + 20;
+			numRays -= numRays % 20;
+			if (numRays > 100) {
+				numRays = 100;
+			}
+			for (int i = 0; i < numRays; i++) {
+				float angle = (i / (float)numRays) * 360;
+				m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle)*2.5, cosf(angle)*2.5), (time * 20) + 2000);
+			}
 		}
-		for (int i = 0; i < numRays; i++) {
-			float angle = (i / (float)numRays) * 360;
-			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle)*2, cosf(angle)*2), (time*20)  + 2000);
-		}
-
 	}
 }

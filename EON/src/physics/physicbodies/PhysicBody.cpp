@@ -14,6 +14,13 @@ float PhysicBody::DefGetRotation(){
 int PhysicBody::DefGetId(){
 	return m_bodyId;
 }
+b2Vec2 PhysicBody::DefGetVertexPosition(int vertex) {
+	b2PolygonShape* shape = dynamic_cast<b2PolygonShape *>(m_pBody->GetFixtureList()->GetShape());
+	if (shape)
+		return m_pBody->GetWorldPoint(b2Vec2(shape->GetVertex(vertex).x, shape->GetVertex(vertex).y));
+	else
+		return b2Vec2(0,0);
+}
 void  PhysicBody::DefSetFixedRotation(bool fixed){
     m_pBody->SetFixedRotation(fixed);
 }

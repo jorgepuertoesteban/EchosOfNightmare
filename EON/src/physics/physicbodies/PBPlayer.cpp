@@ -87,6 +87,9 @@ float    PBPlayer::GetRotation(){
 int    PBPlayer::GetId(){
     return PhysicBody::DefGetId();
 }
+b2Vec2 PBPlayer::GetVertexPosition(int vertex) {
+	return PhysicBody::DefGetVertexPosition(vertex);
+}
 void   PBPlayer::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
 }

@@ -88,6 +88,9 @@ float    PBBox::GetRotation(){
 int    PBBox::GetId(){
     return PhysicBody::DefGetId();
 }
+b2Vec2 PBBox::GetVertexPosition(int vertex) {
+	return PhysicBody::DefGetVertexPosition(vertex);
+}
 void   PBBox::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
 }

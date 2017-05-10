@@ -1,4 +1,3 @@
-/*
 #include "Director.h"
 
 int main(){
@@ -7,7 +6,7 @@ int main(){
 		director->Render();
 	}
 }
-*/
+/*
 
 #include "SFML/Graphics.hpp"
 #include <iostream>
@@ -86,8 +85,6 @@ int main(){
 
 	b2PolygonShape* shape = dynamic_cast<b2PolygonShape *>(caja->GetFixtureList()->GetShape());
 	points.insert(points.begin(),caja->GetWorldPoint(b2Vec2(shape->GetVertex(0).x, shape->GetVertex(0).y)));
-	points.insert(points.begin(), caja->GetWorldPoint(b2Vec2(shape->GetVertex(1).x, shape->GetVertex(1).y)));
-	points.insert(points.begin(), caja->GetWorldPoint(b2Vec2(shape->GetVertex(2).x, shape->GetVertex(2).y)));
 	points.insert(points.begin(), caja->GetWorldPoint(b2Vec2(shape->GetVertex(3).x, shape->GetVertex(3).y)));
 
 	sf::VertexArray estela;
@@ -131,3 +128,4 @@ int main(){
 		window.display();
 	}
 }
+*/

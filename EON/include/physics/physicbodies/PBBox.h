@@ -11,7 +11,8 @@ class PBBox: public PhysicBody{
 		virtual b2Vec2 GetLinearVelocity();
         virtual float  GetRotation();
         virtual int    GetId();
-        virtual void   SetFixedRotation(bool fixed);
+		virtual b2Vec2 GetVertexPosition(int vertex);
+		virtual void   SetFixedRotation(bool fixed);
         virtual void   SetRotation(float angle);
 		virtual void   SetWorld(b2World* world);
 		virtual void   SetAngularVelocity(float imp);

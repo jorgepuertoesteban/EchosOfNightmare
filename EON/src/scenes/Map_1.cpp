@@ -92,7 +92,7 @@ void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	m_Walls.Add(gObj);
 }
 void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, int lifetime) {
-	Vec2 size(5, 5);
+	Vec2 size(15,15);
 	VSoundWave  *vB = new VSoundWave;
 	PBSoundWave *pB = new PBSoundWave;
 	m_physiworld->CreateBody(pB, pos, size);

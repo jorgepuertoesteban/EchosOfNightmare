@@ -18,10 +18,11 @@ class SoundWave : public sf::Drawable {
 	private:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		Pointer<GameObject>  m_gObj;
-		PVector<Trail>       m_Trails;
+		std::vector<Vec2>    m_points;
+		sf::VertexArray      m_trail;
 		int					 m_lifetime;
-		sf::Clock			 m_clockLife;
-		sf::Clock			 m_clockTrail;
+		sf::Clock			 m_clockLife,
+			                 m_clockTrail;
 		bool				 m_TrailFree;
 		bool				 m_dead;
 };

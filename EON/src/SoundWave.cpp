@@ -8,35 +8,53 @@ SoundWave::SoundWave(GameObject *gameobj,int lifetime)
 	m_gObj.Reset(gameobj);
 	m_clockLife.restart();
 	m_clockTrail.restart();
+	m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(0));
+	m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(3));
 }
 SoundWave::~SoundWave() {
 }
 void SoundWave::Update() {
-	if (!m_TrailFree && m_clockTrail.getElapsedTime().asMilliseconds() >= 40) {
-		m_Trails.Add(new Trail(Vec2(7,7), m_gObj.Get()->GetPosition(), atan(m_gObj.Get()->GetLinearVelocity().y / m_gObj.Get()->GetLinearVelocity().x)));
+	if (m_clockTrail.getElapsedTime().asMilliseconds() >= 20) {
+		m_gObj.Get()->SetRotation(atan(m_gObj.Get()->GetLinearVelocity().y / m_gObj.Get()->GetLinearVelocity().x));
+		m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(0));
+		m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(3));
+		if (m_points.size() > m_lifetime / 40) {
+			m_points.pop_back();
+			m_points.pop_back();
+		}
+		if (m_TrailFree) {
+			if (m_points.size() > 6) {
+				m_points.pop_back();
+				m_points.pop_back();
+				m_points.pop_back();
+				m_points.pop_back();
+				m_points.pop_back();
+			}
+			else if (!m_dead) {
+				m_dead = true;
+			}
+		}
 		m_clockTrail.restart();
-		m_gObj.Get()->Update();
 	}
 	if (!m_TrailFree && m_clockLife.getElapsedTime().asMilliseconds() >= m_lifetime) {
 		m_TrailFree = true;
 	}
-	if (!m_dead && m_TrailFree) {
-		if (m_Trails.Size() == 0) {
-			m_dead = true;
-		}
-	}
-	for (unsigned int i = 0; i < m_Trails.Size(); i++) {
-		m_Trails.Get(i)->Update();
-		if (m_Trails.Get(i)->GetDead()) {
-			m_Trails.Remove(i);
-		}
+	m_trail = sf::VertexArray(sf::TrianglesStrip, m_points.size());
+	auto cont = 0;
+	auto aplha = 150;
+	auto downgrade = (aplha / m_points.size());
+	for (auto it = m_points.begin(); it != m_points.end(); it++) {
+		float x = it->x * 64,
+			y = it->y * 64;
+		m_trail[cont].position = sf::Vector2f(x , y);
+		m_trail[cont].color = sf::Color(200, 200, 200, aplha);
+		if( aplha > aplha - downgrade)aplha -= downgrade;
+		cont++;
 	}
 }
 bool SoundWave::GetDead() {
 	return m_dead;
 }
 void SoundWave::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	for (unsigned int i = 0; i < m_Trails.Size(); i++) {
-		target.draw(*m_Trails.Get(i), states);
-	}
+	target.draw(m_trail, states);
 }
