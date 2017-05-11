@@ -1,0 +1,44 @@
+﻿  Director.cpp
+  main.cpp
+  GameObject.cpp
+  VBox.cpp
+  VPlayer.cpp
+  VSoundWave.cpp
+  VWall.cpp
+  ContactListener.cpp
+  EventListener.cpp
+src\listeners\EventListener.cpp(8): warning C4838: conversion from 'int' to 'unsigned int' requires a narrowing conversion
+  PBBox.cpp
+  PBPlayer.cpp
+  PBSoundWave.cpp
+  PBWall.cpp
+  PhysicBody.cpp
+  PhysicWorld.cpp
+  Player.cpp
+src\Player.cpp(27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+src\Player.cpp(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+src\Player.cpp(43): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+src\Player.cpp(53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+src\Player.cpp(55): warning C4305: '+=': truncation from 'double' to 'float'
+src\Player.cpp(96): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  tinyxml2.cpp
+  Vec2.cpp
+  XMLReader.cpp
+src\resources\XMLReader.cpp(52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Map.cpp
+  Compiling...
+  Map_1.cpp
+src\scenes\Map_1.cpp(34): warning C4018: '<': signed/unsigned mismatch
+src\scenes\Map_1.cpp(37): warning C4018: '<': signed/unsigned mismatch
+src\scenes\Map_1.cpp(46): warning C4018: '<': signed/unsigned mismatch
+src\scenes\Map_1.cpp(50): warning C4018: '<': signed/unsigned mismatch
+src\scenes\Map_1.cpp(53): warning C4018: '<': signed/unsigned mismatch
+src\scenes\Map_1.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Scene.cpp
+  SMenu.cpp
+  SoundWave.cpp
+src\SoundWave.cpp(21): warning C4018: '>': signed/unsigned mismatch
+src\SoundWave.cpp(50): warning C4018: '>': signed/unsigned mismatch
+  Trail.cpp
+src\Trail.cpp(9): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+LINK : fatal error LNK1181: cannot open input file 'Box2D.lib'
