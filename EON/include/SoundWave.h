@@ -20,7 +20,7 @@ class SoundWave : public sf::Drawable {
 		Pointer<GameObject>  m_gObj;
 		std::vector<Vec2>    m_points;
 		sf::VertexArray      m_trail;
-		int					 m_lifetime;
+		unsigned int		 m_lifetime;
 		sf::Clock			 m_clockLife,
 			                 m_clockTrail;
 		bool				 m_TrailFree;

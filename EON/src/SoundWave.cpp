@@ -34,14 +34,14 @@ void SoundWave::Update() {
 		}
 		m_clockTrail.restart();
 	}
-	if (!m_TrailFree && m_clockLife.getElapsedTime().asMilliseconds() >= m_lifetime) {
+	if (!m_TrailFree && (unsigned int)m_clockLife.getElapsedTime().asMilliseconds() >= m_lifetime) {
 		m_TrailFree = true;
 	}
 	m_trail = sf::VertexArray(sf::TrianglesStrip, m_points.size());
 	auto cont = 0;
-	auto alpha = m_lifetime/10;
+	unsigned int alpha = m_lifetime/10;
 	if (alpha > 255) alpha = 255;
-	auto downgrade = (alpha / m_points.size());
+	unsigned int downgrade = (alpha / m_points.size());
 	for (auto it = m_points.begin(); it != m_points.end(); it++) {
 		float x = it->x * 64,
 			y = it->y * 64;

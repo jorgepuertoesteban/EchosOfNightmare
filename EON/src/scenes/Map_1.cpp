@@ -31,28 +31,33 @@ void Map_1::Update(){
 	m_physiworld->Update();
 	m_player.Update();
 	CheckEvents();
-	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
-		m_gameObjects.Get(i)->Update();
+	for (auto itGO = m_gameObjects.GetBegin(); itGO != m_gameObjects.GetEnd(); itGO++) {
+		(*itGO)->Update();
 	}
-	for (unsigned int i = 0; i < m_soundWaves.Size(); i++) {
-		m_soundWaves.Get(i)->Update();
-		if (m_soundWaves.Get(i)->GetDead()) {
-			m_soundWaves.Remove(i);
+	auto itSW = m_soundWaves.GetBegin();
+	while (itSW != m_soundWaves.GetEnd()) {
+		(*itSW)->Update();
+		if ((*itSW)->GetDead()) {
+			int index = std::distance(m_soundWaves.GetBegin(), itSW);
+			itSW = m_soundWaves.Remove(index);
+		}
+		else {
+			itSW++;
 		}
 	}
 }
 void Map_1::Render(sf::RenderWindow *window){
 	
-	for (unsigned int i = 0; i < m_Walls.Size(); i++) {
-		if (m_Walls.Get(i)->Visible())
-			window->draw(*m_Walls.Get(i));
+	for (auto it = m_Walls.GetBegin(); it != m_Walls.GetEnd(); it++) {
+		if ((*it)->Visible())
+			window->draw(*(*it));
 	}
-	for (unsigned int i = 0; i < m_soundWaves.Size(); i++) {
-		window->draw(*m_soundWaves.Get(i));
+	for (auto it = m_soundWaves.GetBegin(); it != m_soundWaves.GetEnd(); it++) {
+		window->draw(*(*it));
 	}
-	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
-		if (m_gameObjects.Get(i)->Visible())
-			window->draw(*m_gameObjects.Get(i));
+	for (auto it = m_gameObjects.GetBegin(); it != m_gameObjects.GetEnd(); it++) {
+		if ((*it)->Visible())
+			window->draw(*(*it));
 	}
 }
 void Map_1::CheckEvents() {
@@ -84,7 +89,7 @@ void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	m_physiworld->CreateBody(pwall, pos, size);
 	vwall->Initialize(size);
 	vwall->SetPosition(Vec2(pos.x+(size.x/2.f), pos.y + (size.y / 2.f)));
-	vwall->SetRotation(rotation);
+	vwall->SetRotation((float)rotation);
 	float radians = rotation * 3.141592653589793f / 180.f;
 	pwall->SetRotation(radians);
 	GameObject* gObj = new GameObject();

@@ -6,7 +6,7 @@ Trail::Trail(Vec2 tam,Vec2 pos, float rotation):m_lifetime(1000), m_dead(false){
 	m_rect = sf::RectangleShape(sf::Vector2f(tam.x, tam.y));
 	m_rect.setOrigin(m_rect.getSize().x / 2.f, m_rect.getSize().y / 2.f);
 	m_rect.setPosition(sf::Vector2f(pos.x,pos.y));
-	m_rect.setRotation(rotation*180/3.14);
+	m_rect.setRotation(rotation*180/3.14f);
 	m_clockLife.restart();
 	m_clockVanish.restart();
 }

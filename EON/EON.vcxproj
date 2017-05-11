@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include\;include\xml;include\scenes;include\physics;include\graphics;include\listeners;include\resources;SFML;Box2D</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include\;include\xml;include\scenes;include\physics;include\graphics;include\listeners;include\resources;SFML-2.4.2\include;Box2D</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>Box2D/Build/vs2015/bin/x32/Debug/;SFML-2.4.2/lib</AdditionalLibraryDirectories>
@@ -101,7 +101,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>include\;include\xml;include\scenes;include\physics;include\graphics;include\listeners;include\resources;SFML;Box2D</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include\;include\xml;include\scenes;include\physics;include\graphics;include\listeners;include\resources;SFML-2.4.2\include;Box2D</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

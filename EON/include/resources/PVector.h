@@ -9,8 +9,13 @@ public:
 	explicit PVector() {
 	}
 	~PVector() {
-		for (unsigned int i = 0; i<m_rs.size(); i++) {
+		/*for (unsigned int i = 0; i<m_rs.size(); i++) {
 			if (m_rs.at(i))delete m_rs.at(i);
+		}*/
+		auto it = m_rs.begin();
+		while (it != m_rs.end()) {
+			delete *it;
+			it = m_rs.erase(it);
 		}
 		m_rs.clear();
 		std::vector<T*>().swap(m_rs);
@@ -22,18 +27,24 @@ public:
 		}
 		return nullptr;
 	}
-	void Remove(int i) {
+	auto Remove(int i) {
 		if (m_rs.at(i))delete m_rs.at(i);
-		m_rs.erase(m_rs.begin() + i);
+		return m_rs.erase(m_rs.begin() + i);
 	}
-	std::vector<T *> Get() const {
+	auto Get() const {
 		return m_rs;
 	}
-	T* Get(int i) const {
+	auto Get(int i) const {
 		return m_rs.at(i);
 	}
 	int Size() const {
 		return m_rs.size();
+	}
+	auto GetBegin() {
+		return m_rs.begin();
+	}
+	auto GetEnd() {
+		return m_rs.end();
 	}
 private:
 	std::vector<T*> m_rs;

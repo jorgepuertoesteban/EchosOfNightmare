@@ -1,10 +1,10 @@
 #include "EventListener.h"
 
 const Event2Method EventListener::m_events[4] = {
-	  { sf::Event::Closed               , &Closed      }
-	 ,{ sf::Event::KeyPressed           , &KeyPressed  }
-	 ,{ sf::Event::KeyReleased          , &KeyReleased }
-	 ,{ -1                              , 0            }
+	  { sf::Event::Closed               , &Closed         }
+	 ,{ sf::Event::KeyPressed           , &KeyPressed     }
+	 ,{ sf::Event::KeyReleased          , &KeyReleased    }
+	 ,{ -1                              , 0 }
 };
 EventListener::EventListener():m_window(nullptr){
 	for (unsigned int i = 0; i<sf::Keyboard::KeyCount; ++i)

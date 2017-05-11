@@ -5,7 +5,7 @@
 class EventListener;
 
 struct Event2Method{
-	unsigned int event;
+	int event;
     void(EventListener::*p)(unsigned int);
 };
 

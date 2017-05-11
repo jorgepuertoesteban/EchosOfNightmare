@@ -24,7 +24,7 @@ void Player::CalcDir() {
 	m_dir.x = 0;
 	m_dir.y = 0;
 	if (m_sDirection.W && m_sDirection.S)
-		m_dir.y = m_sDirection.lastV;
+		m_dir.y = (float)m_sDirection.lastV;
 	else{
 		if (m_sDirection.W)
 			m_dir.y = -1;
@@ -32,15 +32,19 @@ void Player::CalcDir() {
 			m_dir.y = 1;
 	}
 	if (m_sDirection.A && m_sDirection.D)
-		m_dir.x = m_sDirection.lastH;
+		m_dir.x = (float)m_sDirection.lastH;
 	else {
 		if (m_sDirection.A)
 			m_dir.x = -1;
 		if (m_sDirection.D)
 			m_dir.x = 1;
 	}
-	if (m_dir.x != 0 && m_dir.y != 0)
-		m_dir = m_dir * (m_speed / 1.25f);
+	if (m_dir.x != 0 && m_dir.y != 0) {
+		m_dir = m_dir * m_speed;
+		m_dir.x = m_dir.x / 1.25f;
+		m_dir.y = m_dir.y / 1.25f;
+
+	}
 	else
 		m_dir = m_dir * m_speed;
 }
@@ -50,9 +54,9 @@ void Player::CalcAngle() {
 		m_angle = atan(m_dir.y / m_dir.x);
 		if (m_dir.x < 0) {
 			if (m_dir.y > 0)
-				m_angle = (90 * 3.141592653589793 / 180.0) - m_angle;
+				m_angle = (90 * 3.1415f/ 180.0f) - m_angle;
 			else
-				m_angle += 180 * 3.141592653589793 / 180.0;
+				m_angle += 180 * 3.1415f/ 180.0f;
 		}
 	}
 }
@@ -93,7 +97,7 @@ void Player::MakeSound(bool aux){
 			}
 			for (int i = 0; i < numRays; i++) {
 				float angle = (i / (float)numRays) * 360;
-				m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14/180.f)*4, cosf(angle*3.14 / 180.f)*4), numRays);
+				m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f/180.f)*4, cosf(angle*3.14f / 180.f)*4), numRays);
 			}
 		}
 	}

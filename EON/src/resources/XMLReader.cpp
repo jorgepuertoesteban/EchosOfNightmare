@@ -49,7 +49,7 @@ void XMLReader::AddPlayer() {
 void XMLReader::AddEnemy() {
 }
 void XMLReader::AddWall() {
-	m_map->CreateWall(Vec2(m_x,m_y), Vec2(m_width,m_height),m_rotation);
+	m_map->CreateWall(Vec2(m_x,m_y), Vec2(m_width,m_height),(int)m_rotation);
 }
 void XMLReader::AddDeadWall() {
 
