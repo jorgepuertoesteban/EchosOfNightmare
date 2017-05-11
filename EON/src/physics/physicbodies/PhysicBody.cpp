@@ -17,7 +17,7 @@ int PhysicBody::DefGetId(){
 b2Vec2 PhysicBody::DefGetVertexPosition(int vertex) {
 	b2PolygonShape* shape = dynamic_cast<b2PolygonShape *>(m_pBody->GetFixtureList()->GetShape());
 	if (shape)
-		return m_pBody->GetWorldPoint(b2Vec2(shape->GetVertex(vertex).x, shape->GetVertex(vertex).y));
+		return m_pBody->GetWorldPoint(shape->GetVertex(vertex));
 	else
 		return b2Vec2(0,0);
 }

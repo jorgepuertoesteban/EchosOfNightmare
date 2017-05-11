@@ -39,10 +39,10 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	fixtureDef.filter.maskBits = 2;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	//fixture->SetUserData((void*)DATA_PLAYER);
-	polyShape.SetAsBox(tam.x / 4, tam.y / 4, b2Vec2(0, -tam.y / 2), 0);
-	fixtureDef.isSensor = true;
+	//polyShape.SetAsBox(tam.x / 4, tam.y / 4, b2Vec2(0, -tam.y / 2), 0);
+	//fixtureDef.isSensor = true;
 	//fixtureDef.filter.maskBits = M_SUELO;
-	b2Fixture* sensorFixture = m_pBody->CreateFixture(&fixtureDef);
+	//b2Fixture* sensorFixture = m_pBody->CreateFixture(&fixtureDef);
 	//sensorFixture->SetUserData((void*)DATA_PLAYER_PIES);
 }
 void PBSoundWave::Catch(int id) {

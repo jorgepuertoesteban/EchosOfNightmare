@@ -16,6 +16,6 @@ class VSoundWave: public VisualBody{
 	private:
 		bool               m_visible;
 		sf::Texture        m_texture;
-		sf::Sprite         m_sprite;
 		sf::CircleShape    m_circle;
+		sf::RectangleShape m_rect;
 };

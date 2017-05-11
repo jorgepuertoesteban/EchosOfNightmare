@@ -31,7 +31,8 @@ class SoundWave : public sf::Drawable {
 		unsigned int		 m_lifetime;
 		sf::Clock			 m_clockLife,
 			                 m_clockTrail;
-		bool				 m_TrailFree;
-		bool				 m_dead;
+		bool				 m_TrailFree,
+							 m_dead,
+			                 m_delete;
 		int                  r = 255, g = 255, b = 255;
 };
