@@ -8,16 +8,21 @@ SoundWave::SoundWave(GameObject *gameobj,int lifetime)
 	m_gObj.Reset(gameobj);
 	m_clockLife.restart();
 	m_clockTrail.restart();
-	m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(0));
-	m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(3));
+	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(0)));
+	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(3)));
 }
 SoundWave::~SoundWave() {
 }
 void SoundWave::Update() {
 	if (m_clockTrail.getElapsedTime().asMilliseconds() >= 20) {
 		m_gObj.Get()->SetRotation(atan(m_gObj.Get()->GetLinearVelocity().y / m_gObj.Get()->GetLinearVelocity().x));
-		m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(0));
-		m_points.insert(m_points.begin(), m_gObj.Get()->GetVertexPosition(3));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(0), r, g, b));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(3), r, g, b));
+		if (rand() % 10 == 1) { 
+			r = rand() % 255;
+			g = rand() % 255;
+			b = rand() % 255;
+		}
 		if (m_points.size() > m_lifetime / 40) {
 			m_points.pop_back();
 			m_points.pop_back();
@@ -46,7 +51,7 @@ void SoundWave::Update() {
 		float x = it->x * 64,
 			y = it->y * 64;
 		m_trail[cont].position = sf::Vector2f(x , y);
-		m_trail[cont].color = sf::Color(200, 200, 200, alpha);
+		m_trail[cont].color = sf::Color(it->r, it->g, it->b, alpha);
 		if(alpha > alpha - downgrade)alpha -= downgrade;
 		cont++;
 	}

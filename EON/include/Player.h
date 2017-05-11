@@ -7,12 +7,13 @@ class GameObject;
 class Map;
 
 struct Direction {
-	bool W = false;
-	bool S = false;
-	bool A = false;
-	bool D = false;
-	int lastH = 0;
-	int lastV = 0;
+	bool W     = false;
+	bool S     = false;
+	bool A     = false;
+	bool D     = false;
+	bool Shift = false;
+	int lastH  = 0;
+	int lastV  = 0;
 };
 
 class Player {
@@ -24,8 +25,11 @@ class Player {
 		void SetS(bool);
 		void SetA(bool);
 		void SetD(bool);
-		void MakeSound(bool aux);
-	private:
+		void SetShift(bool);
+		void MakeSound(bool);
+		bool Step();
+		void GenerateSound(unsigned int count);
+private:
 		void Move();
 		void CalcDir();
 		void CalcAngle();
@@ -35,7 +39,8 @@ class Player {
 		GameObject   *m_gObj;
 		Map          *m_map;
 		Direction    m_sDirection;
-		bool         m_sound;
-
-		sf::Clock    m_clockSound;
+		bool         m_sound,
+			         m_walking;
+		sf::Clock    m_clockSound,
+			         m_clockStep;
 };

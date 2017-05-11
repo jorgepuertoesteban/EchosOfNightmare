@@ -14,7 +14,10 @@ class VPlayer: public VisualBody{
 		virtual void   SetVisible(bool aux);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
-	    bool               m_visible;
-		sf::Texture        m_texture;
-		sf::Sprite         m_sprite;
+	    bool                     m_visible,
+								 m_setedPos;
+		Vec2					 m_actPos;
+		sf::Texture              m_texture[3];
+		sf::Texture              *m_actualTxt;
+		sf::Sprite               m_sprite;
 };

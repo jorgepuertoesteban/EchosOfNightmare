@@ -65,6 +65,7 @@ void Map_1::CheckEvents() {
 	m_player.SetS(m_listener->IsKeyDown(sf::Keyboard::S));
 	m_player.SetA(m_listener->IsKeyDown(sf::Keyboard::A));
 	m_player.SetD(m_listener->IsKeyDown(sf::Keyboard::D));
+	m_player.SetShift(m_listener->IsKeyDown(sf::Keyboard::LShift) || m_listener->IsKeyDown(sf::Keyboard::RShift));
 	m_player.MakeSound(m_listener->IsKeyDown(sf::Keyboard::Space));
 }
 void Map_1::ReadXML() {
