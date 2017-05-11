@@ -4,7 +4,7 @@
 
 
 SoundWave::SoundWave(GameObject *gameobj,int lifetime)
-	:m_lifetime(lifetime), m_dead(false), m_TrailFree(false) {
+	:m_lifetime(lifetime*50+1000), m_dead(false), m_TrailFree(false) {
 	m_gObj.Reset(gameobj);
 	m_clockLife.restart();
 	m_clockTrail.restart();
@@ -23,9 +23,7 @@ void SoundWave::Update() {
 			m_points.pop_back();
 		}
 		if (m_TrailFree) {
-			if (m_points.size() > 6) {
-				m_points.pop_back();
-				m_points.pop_back();
+			if (m_points.size() > 4) {
 				m_points.pop_back();
 				m_points.pop_back();
 				m_points.pop_back();
@@ -41,14 +39,15 @@ void SoundWave::Update() {
 	}
 	m_trail = sf::VertexArray(sf::TrianglesStrip, m_points.size());
 	auto cont = 0;
-	auto aplha = 150;
-	auto downgrade = (aplha / m_points.size());
+	auto alpha = m_lifetime/10;
+	if (alpha > 255) alpha = 255;
+	auto downgrade = (alpha / m_points.size());
 	for (auto it = m_points.begin(); it != m_points.end(); it++) {
 		float x = it->x * 64,
 			y = it->y * 64;
 		m_trail[cont].position = sf::Vector2f(x , y);
-		m_trail[cont].color = sf::Color(200, 200, 200, aplha);
-		if( aplha > aplha - downgrade)aplha -= downgrade;
+		m_trail[cont].color = sf::Color(200, 200, 200, alpha);
+		if(alpha > alpha - downgrade)alpha -= downgrade;
 		cont++;
 	}
 }

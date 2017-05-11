@@ -42,16 +42,17 @@ void Map_1::Update(){
 	}
 }
 void Map_1::Render(sf::RenderWindow *window){
-	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
-		if (m_gameObjects.Get(i)->Visible())
-			window->draw(*m_gameObjects.Get(i));
-	}
+	
 	for (unsigned int i = 0; i < m_Walls.Size(); i++) {
 		if (m_Walls.Get(i)->Visible())
 			window->draw(*m_Walls.Get(i));
 	}
 	for (unsigned int i = 0; i < m_soundWaves.Size(); i++) {
 		window->draw(*m_soundWaves.Get(i));
+	}
+	for (unsigned int i = 0; i < m_gameObjects.Size(); i++) {
+		if (m_gameObjects.Get(i)->Visible())
+			window->draw(*m_gameObjects.Get(i));
 	}
 }
 void Map_1::CheckEvents() {
