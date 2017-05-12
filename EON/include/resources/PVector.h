@@ -40,10 +40,10 @@ public:
 	int Size() const {
 		return m_rs.size();
 	}
-	auto GetBegin() {
+	auto GetBegin() const {
 		return m_rs.begin();
 	}
-	auto GetEnd() {
+	auto GetEnd() const {
 		return m_rs.end();
 	}
 private:

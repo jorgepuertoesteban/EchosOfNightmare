@@ -6,7 +6,7 @@
 
 
 Player::Player(GameObject *gObj, Map *map)
-	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_walking(false){
+	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_walking(false),m_angle(0){
 }
 Player::~Player() {
 }
@@ -61,7 +61,6 @@ void Player::CalcDir() {
 	}
 }
 void Player::CalcAngle() {
-	m_angle = 0;
 	if (m_dir.x != 0 || m_dir.y != 0) {
 		m_angle = atan(m_dir.y / m_dir.x);
 		if (m_dir.x < 0) {
@@ -102,7 +101,7 @@ bool Player::Step() {
 			m_walking = true;
 			m_clockStep.restart();
 		}
-		if (  (!m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 300)
+		if (  (!m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 310)
 			||(m_sDirection.Shift  && m_clockStep.getElapsedTime().asMilliseconds() > 600)) {
 			m_clockStep.restart();
 			return true;
