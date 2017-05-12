@@ -1,4 +1,7 @@
-﻿  Player.cpp
-c:\users\jorge\desktop\echoes of nightmare\eon\src\player.cpp(139): warning C4018: '<': no coinciden signed/unsigned
-  EON.vcxproj -> C:\Users\Jorge\Desktop\Echoes Of Nightmare\Debug\EON.exe
-  EON.vcxproj -> C:\Users\Jorge\Desktop\Echoes Of Nightmare\Debug\EON.pdb (Partial PDB)
+﻿  XMLReader.cpp
+  ContactListener.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Map_1.cpp
+  EON.vcxproj -> C:\Users\jpuerto\Documents\EchosOfNightmare\Debug\EON.exe
+  EON.vcxproj -> C:\Users\jpuerto\Documents\EchosOfNightmare\Debug\EON.pdb (Partial PDB)

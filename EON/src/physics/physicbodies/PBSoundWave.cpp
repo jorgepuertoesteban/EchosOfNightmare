@@ -35,15 +35,10 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	fixtureDef.friction = 0 ;
 	fixtureDef.restitution = 1;
 	fixtureDef.density = 0 ;
-	fixtureDef.filter.categoryBits = 4;
-	fixtureDef.filter.maskBits = 2;
+	fixtureDef.filter.categoryBits = C_SOUNDWAVE;
+	fixtureDef.filter.maskBits = C_WALL|C_DEADWALL|C_GOAL|C_WATER;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
-	//fixture->SetUserData((void*)DATA_PLAYER);
-	//polyShape.SetAsBox(tam.x / 4, tam.y / 4, b2Vec2(0, -tam.y / 2), 0);
-	//fixtureDef.isSensor = true;
-	//fixtureDef.filter.maskBits = M_SUELO;
-	//b2Fixture* sensorFixture = m_pBody->CreateFixture(&fixtureDef);
-	//sensorFixture->SetUserData((void*)DATA_PLAYER_PIES);
+	fixture->SetUserData((void*)D_SOUNDWAVE);
 }
 void PBSoundWave::Catch(int id) {
 	b2RevoluteJointDef jointDef;
@@ -91,6 +86,9 @@ b2Vec2 PBSoundWave::GetVertexPosition(int vertex) {
 }
 void   PBSoundWave::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
+}
+void   PBSoundWave::SetRotationFromCorner(float angle) {
+	PhysicBody::DefSetRotationFromCorner(angle);
 }
 void   PBSoundWave::SetWorld(b2World* world) {
 	PhysicBody::DefSetWorld(world);

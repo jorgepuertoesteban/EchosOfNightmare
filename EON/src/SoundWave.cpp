@@ -4,7 +4,7 @@
 
 
 SoundWave::SoundWave(GameObject *gameobj,int lifetime)
-	:m_lifetime(lifetime*50+100), m_dead(false), m_TrailFree(false), m_delete(false) {
+	:m_lifetime(lifetime*50+100), m_dead(false), m_TrailFree(false), m_delete(false),m_r(255),m_g(255),m_b(255) {
 	m_gObj.Reset(gameobj);
 	m_clockLife.restart();
 	m_clockTrail.restart();
@@ -22,8 +22,8 @@ void SoundWave::Update() {
 			a = 0, z = 3;
 		else              
 			a = 1, z = 2;
-		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(a),r,g,b));
-		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(z),r,g,b ));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(a),m_r,m_g,m_b));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(z),m_r,m_g,m_b ));
 		if (m_points.size() > m_lifetime / 40) {
 			m_points.pop_back();
 			m_points.pop_back();
@@ -63,6 +63,12 @@ void SoundWave::Update() {
 }
 bool SoundWave::GetDead() {
 	return m_dead;
+}
+int  SoundWave::GetId() {
+	return m_gObj.Get()->GetId();
+}
+void SoundWave::SetColor(int r,int g,int b) {
+	m_r = r, m_g = g, m_b = b;
 }
 void SoundWave::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(m_trail, states);

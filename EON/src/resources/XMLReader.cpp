@@ -5,11 +5,13 @@
 #include "Map.h"
 #include <iostream>
 
-const Layer2Method XMLReader::m_layers[5] = {
+const Layer2Method XMLReader::m_layers[7] = {
 	 { "Player"       , &AddPlayer    }
 	,{ "Enemies"      , &AddEnemy     }
 	,{ "Walls"        , &AddWall      }
 	,{ "DeadWalls"    , &AddDeadWall  }
+	,{ "Goal"         , &AddGoal      }
+	,{ "Waters"       , &AddWater     }
 	,{ "0"            , 0             }
 };
 XMLReader::XMLReader()
@@ -27,19 +29,19 @@ void XMLReader::Inicialize(Map* map,const char* path) {
 		tinyxml2::XMLElement* object = objectGroups->FirstChildElement("object");
 		const char *layer = objectGroups->Attribute("name");
 		if(object) do {
-			 m_x =        object->FloatAttribute("x");
-			 m_y =        object->FloatAttribute("y");
-			 m_width =    object->FloatAttribute("width");
-			 m_height =   object->FloatAttribute("height");
-			 m_rotation = object->FloatAttribute("rotation");
-			 const Layer2Method * it = m_layers;
-			 while (it->layer != "0") {
-				 if (strcmp(it->layer, layer) == 0) {
-					 (this->*it->Layer2Method::p)();
-					 break;
-				 }
-				 it++;
-			 }
+			m_x = object->FloatAttribute("x");
+			m_y = object->FloatAttribute("y");
+			m_width = object->FloatAttribute("width");
+			m_height = object->FloatAttribute("height");
+			m_rotation = object->FloatAttribute("rotation");
+			const Layer2Method * it = m_layers;
+			while (it->layer != "0") {
+				if (strcmp(it->layer, layer) == 0) {
+					(this->*it->Layer2Method::p)();
+					break;
+				}
+				it++;
+			}
 		}while (object = object->NextSiblingElement("object"));
 	} while (objectGroups = objectGroups->NextSiblingElement("objectgroup"));
 }
@@ -48,9 +50,16 @@ void XMLReader::AddPlayer() {
 }
 void XMLReader::AddEnemy() {
 }
+void XMLReader::AddGoal() {
+	m_map->CreateGoal(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);
+}
 void XMLReader::AddWall() {
-	m_map->CreateWall(Vec2(m_x,m_y), Vec2(m_width,m_height),(int)m_rotation);
+	m_map->CreateWall(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);
 }
 void XMLReader::AddDeadWall() {
+	m_map->CreateDeadWall(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);
+}
+void XMLReader::AddWater() {
+	m_map->CreateWater(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);
 
 }

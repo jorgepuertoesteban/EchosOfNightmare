@@ -1,6 +1,5 @@
 #include "physicbodies\PBWall.h"
 #include "PhysicWorld.h"
-//#include "World.h"
 
 PBWall::PBWall(){
     m_pJoint  = nullptr;
@@ -17,7 +16,6 @@ int PBWall::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	b2Vec2 size(tam.x*MPP, tam.y*MPP);
 	DestroyBody();
 	InitBody(position, size);
-    //SetFixedRotation(true);
     InitFixtures(size);
     return m_bodyId;
 }
@@ -37,15 +35,10 @@ void PBWall::InitFixtures(b2Vec2 tam) {
 	fixtureDef.friction = 0.01f;
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 0.01f;
-	fixtureDef.filter.categoryBits = 2;
-	fixtureDef.filter.maskBits = 1|3|4;
+	fixtureDef.filter.categoryBits = C_WALL;
+	fixtureDef.filter.maskBits = C_PLAYER|C_SOUNDWAVE;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
-	//fixture->SetUserData((void*)DATA_PLAYER);
-	polyShape.SetAsBox(tam.x / 4, tam.y / 4, b2Vec2(0, -tam.y / 2), 0);
-	fixtureDef.isSensor = true;
-	//fixtureDef.filter.maskBits = M_SUELO;
-	b2Fixture* sensorFixture = m_pBody->CreateFixture(&fixtureDef);
-	//sensorFixture->SetUserData((void*)DATA_PLAYER_PIES);
+	fixture->SetUserData((void*)D_WALL);
 }
 void PBWall::Catch(int id) {
 	b2RevoluteJointDef jointDef;
@@ -92,6 +85,9 @@ b2Vec2 PBWall::GetVertexPosition(int vertex) {
 }
 void   PBWall::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
+}
+void   PBWall::SetRotationFromCorner(float angle) {
+	PhysicBody::DefSetRotationFromCorner(angle);
 }
 void   PBWall::SetWorld(b2World* world) {
 	PhysicBody::DefSetWorld(world);

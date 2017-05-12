@@ -8,6 +8,7 @@
 class PhysicWorld;
 class ContactListener;
 class SoundWave;
+class Goal;
 class Wall;
 
 class Map_1: public Map{
@@ -20,14 +21,20 @@ class Map_1: public Map{
 		virtual void CheckEvents();
 		virtual void ReadXML();
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos);
-		virtual void        CreateWall(Vec2 pos,Vec2 size, int rotation);
+		virtual void        CreateGoal(Vec2 pos, Vec2 size, int rotation);
+		virtual void        CreateWall(Vec2 pos, Vec2 size, int rotation);
+		virtual void        CreateWater(Vec2 pos,Vec2 size, int rotation);
+		virtual void        CreateDeadWall(Vec2 pos, Vec2 size, int rotation);
 		virtual void        CreatePlayer(Vec2 pos);
 		virtual void        CreateSoundWave(Vec2 pos, Vec2 dir, int lifetime);
+		PVector<SoundWave>* GetSoundWaves();
 private:
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		PVector<SoundWave>       m_soundWaves;
 		PVector<GameObject>      m_gameObjects;
 		PVector<GameObject>      m_Walls;
+		PVector<GameObject>      m_Waters;
+		Pointer<GameObject>      m_pGoal;
 		Pointer<ContactListener> m_pContactListener;
 		PhysicWorld              *m_physiworld;
 		EventListener			 *m_listener;

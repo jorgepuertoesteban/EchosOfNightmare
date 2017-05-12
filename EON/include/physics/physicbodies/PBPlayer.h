@@ -14,6 +14,7 @@ class PBPlayer: public PhysicBody{
 		virtual b2Vec2 GetVertexPosition(int vertex);
 		virtual void   SetFixedRotation(bool fixed);
         virtual void   SetRotation(float angle);
+		virtual void   SetRotationFromCorner(float angle);
 		virtual void   SetWorld(b2World* world);
 		virtual void   SetAngularVelocity(float imp);
         virtual void   SetLinearVelocity(b2Vec2 vel);

@@ -4,7 +4,7 @@ c:\users\jpuerto\documents\echosofnightmare\eon\debug\vsoundwave.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\vwall.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\contactlistener.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\eventlistener.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbbox.obj
+c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbdeadwall.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbplayer.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbsoundwave.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbwall.obj
@@ -24,6 +24,7 @@ c:\users\jpuerto\documents\echosofnightmare\eon\debug\director.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\main.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\gameobject.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\vbox.obj
+c:\users\jpuerto\documents\echosofnightmare\eon\debug\vdeadwall.obj
 c:\users\jpuerto\documents\echosofnightmare\eon\debug\vplayer.obj
 c:\users\jpuerto\documents\echosofnightmare\debug\eon.ilk
 c:\users\jpuerto\documents\echosofnightmare\debug\eon.exe

@@ -5,6 +5,7 @@ class Player;
 class Enemy;
 class Wall;
 class DeadWall;
+class Goal;
 class XMLReader;
 
 struct Layer2Method {
@@ -21,6 +22,8 @@ class XMLReader{
 		void AddPlayer();
 		void AddEnemy();
 		void AddWall();
+		void AddWater();
+		void AddGoal();
 		void AddDeadWall();
 		Map*    m_map;
 		float   m_x,
@@ -28,5 +31,5 @@ class XMLReader{
 				m_width,
 				m_height,
 				m_rotation;
-		static const Layer2Method m_layers[5];
+		static const Layer2Method m_layers[7];
 };

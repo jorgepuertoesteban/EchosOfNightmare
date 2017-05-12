@@ -1,5 +1,4 @@
 #include "physicbodies\PhysicBody.h"
-//#include "World.h"
 
 int PhysicBody::c_id= -1;
 b2Vec2 PhysicBody::DefGetPosition(){
@@ -26,6 +25,16 @@ void  PhysicBody::DefSetFixedRotation(bool fixed){
 }
 void PhysicBody::DefSetRotation(float angle) {
 	m_pBody->SetTransform(m_pBody->GetPosition(), angle);
+}
+void PhysicBody::DefSetRotationFromCorner(float angle) {
+	b2PolygonShape* shape = dynamic_cast<b2PolygonShape *>(m_pBody->GetFixtureList()->GetShape());
+	if (shape) {
+		int vertex = 0;
+		b2Vec2 p1 = m_pBody->GetWorldPoint(shape->GetVertex(vertex));
+		m_pBody->SetTransform(m_pBody->GetPosition(), angle);
+		b2Vec2 p2 = m_pBody->GetWorldPoint(shape->GetVertex(vertex));
+		m_pBody->SetTransform(m_pBody->GetPosition() + p1 - p2, m_pBody->GetAngle());
+	}
 }
 void PhysicBody::DefSetWorld(b2World* world) {
 	m_pWorld = world;
@@ -57,7 +66,6 @@ int PhysicBody::GenerateId(){
 	return c_id;
 }
 b2Body* PhysicBody::GetBodyWithId(int id){
-	//m_pWorld = PhysicWorld::Inst()->GetWorld();
 	for ( b2Body* b = m_pWorld->GetBodyList(); b; b = b->GetNext()){
         if((int)b->GetUserData() == id){
             return b;

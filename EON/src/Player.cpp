@@ -136,7 +136,7 @@ void Player::MakeSound(bool key_pressed){
 }
 void Player::GenerateSound(unsigned int count) {
 	auto plus = rand() % 45;
-	for (auto i = 0; i < count; i++) {
+	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
 		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), count);
 	}

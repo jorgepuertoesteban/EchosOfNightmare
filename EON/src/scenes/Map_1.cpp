@@ -5,10 +5,13 @@
 #include "VPlayer.h"
 #include "VBox.h"
 #include "VWall.h"
+#include "VDeadWall.h"
 #include "physicbodies\PBSoundWave.h"
 #include "physicbodies\PBPlayer.h"
 #include "physicbodies\PBWall.h"
-#include "physicbodies\PBBox.h"
+#include "physicbodies\PBWater.h"
+#include "physicbodies\PBGoal.h"
+#include "physicbodies\PBDeadWall.h"
 #include "ContactListener.h"
 #include "XMLReader.h"
 #include "EventListener.h"
@@ -18,7 +21,7 @@
 Map_1::Map_1(){
 	m_pPhysiworld.Reset(new PhysicWorld);
 	m_physiworld = m_pPhysiworld.Get();
-	m_pContactListener.Reset(new ContactListener()); 
+	m_pContactListener.Reset(new ContactListener(this)); 
 	m_physiworld->SetContactListener(m_pContactListener.Get());
 	ReadXML();
 }
@@ -84,15 +87,58 @@ void Map_1::CreatePlayer(Vec2 pos) {
 	GameObject *goPlayer = CreateGameObject(new PBPlayer, new VPlayer, pos, Vec2(35, 35));
 	m_player = Player(goPlayer, this);
 }
+
+void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
+	PBGoal *pgoal = new PBGoal;
+	VWall  *vgoal = new VWall;
+	m_physiworld->CreateBody(pgoal, pos, size);
+	vgoal->Initialize(size);
+	vgoal->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vgoal->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pgoal->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pgoal, vgoal);
+	gObj->SetVisible(false);
+	m_pGoal.Reset(gObj);
+}
+void Map_1::CreateWater(Vec2 pos, Vec2 size, int rotation) {
+	PBWater *pwater = new PBWater;
+	VWall  *vwall = new VWall;
+	m_physiworld->CreateBody(pwater, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pwater->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pwater, vwall);
+	gObj->SetVisible(false);
+	m_Waters.Add(gObj);
+}
 void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	PBWall *pwall = new PBWall;
 	VWall  *vwall = new VWall;
 	m_physiworld->CreateBody(pwall, pos, size);
 	vwall->Initialize(size);
-	vwall->SetPosition(Vec2(pos.x+(size.x/2.f), pos.y + (size.y / 2.f)));
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
 	vwall->SetRotation((float)rotation);
 	float radians = rotation * 3.141592653589793f / 180.f;
-	pwall->SetRotation(radians);
+	pwall->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pwall, vwall);
+	gObj->SetVisible(false);
+	m_Walls.Add(gObj);
+}
+void Map_1::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {
+	PBDeadWall *pwall = new PBDeadWall;
+	VDeadWall  *vwall = new VDeadWall;
+	m_physiworld->CreateBody(pwall, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pwall->SetRotationFromCorner(radians);
 	GameObject* gObj = new GameObject();
 	gObj->Inicialize(pwall, vwall);
 	gObj->SetVisible(false);
@@ -108,4 +154,7 @@ void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, int lifetime) {
 	gObj->Inicialize(pB, vB);
 	gObj->SetLinearVelocity(dir);
 	m_soundWaves.Add(new SoundWave(gObj,lifetime));
+}
+PVector<SoundWave>* Map_1::GetSoundWaves() {
+	return &m_soundWaves;
 }

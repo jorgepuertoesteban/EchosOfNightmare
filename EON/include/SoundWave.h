@@ -23,6 +23,8 @@ class SoundWave : public sf::Drawable {
 		~SoundWave();
 		void Update();
 		bool GetDead();
+		int  GetId();
+		void SetColor(int,int,int);
 	private:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		Pointer<GameObject>  m_gObj;
@@ -34,5 +36,7 @@ class SoundWave : public sf::Drawable {
 		bool				 m_TrailFree,
 							 m_dead,
 			                 m_delete;
-		int                  r = 255, g = 255, b = 255;
+		int                  m_r, 
+							 m_g, 
+							 m_b;
 };
