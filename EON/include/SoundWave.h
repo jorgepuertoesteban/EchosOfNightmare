@@ -7,7 +7,6 @@
 
 class GameObject;
 class Scene;
-class Trail;
 
 struct Point {
 	float x, y;
@@ -19,16 +18,18 @@ struct Point {
 
 class SoundWave : public sf::Drawable {
 	public:
-		SoundWave(GameObject *gameobj, int lifetime);
+		SoundWave(GameObject *gameobj, int lifetime, int r = 255, int g = 255, int b = 255);
 		~SoundWave();
 		void Update();
 		bool GetDead();
 		int  GetId();
-		void SetColor(int,int,int);
+		Vec2 GetOrigin();
+		void SetColor(int, int, int);
+		void ResetColor();
 	private:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		Pointer<GameObject>  m_gObj;
-		std::vector<Point>    m_points;
+		std::vector<Point>   m_points;
 		sf::VertexArray      m_trail;
 		unsigned int		 m_lifetime;
 		sf::Clock			 m_clockLife,
@@ -39,4 +40,8 @@ class SoundWave : public sf::Drawable {
 		int                  m_r, 
 							 m_g, 
 							 m_b;
+		int                  m_oR,
+			                 m_oG,
+			                 m_oB;
+		Vec2			     m_origin;
 };

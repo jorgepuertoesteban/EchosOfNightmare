@@ -130,15 +130,19 @@
   <ItemGroup>
     <ClCompile Include="src\Director.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\graphics\VBox.cpp" />
     <ClCompile Include="src\graphics\VDeadWall.cpp" />
+    <ClCompile Include="src\graphics\VEnemy.cpp" />
     <ClCompile Include="src\graphics\VPlayer.cpp" />
     <ClCompile Include="src\graphics\VSoundWave.cpp" />
     <ClCompile Include="src\graphics\VWall.cpp" />
     <ClCompile Include="src\listeners\ContactListener.cpp" />
     <ClCompile Include="src\listeners\EventListener.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBDeadWall.cpp" />
+    <ClCompile Include="src\physics\physicbodies\PBEnemy.cpp" />
+    <ClCompile Include="src\physics\physicbodies\PBEnemySoundWave.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBGoal.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBPlayer.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBSoundWave.cpp" />
@@ -150,18 +154,18 @@
     <ClCompile Include="src\resources\tinyxml2.cpp" />
     <ClCompile Include="src\resources\Vec2.cpp" />
     <ClCompile Include="src\resources\XMLReader.cpp" />
-    <ClCompile Include="src\scenes\Map.cpp" />
     <ClCompile Include="src\scenes\Map_1.cpp" />
     <ClCompile Include="src\scenes\Scene.cpp" />
     <ClCompile Include="src\scenes\SMenu.cpp" />
     <ClCompile Include="src\SoundWave.cpp" />
-    <ClCompile Include="src\Trail.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Director.h" />
+    <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\graphics\VBox.h" />
     <ClInclude Include="include\graphics\VDeadWall.h" />
+    <ClInclude Include="include\graphics\VEnemy.h" />
     <ClInclude Include="include\graphics\VisualBody.h" />
     <ClInclude Include="include\graphics\VPlayer.h" />
     <ClInclude Include="include\graphics\VSoundWave.h" />
@@ -169,6 +173,8 @@
     <ClInclude Include="include\listeners\ContactListener.h" />
     <ClInclude Include="include\listeners\EventListener.h" />
     <ClInclude Include="include\physics\physicbodies\PBDeadWall.h" />
+    <ClInclude Include="include\physics\physicbodies\PBEnemy.h" />
+    <ClInclude Include="include\physics\physicbodies\PBEnemySoundWave.h" />
     <ClInclude Include="include\physics\physicbodies\PBGoal.h" />
     <ClInclude Include="include\physics\physicbodies\PBPlayer.h" />
     <ClInclude Include="include\physics\physicbodies\PBSoundWave.h" />
@@ -189,11 +195,7 @@
     <ClInclude Include="include\scenes\Scene.h" />
     <ClInclude Include="include\scenes\SMenu.h" />
     <ClInclude Include="include\SoundWave.h" />
-    <ClInclude Include="include\Trail.h" />
     <ClInclude Include="include\xml\tinyxml2.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

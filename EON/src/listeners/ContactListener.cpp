@@ -1,5 +1,6 @@
 #include "ContactListener.h"
 #include "SoundWave.h"
+#include "Enemy.h"
 #include "Map.h"
 
 ContactListener::ContactListener(Map* map):m_map(map){
@@ -34,41 +35,45 @@ void ContactListener::EndContact(b2Contact* contact){
 }
 
 
+void ContactListener::Win() {
+	m_map->Life();
+}
 void ContactListener::KillPlayer(){
-
+	m_map->Dead();
 }
 void ContactListener::SWaveDWallBegin() {
-	GetSoundWave()->SetColor(255, 0, 0);
+	GetSoundWave()->SetColor(102, 0, 0);
 }
 void ContactListener::SWaveGoalBegin() {
-	GetSoundWave()->SetColor(0, 255, 0);
+	GetSoundWave()->SetColor(60, 224, 6);
 }
 void ContactListener::SWaveWaterBegin() {
-	GetSoundWave()->SetColor(0, 0, 255);
+	GetSoundWave()->SetColor(4, 64, 124);
 }
 void ContactListener::SWaveResetColor() {
-	GetSoundWave()->SetColor(255, 255, 255);
-
+	GetSoundWave()->ResetColor();
 }
-void ContactListener::PlayerTeleport(){
-    //Teleport* tp = GetTeleport();
-    //for(unsigned int i = 0; i < World::Inst()->GetTeleports().size(); ++i){
-    //    if(World::Inst()->GetTeleports().at(i)){
-    //        if(tp->getTeleportPartnerId() == World::Inst()->GetTeleports().at(i)->getTeleportId()){
-    //            GetPlayer()->setNextPos(World::Inst()->GetTeleports().at(i)->getPosition());
-    //            return;
-    //        }
-    //    }
-    //}
+void ContactListener::SWaveEnemy() {
+	GetEnemy()->SetTarget(GetSoundWave()->GetOrigin());
 }
 
-SoundWave* ContactListener::GetSoundWave(){
+SoundWave* ContactListener::GetSoundWave() {
 	auto waves = m_map->GetSoundWaves();
-	for(auto it = waves->GetBegin(); it != waves->GetEnd(); ++it){
-	    if((*it)->GetId() ==  (int)contact->GetFixtureA()->GetBody()->GetUserData()
-	    || (*it)->GetId() ==  (int)contact->GetFixtureB()->GetBody()->GetUserData() ){
-	        return (*it);
-	    }
+	for (auto it = waves->GetBegin(); it != waves->GetEnd(); ++it) {
+		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
+			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
+			return (*it);
+		}
 	}
-    return nullptr;
+	return nullptr;
+}
+Enemy* ContactListener::GetEnemy() {
+	auto enemies = m_map->GetEnemies();
+	for (auto it = enemies->GetBegin(); it != enemies->GetEnd(); ++it) {
+		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
+			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
+			return (*it);
+		}
+	}
+	return nullptr;
 }

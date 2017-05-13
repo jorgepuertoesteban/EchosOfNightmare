@@ -9,9 +9,6 @@ public:
 	explicit PVector() {
 	}
 	~PVector() {
-		/*for (unsigned int i = 0; i<m_rs.size(); i++) {
-			if (m_rs.at(i))delete m_rs.at(i);
-		}*/
 		auto it = m_rs.begin();
 		while (it != m_rs.end()) {
 			delete *it;

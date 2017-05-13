@@ -1,37 +1,39 @@
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vc140.pdb
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vc140.idb
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vsoundwave.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vwall.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\contactlistener.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eventlistener.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbdeadwall.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbplayer.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbsoundwave.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\pbwall.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\physicbody.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\physicworld.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\player.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\tinyxml2.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vec2.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\xmlreader.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\map.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\map_1.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\scene.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\smenu.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\soundwave.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\trail.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\director.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\main.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\gameobject.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vbox.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vdeadwall.obj
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\vplayer.obj
-c:\users\jpuerto\documents\echosofnightmare\debug\eon.ilk
-c:\users\jpuerto\documents\echosofnightmare\debug\eon.exe
-c:\users\jpuerto\documents\echosofnightmare\debug\eon.pdb
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\cl.command.1.tlog
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\cl.read.1.tlog
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\cl.write.1.tlog
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\link.command.1.tlog
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\link.read.1.tlog
-c:\users\jpuerto\documents\echosofnightmare\eon\debug\eon.tlog\link.write.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vc140.pdb
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vc140.idb
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\contactlistener.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eventlistener.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbdeadwall.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbgoal.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbplayer.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbsoundwave.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbwall.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\pbwater.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\physicbody.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\physicworld.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\player.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\tinyxml2.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vec2.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\xmlreader.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\map.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\map_1.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\scene.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\smenu.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\soundwave.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\trail.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\director.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\main.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\gameobject.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vbox.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vdeadwall.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vplayer.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vsoundwave.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\vwall.obj
+c:\users\pcj\contacts\desktop\echoes of nightmare\debug\eon.ilk
+c:\users\pcj\contacts\desktop\echoes of nightmare\debug\eon.exe
+c:\users\pcj\contacts\desktop\echoes of nightmare\debug\eon.pdb
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\cl.command.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\cl.read.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\cl.write.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\link.command.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\link.read.1.tlog
+c:\users\pcj\contacts\desktop\echoes of nightmare\eon\debug\eon.tlog\link.write.1.tlog

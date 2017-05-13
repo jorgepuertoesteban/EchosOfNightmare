@@ -60,9 +60,6 @@
     <ClCompile Include="src\resources\XMLReader.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="src\scenes\Map.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="src\scenes\Map_1.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
     <ClCompile Include="src\SoundWave.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="src\Trail.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\VDeadWall.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -97,6 +91,18 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="src\physics\physicbodies\PBWater.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physics\physicbodies\PBEnemy.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VEnemy.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physics\physicbodies\PBEnemySoundWave.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -182,9 +188,6 @@
     <ClInclude Include="include\SoundWave.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="include\Trail.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\VDeadWall.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -200,8 +203,17 @@
     <ClInclude Include="include\physics\physicbodies\PBWater.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="include\graphics\VEnemy.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\physicbodies\PBEnemy.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enemy.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\physicbodies\PBEnemySoundWave.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

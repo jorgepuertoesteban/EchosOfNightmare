@@ -11,10 +11,12 @@ class Director{
 		~Director();
 		bool Update();
 		void Render();
+		void NextScene();
 	private:
 		Pointer<sf::RenderWindow> m_pWindow;
 		Pointer<Scene>		      m_pScene;		
 		sf::RenderWindow         *m_window;
+		sf::View                  m_view;
 		Scene        		     *m_scene;
 		EventListener			  m_eventListener;
 		bool				      m_closed;

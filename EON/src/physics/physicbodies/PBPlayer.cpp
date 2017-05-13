@@ -36,7 +36,7 @@ void PBPlayer::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 1;
 	fixtureDef.filter.categoryBits = C_PLAYER;
-	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER;
+	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER | C_ENEMY;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	fixture->SetUserData((void*)D_PLAYER);
 }
@@ -55,18 +55,18 @@ void PBPlayer::Release() {
 	m_pJoint = nullptr;
 }
 void PBPlayer::DestroyFixtures() {
-	for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
-		b2Fixture* fixtureToDestroy = f;
-		f = f->GetNext();
-		m_pBody->DestroyFixture(fixtureToDestroy);
-	}
+	//for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
+	//	b2Fixture* fixtureToDestroy = f;
+	//	f = f->GetNext();
+	//	m_pBody->DestroyFixture(fixtureToDestroy);
+	//}
 }
 void PBPlayer::DestroyBody() {
-	if (m_pWorld && m_pBody) {
-		DestroyFixtures();
-		m_pWorld->DestroyBody(m_pBody);
-		m_pBody = NULL;
-	}
+	//if (m_pWorld && m_pBody) {
+	//	DestroyFixtures();
+	//	m_pWorld->DestroyBody(m_pBody);
+	//	m_pBody = NULL;
+	//}
 }
 b2Vec2 PBPlayer::GetPosition(){
 	return PhysicBody::DefGetPosition();

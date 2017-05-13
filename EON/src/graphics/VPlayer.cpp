@@ -1,10 +1,10 @@
 #include "VPlayer.h"
 
 VPlayer::VPlayer():m_visible(true), m_setedPos(false), m_actNumText(0), m_stop(true){
-	char* path = "Media/step.png";
-	m_texture[0].loadFromFile(path, sf::IntRect(0, 0, 626, 626));
-	m_texture[1].loadFromFile(path, sf::IntRect(626, 0, 626, 626));
-	m_texture[2].loadFromFile(path, sf::IntRect(1252, 0, 626, 626));
+	char* path = "Media/footprint.png";
+	m_texture[0].loadFromFile(path, sf::IntRect(0, 0, 800, 800));
+	m_texture[1].loadFromFile(path, sf::IntRect(800, 0, 800, 800));
+	m_texture[2].loadFromFile(path, sf::IntRect(1600, 0, 800, 800));
 	m_texture[0].setSmooth(true);
 	m_texture[1].setSmooth(true);
 	m_texture[2].setSmooth(true);

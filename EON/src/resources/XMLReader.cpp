@@ -49,6 +49,7 @@ void XMLReader::AddPlayer() {
 	m_map->CreatePlayer(Vec2(m_x,m_y));
 }
 void XMLReader::AddEnemy() {
+	m_map->CreateEnemy(Vec2(m_x, m_y));
 }
 void XMLReader::AddGoal() {
 	m_map->CreateGoal(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);

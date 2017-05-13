@@ -10,6 +10,7 @@ class SMenu: public Scene  {
 		virtual void Update();
 		virtual void Render();
 		virtual void CheckEvents() = 0;
+		virtual bool End() = 0;
 private:
 };
 

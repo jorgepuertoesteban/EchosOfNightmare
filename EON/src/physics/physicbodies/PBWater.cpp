@@ -56,18 +56,18 @@ void PBWater::Release() {
 	m_pJoint = nullptr;
 }
 void PBWater::DestroyFixtures() {
-	for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
-		b2Fixture* fixtureToDestroy = f;
-		f = f->GetNext();
-		m_pBody->DestroyFixture(fixtureToDestroy);
-	}
+	//for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
+	//	b2Fixture* fixtureToDestroy = f;
+	//	f = f->GetNext();
+	//	m_pBody->DestroyFixture(fixtureToDestroy);
+	//}
 }
 void PBWater::DestroyBody() {
-	if (m_pWorld && m_pBody) {
-		DestroyFixtures();
-		m_pWorld->DestroyBody(m_pBody);
-		m_pBody = NULL;
-	}
+	//if (m_pWorld && m_pBody) {
+	//	DestroyFixtures();
+	//	m_pWorld->DestroyBody(m_pBody);
+	//	m_pBody = NULL;
+	//}
 }
 b2Vec2 PBWater::GetPosition(){
 	return PhysicBody::DefGetPosition();

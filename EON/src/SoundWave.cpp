@@ -1,13 +1,14 @@
 #include "SoundWave.h"
 #include "GameObject.h"
-#include "Trail.h"
 
 
-SoundWave::SoundWave(GameObject *gameobj,int lifetime)
-	:m_lifetime(lifetime*50+100), m_dead(false), m_TrailFree(false), m_delete(false),m_r(255),m_g(255),m_b(255) {
+SoundWave::SoundWave(GameObject *gameobj,int lifetime, int r, int g, int b)
+	:m_lifetime(lifetime*50+100), m_dead(false), m_TrailFree(false), m_delete(false)
+	, m_r(r), m_g(g), m_b(b), m_oR(r), m_oG(g), m_oB(b) {
 	m_gObj.Reset(gameobj);
 	m_clockLife.restart();
 	m_clockTrail.restart();
+	m_origin = m_gObj.Get()->GetPosition();
 	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(0)));
 	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(3)));
 }
@@ -67,8 +68,14 @@ bool SoundWave::GetDead() {
 int  SoundWave::GetId() {
 	return m_gObj.Get()->GetId();
 }
-void SoundWave::SetColor(int r,int g,int b) {
+Vec2 SoundWave::GetOrigin() {
+	return m_origin;
+}
+void SoundWave::SetColor(int r, int g, int b) {
 	m_r = r, m_g = g, m_b = b;
+}
+void SoundWave::ResetColor() {
+	m_r = m_oR, m_g = m_oG, m_b = m_oB;
 }
 void SoundWave::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(m_trail, states);

@@ -20,14 +20,17 @@ class Player {
 	public:
 		Player(GameObject * = nullptr, Map * = nullptr);
 		~Player();
+		bool Step();
 		void Update();
+		void KissOfDead();
+		void KissOfLife();
 		void SetW(bool);
 		void SetS(bool);
 		void SetA(bool);
 		void SetD(bool);
 		void SetShift(bool);
+		Vec2 GetPosition();
 		void MakeSound(bool);
-		bool Step();
 		void GenerateSound(unsigned int count);
 private:
 		void Move();
@@ -40,7 +43,10 @@ private:
 		Map          *m_map;
 		Direction    m_sDirection;
 		bool         m_sound,
-			         m_walking;
+			         m_walking,
+			         m_kissOfDead,			
+			         m_kissOfLife,
+					 m_finish;
 		sf::Clock    m_clockSound,
 			         m_clockStep;
 };
