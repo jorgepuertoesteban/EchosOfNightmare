@@ -31,7 +31,7 @@ class Player {
 		void SetShift(bool);
 		Vec2 GetPosition();
 		void MakeSound(bool);
-		void GenerateSound(unsigned int count);
+		void GenerateSound(unsigned int count, unsigned int lifetime, float velocity);
 private:
 		void Move();
 		void CalcDir();

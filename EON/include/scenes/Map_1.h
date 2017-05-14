@@ -3,13 +3,13 @@
 #include "Map.h"
 #include "Pointer.h"
 #include "PVector.h"
-#include "Player.h"
 
 class PhysicWorld;
 class ContactListener;
 class SoundWave;
 class Goal;
 class Wall;
+class Player;
 
 class Map_1: public Map{
 	public:
@@ -21,7 +21,6 @@ class Map_1: public Map{
 		virtual void CheckEvents();
 		virtual void Life();
 		virtual void Dead();
-		virtual void EndMap();
 		virtual bool End();
 		virtual void ReadXML();
 		virtual void        CreateEnemy(Vec2 pos);
@@ -34,8 +33,21 @@ class Map_1: public Map{
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos);
 		PVector<SoundWave>* GetSoundWaves();
 		PVector<Enemy>*     GetEnemies();
-private:
-		sf::Clock                m_clockEnd;
+	private:
+		bool Start();
+		void StartFinish();
+		void EndMap();
+		void UpdateIntro();
+		void RenderIntro(sf::RenderWindow *window);
+		void UpdateGameObjects();
+		void UpdateSoundWaves();
+		void UpdateEnemies();
+		void CheckFinish();
+		Pointer<PhysicWorld>     m_pPhysiworld;
+		sf::Font                 m_font;
+		sf::Text                 m_text;
+		sf::Clock                m_clockStart,
+			                     m_clockEnd;
 		sf::View                 *m_view;
 		PVector<SoundWave>       m_soundWaves;
 		PVector<Enemy>           m_enemies;
@@ -46,10 +58,10 @@ private:
 		Pointer<ContactListener> m_pContactListener;
 		PhysicWorld              *m_physiworld;
 		EventListener			 *m_listener;
-		Player			         m_player;
-		bool                     m_end,
+		Pointer<Player>			 m_player;
+		bool                     m_start,
+			                     m_end,
 								 m_finished;
 		const char*              m_path = "Media/Maps/map1.tmx";
-		Pointer<PhysicWorld>     m_pPhysiworld;
 };
 

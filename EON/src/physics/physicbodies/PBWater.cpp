@@ -12,12 +12,7 @@ PBWater::~PBWater(){
     DestroyBody();
 }
 int PBWater::Inicialize(b2Vec2 pos, b2Vec2 tam){
-	b2Vec2 position(pos.x*MPP, -pos.y*MPP);
-	b2Vec2 size(tam.x*MPP, tam.y*MPP);
-	DestroyBody();
-	InitBody(position, size);
-    InitFixtures(size);
-    return m_bodyId;
+	return PhysicBody::DefInicialize( pos,  tam);
 }
 void PBWater::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
@@ -56,18 +51,10 @@ void PBWater::Release() {
 	m_pJoint = nullptr;
 }
 void PBWater::DestroyFixtures() {
-	//for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
-	//	b2Fixture* fixtureToDestroy = f;
-	//	f = f->GetNext();
-	//	m_pBody->DestroyFixture(fixtureToDestroy);
-	//}
+	PhysicBody::DefDestroyFixtures();
 }
 void PBWater::DestroyBody() {
-	//if (m_pWorld && m_pBody) {
-	//	DestroyFixtures();
-	//	m_pWorld->DestroyBody(m_pBody);
-	//	m_pBody = NULL;
-	//}
+	PhysicBody::DefDestroyBody();
 }
 b2Vec2 PBWater::GetPosition(){
 	return PhysicBody::DefGetPosition();

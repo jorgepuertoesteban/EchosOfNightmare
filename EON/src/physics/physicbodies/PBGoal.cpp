@@ -12,12 +12,7 @@ PBGoal::~PBGoal(){
     DestroyBody();
 }
 int PBGoal::Inicialize(b2Vec2 pos, b2Vec2 tam){
-	b2Vec2 position(pos.x*MPP, -pos.y*MPP);
-	b2Vec2 size(tam.x*MPP, tam.y*MPP);
-	DestroyBody();
-	InitBody(position, size);
-    InitFixtures(size);
-    return m_bodyId;
+	return PhysicBody::DefInicialize( pos,  tam);
 }
 void PBGoal::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
@@ -56,18 +51,10 @@ void PBGoal::Release() {
 	m_pJoint = nullptr;
 }
 void PBGoal::DestroyFixtures() {
-	//for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
-	//	b2Fixture* fixtureToDestroy = f;
-	//	f = f->GetNext();
-	//	m_pBody->DestroyFixture(fixtureToDestroy);
-	//}
+	PhysicBody::DefDestroyFixtures();
 }
 void PBGoal::DestroyBody() {
-	//if (m_pWorld && m_pBody) {
-	//	DestroyFixtures();
-	//	m_pWorld->DestroyBody(m_pBody);
-	//	m_pBody = NULL;
-	//}
+	PhysicBody::DefDestroyBody();
 }
 b2Vec2 PBGoal::GetPosition(){
 	return PhysicBody::DefGetPosition();

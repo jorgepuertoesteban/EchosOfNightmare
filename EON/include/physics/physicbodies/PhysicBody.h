@@ -31,6 +31,8 @@ class PhysicBody{
 		virtual void   InitBody(b2Vec2 pos,b2Vec2 tam) = 0;
         virtual void   DestroyBody() = 0;
         int     GenerateId();
+        int     DefInicialize(b2Vec2 pos, b2Vec2 tam);
+        void    DefInitBody(b2Vec2 pos,b2Vec2 tam);
         b2Body* GetBodyWithId(int id);
         b2Vec2  DefGetPosition();
         b2Vec2  DefGetLinearVelocity();
@@ -47,6 +49,8 @@ class PhysicBody{
         void    DefSetCategory(uint16 i);
         void    DefSetUserData(int i);
         void    DefSetMask(uint16 i);
+        void    DefDestroyFixtures();
+        void    DefDestroyBody();
         void    DefCatch(int id);
         void    DefRelease();
 

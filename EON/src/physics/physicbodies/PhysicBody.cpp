@@ -1,6 +1,23 @@
 #include "physicbodies\PhysicBody.h"
 
 int PhysicBody::c_id= -1;
+
+int PhysicBody::DefInicialize(b2Vec2 pos, b2Vec2 tam){
+	b2Vec2 position(pos.x*MPP, -pos.y*MPP);
+	b2Vec2 size(tam.x*MPP, tam.y*MPP);
+	DestroyBody();
+	InitBody(position, size);
+    InitFixtures(size);
+    return m_bodyId;
+}
+void PhysicBody::DefInitBody(b2Vec2 pos, b2Vec2 tam) {
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
+	bodyDef.type = b2_dynamicBody;
+	m_pBody = m_pWorld->CreateBody(&bodyDef);
+	m_bodyId = PhysicBody::GenerateId();
+	m_pBody->SetUserData((void*)m_bodyId);
+}
 b2Vec2 PhysicBody::DefGetPosition(){
 	return m_pBody->GetPosition();
 }
@@ -72,4 +89,20 @@ b2Body* PhysicBody::GetBodyWithId(int id){
         }
 	}
 	return nullptr;
+}
+
+void    PhysicBody::DefDestroyFixtures(){
+	for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
+		b2Fixture* fixtureToDestroy = f;
+		f = f->GetNext();
+		m_pBody->DestroyFixture(fixtureToDestroy);
+	}
+
+}
+void    PhysicBody::DefDestroyBody(){
+	if (m_pWorld && m_pBody) {
+		DestroyFixtures();
+		m_pWorld->DestroyBody(m_pBody);
+		m_pBody = NULL;
+	}	
 }

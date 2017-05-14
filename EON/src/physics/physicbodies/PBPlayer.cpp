@@ -12,20 +12,10 @@ PBPlayer::~PBPlayer(){
     DestroyBody();
 }
 int PBPlayer::Inicialize(b2Vec2 pos, b2Vec2 tam){
-	b2Vec2 position(pos.x*MPP, -pos.y*MPP);
-	b2Vec2 size(tam.x*MPP, tam.y*MPP);
-	DestroyBody();
-	InitBody(position, size);
-    InitFixtures(size);
-    return m_bodyId;
+	return PhysicBody::DefInicialize( pos,  tam);
 }
 void PBPlayer::InitBody(b2Vec2 pos, b2Vec2 tam) {
-	b2BodyDef bodyDef;
-	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
-	bodyDef.type = b2_dynamicBody;
-	m_pBody = m_pWorld->CreateBody(&bodyDef);
-	m_bodyId = PhysicBody::GenerateId();
-	m_pBody->SetUserData((void*)m_bodyId);
+	return PhysicBody::DefInitBody( pos,  tam);
 }
 void PBPlayer::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
@@ -55,18 +45,10 @@ void PBPlayer::Release() {
 	m_pJoint = nullptr;
 }
 void PBPlayer::DestroyFixtures() {
-	//for (b2Fixture* f = m_pBody->GetFixtureList(); f;) {
-	//	b2Fixture* fixtureToDestroy = f;
-	//	f = f->GetNext();
-	//	m_pBody->DestroyFixture(fixtureToDestroy);
-	//}
+	PhysicBody::DefDestroyFixtures();
 }
 void PBPlayer::DestroyBody() {
-	//if (m_pWorld && m_pBody) {
-	//	DestroyFixtures();
-	//	m_pWorld->DestroyBody(m_pBody);
-	//	m_pBody = NULL;
-	//}
+	PhysicBody::DefDestroyBody();
 }
 b2Vec2 PBPlayer::GetPosition(){
 	return PhysicBody::DefGetPosition();

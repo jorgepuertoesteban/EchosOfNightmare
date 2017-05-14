@@ -17,6 +17,15 @@ public:
 		m_rs.clear();
 		std::vector<T*>().swap(m_rs);
 	}
+	void Clear() {
+		auto it = m_rs.begin();
+		while (it != m_rs.end()) {
+			delete *it;
+			it = m_rs.erase(it);
+		}
+		m_rs.clear();
+		std::vector<T*>().swap(m_rs);
+	}
 	T * Add(T *a = nullptr) {
 		if (a) {
 			m_rs.push_back(a);

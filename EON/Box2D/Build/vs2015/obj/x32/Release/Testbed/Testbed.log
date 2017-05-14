@@ -1,0 +1,10 @@
+﻿  DebugDraw.cpp
+  Main.cpp
+  Test.cpp
+  TestEntries.cpp
+  Generando código...
+  imgui.lib(imgui.obj) : se encontró .netmodule MSIL o un módulo compilado con /GL; reiniciando la vinculación con /LTCG; agregue /LTCG a la línea de comandos de vínculo para mejorar el rendimiento del vinculador
+  Generando c¾digo
+  Generaci¾n de c¾digo finalizada
+  Testbed.vcxproj -> C:\Users\PCJ\Contacts\Desktop\Echoes Of Nightmare\EON\Box2D\Build\vs2015\bin\x32\Release\Testbed.exe
+  Testbed.vcxproj -> bin\x32\Release\Testbed.pdb (Full PDB)

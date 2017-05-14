@@ -15,29 +15,21 @@ void Player::Update() {
 	Move();	
 	if (!m_finish && Step()) {
 		if (!m_sDirection.Shift) {
-			GenerateSound(15);
+			GenerateSound(15,15,4);
 		}
 		else {
-			GenerateSound(7);
+			GenerateSound(7, 20, 1/1.5f);
 		}
 	}
-	if (!m_finish && m_kissOfDead) {
+	if (!m_finish && (m_kissOfDead || m_kissOfLife)) {
 		unsigned int count = 50;
 		for (unsigned int i = 0; i < count; i++) {
 			float angle = ((i / (float)count) * 360);
-			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), Vec2(16, 16), count, 102, 0, 0);
+			int r, g, b;
+			if (m_kissOfDead) r = 102, g = 0, b = 0;
+			if (m_kissOfLife) r = 255, g = 255, b = 255;
+			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), Vec2(16, 16), count, r,g,b);
 		}
-		m_kissOfDead = false;
-		m_finish = true;
-	}
-
-	if (!m_finish && m_kissOfLife) {
-		unsigned int count = 50;
-		for (unsigned int i = 0; i < count; i++) {
-			float angle = ((i / (float)count) * 360);
-			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 6, cosf(angle*3.14f / 180.f) * 6), Vec2(16, 16), 20);
-		}
-		m_kissOfLife = false;
 		m_finish = true;
 	}
 }
@@ -88,7 +80,7 @@ void Player::CalcDir() {
 		m_dir = m_dir * m_speed;
 
 	if (m_sDirection.Shift) {
-		m_dir = m_dir / 4;
+		m_dir = m_dir / 2;
 	}
 }
 void Player::CalcAngle() {
@@ -164,14 +156,14 @@ void Player::MakeSound(bool key_pressed){
 			if (numRays > 50) {
 				numRays = 50;
 			}
-			GenerateSound(numRays);
+			GenerateSound(numRays, numRays, 4);
 		}
 	}
 }
-void Player::GenerateSound(unsigned int count) {
+void Player::GenerateSound(unsigned int count, unsigned int lifetime , float velocity) {
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
-		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4),Vec2(8,8), count);
+		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(8,8), lifetime);
 	}
 }

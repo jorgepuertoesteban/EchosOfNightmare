@@ -27,7 +27,7 @@ void Enemy::Move() {
 	}
 }
 bool Enemy::ReachTarget() {
-	float margin = 0.5f;
+	float margin = 1;
 	if (   m_gObj->GetPosition().x < m_target.x + margin && m_gObj->GetPosition().x > m_target.x - margin
  		&& m_gObj->GetPosition().y < m_target.y + margin && m_gObj->GetPosition().y > m_target.y - margin) {
 		return true;

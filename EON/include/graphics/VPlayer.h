@@ -11,9 +11,9 @@ struct step {
 		dead  = false; 
 	}
 	bool Update() {
-		auto alpha = sprite.getColor().a - 1;
+		auto alpha = sprite.getColor().a - 4;
 		sprite.setColor(sf::Color(255, 255, 255, alpha));
-		if (alpha == 0) {
+		if (alpha <= 0) {
 			dead = true;
 		}
 		return dead;

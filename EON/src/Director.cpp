@@ -4,12 +4,13 @@
 Director::Director():m_closed(false){
 	sf::VideoMode vM = sf::VideoMode::getDesktopMode();
 	sf::ContextSettings settings;
-	settings.antialiasingLevel = 10000;
+	settings.antialiasingLevel = 10;
 	m_view = sf::View(sf::FloatRect(0, 0, (float)vM.width, (float)vM.height));
-	m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Default, settings));
+	m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
 	m_window = m_pWindow.Get();
 	m_window->setVerticalSyncEnabled(true);
-	m_window->setFramerateLimit(45);
+	m_window->setFramerateLimit(30);
+	m_window->setMouseCursorVisible(false);
 	m_window->setView(m_view);
 	NextScene();
 }
@@ -20,9 +21,11 @@ bool Director::Update() {
 	if (m_eventListener.IsKeyDown(sf::Keyboard::Escape)) {
 		m_window->close();
 	}
-	m_scene->Update();
 	if (m_scene->End()) {
 		NextScene();
+	}
+	else {
+		m_scene->Update();
 	}
 	m_window->setView(m_view);
 	return m_window->isOpen();
