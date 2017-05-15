@@ -31,6 +31,8 @@ Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false){
 	m_view = view;
 	m_clockStart.restart();
 	m_font.loadFromFile("Media/Fonts/Bitter-Bold.ttf");
+
+	m_text.setPosition(sf::Vector2f(0,-2000));
 	m_text.setCharacterSize(100);
 	m_text.setFont(m_font);
 	m_text.setFillColor(sf::Color::White);
@@ -45,6 +47,7 @@ bool Map_1::Start() {
 	if (!m_start) {
 		if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
 			m_start = true;
+			m_clockStart.restart();
 		}
 		return false;
 	}
@@ -61,6 +64,9 @@ void Map_1::Update(){
 		UpdateIntro();
 		return;
 	}
+	else {
+		UpdateText();
+	}
 	m_player.Get()->Update();
 	CheckFinish();
 }
@@ -71,11 +77,18 @@ void Map_1::UpdateIntro() {
 	m_text.setPosition(pos);
 	m_text.setFillColor(sf::Color(255,255,255,alpha));
 }
+void Map_1::UpdateText() {
+	if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
+		//ToDo: hacer un array textos, cada vez que se llegue a 3 segundos cambiar el texto,
+		// y resetear la transparencia, hasta que se alcance el ultimo texto.
+	}
+}
 void Map_1::Render(sf::RenderWindow *window){
 	if (!Start()) {
-		RenderIntro(window);
+		window->draw(m_text);
 		return;
 	}
+	window->draw(m_text);
 	for (auto it = m_Walls.GetBegin(); it != m_Walls.GetEnd(); it++) {
 		if ((*it)->Visible())
 			window->draw(*(*it));
@@ -92,9 +105,6 @@ void Map_1::Render(sf::RenderWindow *window){
 	for (auto it = m_enemies.GetBegin(); it != m_enemies.GetEnd(); it++) {
 			window->draw(*(*it));
 	}
-}
-void Map_1::RenderIntro(sf::RenderWindow *window) {
-	window->draw(m_text);
 }
 void Map_1::CheckEvents() {
 	m_player.Get()->SetW(m_listener->IsKeyDown(sf::Keyboard::W));
@@ -136,6 +146,7 @@ void Map_1::CreateEnemy(Vec2 pos) {
 void Map_1::CreatePlayer(Vec2 pos) {
 	GameObject *goPlayer = CreateGameObject(new PBPlayer, new VPlayer, pos, Vec2(35, 35));
 	m_player.Reset(new Player(goPlayer, this));
+	sf::Vector2f posText(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height);
 }
 
 void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {

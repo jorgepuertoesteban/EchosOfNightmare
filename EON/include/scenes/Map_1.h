@@ -38,10 +38,10 @@ class Map_1: public Map{
 		void StartFinish();
 		void EndMap();
 		void UpdateIntro();
-		void RenderIntro(sf::RenderWindow *window);
 		void UpdateGameObjects();
 		void UpdateSoundWaves();
 		void UpdateEnemies();
+		void UpdateText();
 		void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		sf::Font                 m_font;
