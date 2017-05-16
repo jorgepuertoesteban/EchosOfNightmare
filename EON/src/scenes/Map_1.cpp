@@ -22,7 +22,7 @@
 #include "SoundWave.h"
 #include <iostream>
 
-Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false){
+Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true){
 	m_pPhysiworld.Reset(new PhysicWorld);
 	m_physiworld = m_pPhysiworld.Get();
 	m_pContactListener.Reset(new ContactListener(this)); 
@@ -36,7 +36,7 @@ Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false){
 	m_text.setCharacterSize(100);
 	m_text.setFont(m_font);
 	m_text.setFillColor(sf::Color::White);
-	m_text.setString("Soledad");
+	m_text.setString(m_mapName);
 }
 Map_1::~Map_1(){
 }
@@ -46,8 +46,10 @@ void Map_1::Inicialice(EventListener* listener) {
 bool Map_1::Start() {
 	if (!m_start) {
 		if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
+			m_text.setCharacterSize(20);
+			m_text.setFillColor(sf::Color::White);
+			m_text.setString(m_tutoStrings);
 			m_start = true;
-			m_clockStart.restart();
 		}
 		return false;
 	}
@@ -78,17 +80,23 @@ void Map_1::UpdateIntro() {
 	m_text.setFillColor(sf::Color(255,255,255,alpha));
 }
 void Map_1::UpdateText() {
-	if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
-		//ToDo: hacer un array textos, cada vez que se llegue a 3 segundos cambiar el texto,
-		// y resetear la transparencia, hasta que se alcance el ultimo texto.
+	if (m_learn) {
+		int alpha = m_text.getFillColor().a;
+		if (alpha > 150)alpha--;
+		else if (alpha >= 3)alpha -= 3;
+		sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height - 50);
+		m_text.setPosition(pos);
+		m_text.setFillColor(sf::Color(255, 255, 255, alpha));
+		if (alpha == 0) {
+			m_learn = false;
+		}
 	}
 }
 void Map_1::Render(sf::RenderWindow *window){
+	window->draw(m_text);
 	if (!Start()) {
-		window->draw(m_text);
 		return;
 	}
-	window->draw(m_text);
 	for (auto it = m_Walls.GetBegin(); it != m_Walls.GetEnd(); it++) {
 		if ((*it)->Visible())
 			window->draw(*(*it));

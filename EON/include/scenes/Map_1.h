@@ -61,7 +61,10 @@ class Map_1: public Map{
 		Pointer<Player>			 m_player;
 		bool                     m_start,
 			                     m_end,
-								 m_finished;
-		const char*              m_path = "Media/Maps/map1.tmx";
+								 m_finished,
+							     m_learn;
+		const char               *m_path        = "Media/Maps/map1.tmx",
+		                         *m_mapName     = "Loneless",
+						         *m_tutoStrings = "Use W,A,S,D keys to walk";
 };
 
