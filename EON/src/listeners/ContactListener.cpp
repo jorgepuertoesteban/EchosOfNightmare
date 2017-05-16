@@ -1,6 +1,7 @@
 #include "ContactListener.h"
 #include "SoundWave.h"
 #include "Enemy.h"
+#include "Rock.h"
 #include "Map.h"
 
 ContactListener::ContactListener(Map* map):m_map(map){
@@ -70,6 +71,17 @@ SoundWave* ContactListener::GetSoundWave() {
 Enemy* ContactListener::GetEnemy() {
 	auto enemies = m_map->GetEnemies();
 	for (auto it = enemies->GetBegin(); it != enemies->GetEnd(); ++it) {
+		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
+			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
+			return (*it);
+		}
+	}
+	return nullptr;
+}
+
+Rock* ContactListener::GetRock() {
+	auto rocks = m_map->GetRocks();
+	for (auto it = rocks->GetBegin(); it != rocks->GetEnd(); ++it) {
 		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
 			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
 			return (*it);

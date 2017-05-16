@@ -9,8 +9,8 @@ SoundWave::SoundWave(GameObject *gameobj,int lifetime, int r, int g, int b)
 	m_clockLife.restart();
 	m_clockTrail.restart();
 	m_origin = m_gObj.Get()->GetPosition();
-	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(0)));
-	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(3)));
+	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(0) * 64.f));
+	m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(3) * 64.f));
 }
 SoundWave::~SoundWave() {
 }
@@ -23,8 +23,8 @@ void SoundWave::Update() {
 			a = 0, z = 3;
 		else              
 			a = 1, z = 2;
-		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(a),m_r,m_g,m_b));
-		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(z),m_r,m_g,m_b ));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(a) * 64.f,m_r,m_g,m_b));
+		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(z) * 64.f,m_r,m_g,m_b ));
 		if (m_points.size() > m_lifetime / 40) {
 			m_points.pop_back();
 			m_points.pop_back();
@@ -53,8 +53,8 @@ void SoundWave::Update() {
 
 	
 	for (auto it = m_points.begin(); it != m_points.end(); it++) {
-		float x = (it->x * 64.f),
-			y = (it->y * 64.f);
+		float x = (it->x),
+			y = (it->y);
 		m_trail[cont].position = sf::Vector2f(x , y);
 		m_trail[cont].color = sf::Color(it->r, it->g, it->b, alpha);
 		if(alpha > alpha - downgrade)alpha -= downgrade;

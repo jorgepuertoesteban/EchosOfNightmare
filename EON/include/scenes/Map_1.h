@@ -25,6 +25,7 @@ class Map_1: public Map{
 		virtual void ReadXML();
 		virtual void        CreateEnemy(Vec2 pos);
 		virtual void        CreatePlayer(Vec2 pos);
+		virtual void        CreateRock(Vec2 pos, Vec2 dir);
 		virtual void        CreateGoal(Vec2 pos, Vec2 size, int rotation);
 		virtual void        CreateWall(Vec2 pos, Vec2 size, int rotation);
 		virtual void        CreateWater(Vec2 pos,Vec2 size, int rotation);
@@ -33,7 +34,8 @@ class Map_1: public Map{
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos);
 		PVector<SoundWave>* GetSoundWaves();
 		PVector<Enemy>*     GetEnemies();
-	private:
+		PVector<Rock>*      GetRocks();
+private:
 		bool Start();
 		void StartFinish();
 		void EndMap();

@@ -5,8 +5,9 @@
 
 class ContactListener;
 class SoundWave;
-class Enemy;
 class Player;
+class Enemy;
+class Rock;
 class Map;
 
 struct Contact2Method {
@@ -21,7 +22,6 @@ class ContactListener: public b2ContactListener{
         virtual ~ContactListener(){}
         void BeginContact(b2Contact* contact);
         void EndContact(b2Contact* contact);
-        void PlayerTeleport();
     private:
     	const Contact2Method beginContact[9] = {
 			  { D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer      }
@@ -44,6 +44,7 @@ class ContactListener: public b2ContactListener{
         b2Contact* contact;
 		SoundWave* GetSoundWave();
 		Enemy*     GetEnemy();
+		Rock*      GetRock();
 		Map *m_map;
 		void Win();
 		void KillPlayer();

@@ -8,6 +8,7 @@ enum UserDatas {
 	D_GOAL           = 5,
 	D_WATER          = 6,
 	D_ENEMY          = 7,
+	D_ROCK           = 8,
 };
 
 enum categoryBits {
@@ -20,4 +21,5 @@ enum categoryBits {
 	C_WATER          = 32,
 	C_ENEMY          = 64,
 	C_ENEMYSOUNDWAVE = 128,
+	C_ROCK           = 256,
 };

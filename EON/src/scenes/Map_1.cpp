@@ -46,6 +46,8 @@ void Map_1::Inicialice(EventListener* listener) {
 bool Map_1::Start() {
 	if (!m_start) {
 		if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
+			sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height - 50);
+			m_text.setPosition(pos);
 			m_text.setCharacterSize(20);
 			m_text.setFillColor(sf::Color::White);
 			m_text.setString(m_tutoStrings);
@@ -75,7 +77,7 @@ void Map_1::Update(){
 void Map_1::UpdateIntro() {
 	int alpha = m_text.getFillColor().a;
 	if(alpha>=4)alpha -= 4;
-	sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height );
+	sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height - 50);
 	m_text.setPosition(pos);
 	m_text.setFillColor(sf::Color(255,255,255,alpha));
 }
@@ -147,7 +149,7 @@ GameObject* Map_1::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos, Ve
 	return gObj;
 }
 void Map_1::CreateEnemy(Vec2 pos) {
-	GameObject *goEnemy = CreateGameObject(new PBEnemy, new VEnemy, pos, Vec2(25,25));
+	GameObject *goEnemy = CreateGameObject(new PBEnemy, new VEnemy, pos, Vec2(35,35));
 	goEnemy->SetVisible(false);
 	m_enemies.Add(new Enemy(goEnemy, this));
 }
@@ -156,7 +158,9 @@ void Map_1::CreatePlayer(Vec2 pos) {
 	m_player.Reset(new Player(goPlayer, this));
 	sf::Vector2f posText(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height);
 }
+void Map_1::CreateRock(Vec2 pos, Vec2 dir) {
 
+}
 void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	PBGoal *pgoal = new PBGoal;
 	VWall  *vgoal = new VWall;
@@ -260,7 +264,7 @@ void Map_1::CheckFinish() {
 		EndMap();
 	}
 }
-	void Map_1::UpdateGameObjects() {
+void Map_1::UpdateGameObjects() {
 	for (auto itGO = m_gameObjects.GetBegin(); itGO != m_gameObjects.GetEnd(); itGO++) {
 		(*itGO)->Update();
 	}

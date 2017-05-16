@@ -24,9 +24,9 @@ void PBEnemy::InitBody(b2Vec2 pos, b2Vec2 tam) {
 }
 void PBEnemy::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
-	b2PolygonShape polyShape;
-	polyShape.SetAsBox((tam.x / 2), (tam.y / 2));
-	fixtureDef.shape = &polyShape;
+	b2CircleShape circleShape;
+	circleShape.m_radius = tam.x / 2;
+	fixtureDef.shape = &circleShape;
 	fixtureDef.friction = 0.01f;
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 1;

@@ -145,6 +145,7 @@
     <ClCompile Include="src\physics\physicbodies\PBEnemySoundWave.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBGoal.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBPlayer.cpp" />
+    <ClCompile Include="src\physics\physicbodies\PBRock.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBSoundWave.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBWall.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBWater.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="src\resources\tinyxml2.cpp" />
     <ClCompile Include="src\resources\Vec2.cpp" />
     <ClCompile Include="src\resources\XMLReader.cpp" />
+    <ClCompile Include="src\Rock.cpp" />
     <ClCompile Include="src\scenes\Map_1.cpp" />
     <ClCompile Include="src\scenes\Scene.cpp" />
     <ClCompile Include="src\scenes\SMenu.cpp" />
@@ -177,6 +179,7 @@
     <ClInclude Include="include\physics\physicbodies\PBEnemySoundWave.h" />
     <ClInclude Include="include\physics\physicbodies\PBGoal.h" />
     <ClInclude Include="include\physics\physicbodies\PBPlayer.h" />
+    <ClInclude Include="include\physics\physicbodies\PBRock.h" />
     <ClInclude Include="include\physics\physicbodies\PBSoundWave.h" />
     <ClInclude Include="include\physics\physicbodies\PBWall.h" />
     <ClInclude Include="include\physics\physicbodies\PBWater.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="include\resources\tinyxml2.h" />
     <ClInclude Include="include\resources\Vec2.h" />
     <ClInclude Include="include\resources\XMLReader.h" />
+    <ClInclude Include="include\Rock.h" />
     <ClInclude Include="include\scenes\Map.h" />
     <ClInclude Include="include\scenes\Map_1.h" />
     <ClInclude Include="include\scenes\Scene.h" />
