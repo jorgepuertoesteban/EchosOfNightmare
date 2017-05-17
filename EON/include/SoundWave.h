@@ -8,13 +8,7 @@
 class GameObject;
 class Scene;
 
-struct Point {
-	float x, y;
-	int r, g, b;
-	Point() { r = g = b = 255; x = y = 0; }
-	Point(Vec2 v) { x = v.x; y = v.y;  r = g = b = 255; }
-	Point(Vec2 v, int r, int g, int b):r(r), g(g), b(b) { x = v.x; y = v.y; }
-};
+
 
 class SoundWave : public sf::Drawable {
 	public:
@@ -27,6 +21,15 @@ class SoundWave : public sf::Drawable {
 		void SetColor(int, int, int);
 		void ResetColor();
 	private:
+
+		struct Point {
+			float x, y;
+			int r, g, b;
+			Point() { r = g = b = 255; x = y = 0; }
+			Point(Vec2 v) { x = v.x; y = v.y;  r = g = b = 255; }
+			Point(Vec2 v, int r, int g, int b) :r(r), g(g), b(b) { x = v.x; y = v.y; }
+		};
+
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		Pointer<GameObject>  m_gObj;
 		std::vector<Point>   m_points;

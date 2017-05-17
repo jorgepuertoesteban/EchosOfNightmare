@@ -1,37 +1,46 @@
 #include "Player.h"
 #include "GameObject.h"
 #include "Map.h"
+#include "EventListener.h"
 #include <math.h>
 #include <iostream>
 
 
 Player::Player(GameObject *gObj, Map *map)
-	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false),
-	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false){
+	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr),
+	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false){
 }
 Player::~Player() {
 }
 void Player::Update() {
-	Move();	
-	if (!m_finish && Step()) {
-		if (!m_sDirection.Shift) {
-			GenerateSound(15,15,4);
+
+	if (m_clockEvents.getElapsedTime().asMilliseconds() > 100) {
+		CheckEvents();
+		Move();
+		m_clockEvents.restart();
+	}
+	if (!m_finish) {
+		if (Step()) {
+			if (!m_sDirection.Shift) {
+				GenerateSound(15, 15, 4);
+			}
+			else {
+				GenerateSound(7, 20, 1 / 1.5f);
+			}
 		}
-		else {
-			GenerateSound(7, 20, 1/1.5f);
+		if (m_kissOfDead || m_kissOfLife) {
+			unsigned int count = 50;
+			for (unsigned int i = 0; i < count; i++) {
+				float angle = ((i / (float)count) * 360);
+				int r, g, b;
+				if (m_kissOfDead) r = 102, g = 0, b = 0;
+				if (m_kissOfLife) r = 255, g = 255, b = 255;
+				m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), Vec2(16, 16), count, r, g, b);
+			}
+			m_finish = true;
 		}
 	}
-	if (!m_finish && (m_kissOfDead || m_kissOfLife)) {
-		unsigned int count = 50;
-		for (unsigned int i = 0; i < count; i++) {
-			float angle = ((i / (float)count) * 360);
-			int r, g, b;
-			if (m_kissOfDead) r = 102, g = 0, b = 0;
-			if (m_kissOfLife) r = 255, g = 255, b = 255;
-			m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), Vec2(16, 16), count, r,g,b);
-		}
-		m_finish = true;
-	}
+	
 }
 void Player::KissOfDead() {
 	m_kissOfDead = true;
@@ -94,29 +103,18 @@ void Player::CalcAngle() {
 		}
 	}
 }
-void Player::SetW(bool aux) {
-	m_sDirection.W = aux;
-	if (aux)
-		m_sDirection.lastV = -1;
-}
-void Player::SetS(bool aux) {
-	m_sDirection.S = aux;
-	if (aux)
-		m_sDirection.lastV = 1;
-}
-void Player::SetA(bool aux) {
-	m_sDirection.A = aux;
-	if (aux)
-		m_sDirection.lastH = -1;
-}
-void Player::SetD(bool aux) {
-	m_sDirection.D = aux;
-	if (aux)
-		m_sDirection.lastH = 1;
-}
-
-void Player::SetShift(bool aux) {
-	m_sDirection.Shift = aux;
+void Player::CheckEvents() {
+	m_sDirection.Shift = (m_events->IsKeyDown(sf::Keyboard::LShift) || m_events->IsKeyDown(sf::Keyboard::RShift));
+	m_sDirection.W     = m_events->IsKeyDown(sf::Keyboard::W);
+	m_sDirection.A     = m_events->IsKeyDown(sf::Keyboard::A);
+	m_sDirection.S     = m_events->IsKeyDown(sf::Keyboard::S);
+	m_sDirection.D     = m_events->IsKeyDown(sf::Keyboard::D);
+	MakeSound(m_events->IsKeyDown(sf::Keyboard::Space));
+	ThrowRock(m_events->IsKeyDown(sf::Keyboard::Return));
+	if (m_sDirection.W) m_sDirection.lastV = -1;
+	if (m_sDirection.S) m_sDirection.lastV = 1;
+	if (m_sDirection.A) m_sDirection.lastH = -1;
+	if (m_sDirection.D) m_sDirection.lastH = 1;
 }
 Vec2 Player::GetPosition() {
 	return m_gObj->GetPosition();
@@ -145,7 +143,6 @@ void Player::MakeSound(bool key_pressed){
 	if(!m_finish && !m_sound && key_pressed){
 		m_clockSound.restart();
 		m_sound = true;
-
 	}
 	if(!m_finish && m_sound && !key_pressed){
 		m_sound = false;
@@ -160,10 +157,22 @@ void Player::MakeSound(bool key_pressed){
 		}
 	}
 }
+void Player::ThrowRock(bool rock) {
+	if (!m_rock && rock) {
+		m_map->CreateRock(m_gObj->GetPosition(), Vec2(cosf(m_angle), sinf(m_angle))*20);
+		m_rock = true;
+	}
+	else if (m_rock && !rock) {
+		m_rock = false;
+	}
+}
 void Player::GenerateSound(unsigned int count, unsigned int lifetime , float velocity) {
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
 		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(8,8), lifetime);
 	}
+}
+void Player::SetEventListener(EventListener *events) {
+	m_events = events;
 }

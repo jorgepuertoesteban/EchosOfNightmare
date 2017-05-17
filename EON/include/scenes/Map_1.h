@@ -43,6 +43,7 @@ private:
 		void UpdateGameObjects();
 		void UpdateSoundWaves();
 		void UpdateEnemies();
+		void UpdateRocks();
 		void UpdateText();
 		void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
@@ -53,6 +54,7 @@ private:
 		sf::View                 *m_view;
 		PVector<SoundWave>       m_soundWaves;
 		PVector<Enemy>           m_enemies;
+		PVector<Rock>            m_rocks;
 		PVector<GameObject>      m_gameObjects,
 			                     m_Walls,
 			                     m_Waters;

@@ -39,6 +39,10 @@ void ContactListener::EndContact(b2Contact* contact){
 void ContactListener::Win() {
 	m_map->Life();
 }
+void ContactListener::RockColision() {
+	GetRock()->Colision();
+}
+
 void ContactListener::KillPlayer(){
 	m_map->Dead();
 }

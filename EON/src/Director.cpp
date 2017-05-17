@@ -6,9 +6,10 @@ Director::Director():m_closed(false){
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 10;
 	m_view = sf::View(sf::FloatRect(0, 0, (float)vM.width, (float)vM.height));
-	m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
-	//m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(600,600*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
+	//m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
+	m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(600,600*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
 	m_window = m_pWindow.Get();
+	m_eventListener.Inicialize(m_window);
 	m_window->setVerticalSyncEnabled(true);
 	m_window->setFramerateLimit(30);
 	m_window->setMouseCursorVisible(false);
@@ -39,6 +40,5 @@ void Director::Render() {
 void Director::NextScene() {
 	m_pScene.Reset(new Map_1(&m_view));
 	m_scene = m_pScene.Get();
-	m_eventListener.Inicialize(m_window);
 	m_scene->Inicialice(&m_eventListener);
 }
