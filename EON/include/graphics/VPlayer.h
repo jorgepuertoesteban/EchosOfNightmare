@@ -4,22 +4,6 @@
 #include "VisualBody.h"
 #include "PVector.h"
 
-struct step {
-	sf::Sprite   sprite;
-	bool         dead;
-	step(sf::Sprite sprite) :sprite(sprite) { 
-		dead  = false; 
-	}
-	bool Update() {
-		auto alpha = sprite.getColor().a - 4;
-		sprite.setColor(sf::Color(255, 255, 255, alpha));
-		if (alpha <= 0) {
-			dead = true;
-		}
-		return dead;
-	}
-
-};
 
 class VPlayer: public VisualBody{
     public:
@@ -32,6 +16,24 @@ class VPlayer: public VisualBody{
 		virtual void   SetVisible(bool aux);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
+
+		struct step {
+			sf::Sprite   sprite;
+			bool         dead;
+			step(sf::Sprite sprite) :sprite(sprite) {
+				dead = false;
+			}
+			bool Update() {
+				auto alpha = sprite.getColor().a - 4;
+				sprite.setColor(sf::Color(255, 255, 255, alpha));
+				if (alpha <= 0) {
+					dead = true;
+				}
+				return dead;
+			}
+
+		};
+
 	    bool                     m_visible,
 								 m_setedPos,
 								 m_stop,
