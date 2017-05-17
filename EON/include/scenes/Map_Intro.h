@@ -35,14 +35,13 @@ class Map_Intro: public Map{
 		PVector<Rock>*      GetRocks();
 		virtual Player*     GetPlayer();
 private:
-		void StartFinish();
 		void EndMap();
 		void UpdateSoundWaves();
 		void UpdateText();
-		void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		sf::Font                 m_font;
 		sf::Text                 m_text;
+		sf::RectangleShape       m_rect;
 		sf::Clock                m_clockStart,
 			                     m_clockEnd;
 		sf::View                 *m_view;
@@ -55,7 +54,6 @@ private:
 			                     m_end,
 								 m_finished;
 		const char               *m_path        = "Media/Maps/Intro.tmx",
-		                         *m_mapName     = "Loneless",
 						         *m_tutoStrings = "Press ENTER to start";
 };
 

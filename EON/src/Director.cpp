@@ -1,19 +1,22 @@
 #include "Director.h"
 #include "Map_1.h"
+#include "Map_Intro.h"
+#include "SceneFabric.h"
 
 Director::Director():m_closed(false){
 	sf::VideoMode vM = sf::VideoMode::getDesktopMode();
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 10;
 	m_view = sf::View(sf::FloatRect(0, 0, (float)vM.width, (float)vM.height));
-	//m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
-	m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(600,600*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
+	m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
+	//m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(600,600*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
 	m_window = m_pWindow.Get();
 	m_eventListener.Inicialize(m_window);
 	m_window->setVerticalSyncEnabled(true);
 	m_window->setFramerateLimit(30);
 	m_window->setMouseCursorVisible(false);
 	m_window->setView(m_view);
+	m_sFabric.Reset(new SceneFabric(&m_view));
 	NextScene();
 }
 Director::~Director(){
@@ -38,7 +41,11 @@ void Director::Render() {
 	m_window->display();
 }
 void Director::NextScene() {
-	m_pScene.Reset(new Map_1(&m_view));
-	m_scene = m_pScene.Get();
-	m_scene->Inicialice(&m_eventListener);
+	m_scene = m_sFabric.Get()->GetNext();
+	if (m_scene) {
+		m_scene->Inicialice(&m_eventListener);
+	}
+	else {
+		m_window->close();
+	}
 }

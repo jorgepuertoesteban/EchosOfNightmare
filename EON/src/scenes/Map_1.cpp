@@ -41,6 +41,12 @@ Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_
 	m_text.setString(m_mapName);
 }
 Map_1::~Map_1(){
+	m_enemies.Clear();
+	m_soundWaves.Clear();
+	m_gameObjects.Clear();
+	m_pGoal.Reset(nullptr);
+	m_pGoal.Reset(nullptr);
+	m_player.Reset(nullptr);
 }
 void Map_1::Inicialice(EventListener* listener) {
 	m_listener = listener;
@@ -80,7 +86,8 @@ void Map_1::Update(){
 }
 void Map_1::UpdateIntro() {
 	int alpha = m_text.getFillColor().a;
-	if(alpha>=4)alpha -= 4;
+	if(alpha>=3)alpha -= 3;
+	else alpha = 0;
 	sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height - 50);
 	m_text.setPosition(pos);
 	m_text.setFillColor(sf::Color(255,255,255,alpha));
@@ -257,13 +264,6 @@ bool Map_1::End() {
 }
 void Map_1::EndMap() {
 	m_end = true;
-	m_enemies.Clear();
-	m_soundWaves.Clear();
-	m_gameObjects.Clear();
-	m_pGoal.Reset(nullptr);
-	m_pGoal.Reset(nullptr);
-	m_player.Reset(nullptr);
-	m_pContactListener.Reset(nullptr);
 }
 void Map_1::CheckFinish() {
 	if (m_finished && !m_end && m_clockEnd.getElapsedTime().asMilliseconds() > 4000) {

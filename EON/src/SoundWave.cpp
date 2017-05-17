@@ -25,7 +25,7 @@ void SoundWave::Update() {
 			a = 1, z = 2;
 		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(a) * 64,m_r,m_g,m_b));
 		m_points.insert(m_points.begin(), Point(m_gObj.Get()->GetVertexPosition(z) * 64,m_r,m_g,m_b ));
-		if (m_points.size() > m_lifetime / 40) {
+		if (m_points.size() > m_lifetime / 40 || m_points.size() > 100 ) {
 			m_points.pop_back();
 			m_points.pop_back();
 		}

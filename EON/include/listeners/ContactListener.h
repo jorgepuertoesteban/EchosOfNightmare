@@ -10,11 +10,7 @@ class Enemy;
 class Rock;
 class Map;
 
-struct Contact2Method {
-     unsigned long A;
-     unsigned long B;
-     void (ContactListener::*p)();
-};
+
 
 class ContactListener: public b2ContactListener{
     public:
@@ -23,6 +19,11 @@ class ContactListener: public b2ContactListener{
         void BeginContact(b2Contact* contact);
         void EndContact(b2Contact* contact);
     private:
+		struct Contact2Method {
+			unsigned long A;
+			unsigned long B;
+			void (ContactListener::*p)();
+		};
     	const Contact2Method beginContact[11] = {
 			  { D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer      }
 			 ,{ D_SOUNDWAVE      , D_DEADWALL      , &ContactListener::SWaveDWallBegin }

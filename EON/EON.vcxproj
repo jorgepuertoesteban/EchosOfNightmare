@@ -159,6 +159,7 @@
     <ClCompile Include="src\scenes\Map_1.cpp" />
     <ClCompile Include="src\scenes\Map_Intro.cpp" />
     <ClCompile Include="src\scenes\Scene.cpp" />
+    <ClCompile Include="src\scenes\SceneFabric.cpp" />
     <ClCompile Include="src\scenes\SMenu.cpp" />
     <ClCompile Include="src\SoundWave.cpp" />
   </ItemGroup>
@@ -199,6 +200,7 @@
     <ClInclude Include="include\scenes\Map_1.h" />
     <ClInclude Include="include\scenes\Map_Intro.h" />
     <ClInclude Include="include\scenes\Scene.h" />
+    <ClInclude Include="include\scenes\SceneFabric.h" />
     <ClInclude Include="include\scenes\SMenu.h" />
     <ClInclude Include="include\SoundWave.h" />
     <ClInclude Include="include\xml\tinyxml2.h" />
