@@ -7,7 +7,7 @@
 
 
 Player::Player(GameObject *gObj, Map *map)
-	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr),
+	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr), m_inWater(false),
 	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false){
 }
 Player::~Player() {
@@ -21,10 +21,13 @@ void Player::Update() {
 	}
 	if (!m_finish) {
 		if (Step()) {
-			if (!m_sDirection.Shift) {
+			if (m_inWater) {
+				GenerateSound(25, 25, 4);
+			}
+			else if (!m_sDirection.Shift) {
 				GenerateSound(15, 15, 4);
 			}
-			else {
+			else{
 				GenerateSound(7, 20, 1 / 1.5f);
 			}
 		}
@@ -88,7 +91,7 @@ void Player::CalcDir() {
 	else
 		m_dir = m_dir * m_speed;
 
-	if (m_sDirection.Shift) {
+	if (m_inWater || m_sDirection.Shift) {
 		m_dir = m_dir / 2;
 	}
 }
@@ -125,8 +128,8 @@ bool Player::Step() {
 			m_walking = true;
 			m_clockStep.restart();
 		}
-		if (  (!m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 310)
-			||(m_sDirection.Shift  && m_clockStep.getElapsedTime().asMilliseconds() > 600)) {
+		if ( ( !m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 310)
+			||((m_sDirection.Shift || m_inWater) && m_clockStep.getElapsedTime().asMilliseconds() > 600)) {
 			m_clockStep.restart();
 			return true;
 		}
@@ -175,4 +178,7 @@ void Player::GenerateSound(unsigned int count, unsigned int lifetime , float vel
 }
 void Player::SetEventListener(EventListener *events) {
 	m_events = events;
+}
+void Player::SetInWater(bool aux) {
+	m_inWater = aux;
 }

@@ -23,7 +23,7 @@ class ContactListener: public b2ContactListener{
         void BeginContact(b2Contact* contact);
         void EndContact(b2Contact* contact);
     private:
-    	const Contact2Method beginContact[10] = {
+    	const Contact2Method beginContact[11] = {
 			  { D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer      }
 			 ,{ D_SOUNDWAVE      , D_DEADWALL      , &ContactListener::SWaveDWallBegin }
 			 ,{ D_SOUNDWAVE      , D_GOAL          , &ContactListener::SWaveGoalBegin  }
@@ -33,14 +33,16 @@ class ContactListener: public b2ContactListener{
 			 ,{ D_PLAYER         , D_ENEMY         , &ContactListener::KillPlayer      }
 			 ,{ D_PLAYER         , D_GOAL          , &ContactListener::Win             }
 			 ,{ D_ROCK           , D_WALL          , &ContactListener::RockColision    }
+			 ,{ D_PLAYER         , D_WATER         , &ContactListener::PlayerWaterBegin}
 			 ,{ 0                , 0               , 0                                 }
         };
-        const Contact2Method endContact[5] = {
-              { D_SOUNDWAVE         , D_DEADWALL   , &ContactListener::SWaveResetColor }
-			 ,{ D_SOUNDWAVE         , D_GOAL       , &ContactListener::SWaveResetColor }
-			 ,{ D_SOUNDWAVE         , D_WATER      , &ContactListener::SWaveResetColor }
-			 ,{ D_SOUNDWAVE         , D_ENEMY      , &ContactListener::SWaveResetColor }
-			 ,{ 0                   , 0            , 0                                 }
+        const Contact2Method endContact[6] = {
+              { D_SOUNDWAVE      , D_DEADWALL   , &ContactListener::SWaveResetColor }
+			 ,{ D_SOUNDWAVE      , D_GOAL       , &ContactListener::SWaveResetColor }
+			 ,{ D_SOUNDWAVE      , D_WATER      , &ContactListener::SWaveResetColor }
+			 ,{ D_SOUNDWAVE      , D_ENEMY      , &ContactListener::SWaveResetColor }
+			 ,{ D_PLAYER         , D_WATER      , &ContactListener::PlayerWaterEnd  }
+			,{ 0                 , 0            , 0                                 }
         };
         b2Contact* contact;
 		SoundWave* GetSoundWave();
@@ -53,6 +55,8 @@ class ContactListener: public b2ContactListener{
 		void SWaveDWallBegin();
 		void SWaveGoalBegin();
 		void SWaveWaterBegin();
+		void PlayerWaterBegin();
 		void SWaveResetColor();
+		void PlayerWaterEnd();
 		void SWaveEnemy();
 };

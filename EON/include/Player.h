@@ -17,6 +17,7 @@ class Player {
 		void KissOfDead();
 		void KissOfLife();
 		Vec2 GetPosition();
+		void SetInWater(bool);
 		void SetEventListener(EventListener *events);
 		void MakeSound(bool);
 		void GenerateSound(unsigned int count, unsigned int lifetime, float velocity);
@@ -49,6 +50,7 @@ class Player {
 			           m_walking,
 			           m_kissOfDead,			
 			           m_kissOfLife,
+					   m_inWater,
 					   m_finish;
 		sf::Clock      m_clockSound,
 					   m_clockStep,

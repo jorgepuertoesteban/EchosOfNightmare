@@ -239,6 +239,10 @@ void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r, 
 	gObj->SetLinearVelocity(dir);
 	m_soundWaves.Add(new SoundWave(gObj,lifetime,r,g,b));
 }
+Player* Map_1::GetPlayer() {
+	return m_player.Get();
+}
+
 PVector<SoundWave>* Map_1::GetSoundWaves() {
 	return &m_soundWaves;
 }

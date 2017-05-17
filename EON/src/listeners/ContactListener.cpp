@@ -2,6 +2,7 @@
 #include "SoundWave.h"
 #include "Enemy.h"
 #include "Rock.h"
+#include "Player.h"
 #include "Map.h"
 
 ContactListener::ContactListener(Map* map):m_map(map){
@@ -41,6 +42,12 @@ void ContactListener::Win() {
 }
 void ContactListener::RockColision() {
 	GetRock()->Colision();
+}
+void ContactListener::PlayerWaterBegin() {
+	m_map->GetPlayer()->SetInWater(true);
+}
+void ContactListener::PlayerWaterEnd() {
+	m_map->GetPlayer()->SetInWater(false);
 }
 
 void ContactListener::KillPlayer(){

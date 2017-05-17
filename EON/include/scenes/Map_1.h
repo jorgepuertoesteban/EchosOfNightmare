@@ -6,10 +6,8 @@
 
 class PhysicWorld;
 class ContactListener;
-class SoundWave;
 class Goal;
 class Wall;
-class Player;
 
 class Map_1: public Map{
 	public:
@@ -35,6 +33,7 @@ class Map_1: public Map{
 		PVector<SoundWave>* GetSoundWaves();
 		PVector<Enemy>*     GetEnemies();
 		PVector<Rock>*      GetRocks();
+		virtual Player*     GetPlayer();
 private:
 		bool Start();
 		void StartFinish();

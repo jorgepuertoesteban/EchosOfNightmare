@@ -10,6 +10,7 @@ class SoundWave;
 class VisualBody;
 class Enemy;
 class Rock;
+class Player;
 
 class Map: public Scene {
 	public:
@@ -34,5 +35,6 @@ class Map: public Scene {
 		virtual PVector<SoundWave>* GetSoundWaves() = 0;
 		virtual PVector<Enemy>*     GetEnemies() = 0;
 		virtual PVector<Rock>*      GetRocks() = 0;
+		virtual Player*             GetPlayer() = 0;
 };
 

@@ -55,7 +55,7 @@ void Rock::GenerateSound() {
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < 20; i++) {
 		float angle = ((i / (float)20) * 360) + plus;
-		m_map->CreateSoundWave(m_gObj.Get()->GetPosition(), Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 10, Vec2(8, 8), 20);
+		m_map->CreateSoundWave(m_gObj.Get()->GetPosition(), Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 5, Vec2(8, 8), 20);
 	}
 }
 void Rock::Colision(){
