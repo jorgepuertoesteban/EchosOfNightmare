@@ -17,7 +17,8 @@ Director::Director():m_closed(false){
 	m_window->setMouseCursorVisible(false);
 	m_window->setView(m_view);
 	m_sFabric.Reset(new SceneFabric(&m_view));
-	NextScene();
+	m_scene = m_sFabric.Get()->GetNext();
+	m_scene->Inicialice(&m_eventListener);
 }
 Director::~Director(){
 }
@@ -41,8 +42,11 @@ void Director::Render() {
 	m_window->display();
 }
 void Director::NextScene() {
-	m_scene = m_sFabric.Get()->GetNext();
-	if (m_scene) {
+	if(m_scene->Success())
+		m_scene = m_sFabric.Get()->GetNext();
+	else
+		m_scene = m_sFabric.Get()->GetSame();
+		if (m_scene) {
 		m_scene->Inicialice(&m_eventListener);
 	}
 	else {

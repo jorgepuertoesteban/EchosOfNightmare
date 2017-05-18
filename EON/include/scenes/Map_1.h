@@ -17,6 +17,7 @@ class Map_1: public Map{
 		virtual void Update();
 		virtual void Render(sf::RenderWindow*);
 		virtual void CheckEvents();
+		virtual bool Success();
 		virtual void Life();
 		virtual void Dead();
 		virtual bool End();
@@ -65,9 +66,10 @@ private:
 		bool                     m_start,
 			                     m_end,
 								 m_finished,
+			                     m_success,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map1.tmx",
-		                         *m_mapName     = "Loneless",
+		                         *m_mapName     = "Dark",
 						         *m_tutoStrings = "Use W,A,S,D keys to walk";
 };
 

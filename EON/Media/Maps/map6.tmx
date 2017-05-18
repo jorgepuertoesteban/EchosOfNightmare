@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="221">
+ <objectgroup color="#aa0000" name="DeadWalls"/>
+ <objectgroup color="#81be31" name="Goal">
+  <object id="197" x="1085" y="481.169" width="135" height="135"/>
+ </objectgroup>
+ <objectgroup color="#000000" name="Walls">
+  <object id="149" x="415" y="445" width="5" height="195"/>
+  <object id="196" x="1220" y="476.169" width="5" height="145"/>
+  <object id="200" x="1085" y="476.169" width="140" height="5"/>
+  <object id="201" x="1085" y="616.169" width="140" height="5"/>
+  <object id="204" x="1035" y="376.169" width="115" height="5" rotation="59.9131"/>
+  <object id="205" x="960" y="331.169" width="115" height="5" rotation="35.3994"/>
+  <object id="206" x="864.557" y="330" width="115" height="5" rotation="4.67161"/>
+  <object id="207" x="775" y="351.169" width="115" height="5" rotation="-8.65159"/>
+  <object id="208" x="961.618" y="752.995" width="115" height="5" rotation="-183.539"/>
+  <object id="209" x="1092.95" y="621.169" width="115" height="5" rotation="-227.59"/>
+  <object id="210" x="875" y="765.129" width="115" height="5" rotation="-159.025"/>
+  <object id="211" x="1036.59" y="693.921" width="115" height="5" rotation="-214.267"/>
+  <object id="212" x="380" y="465" width="265" height="5"/>
+  <object id="213" x="405" y="585" width="240" height="5"/>
+  <object id="215" x="640" y="467.579" width="120.795" height="5.25195" rotation="-44.0165"/>
+  <object id="216" x="703.843" y="395" width="120.795" height="5.25195" rotation="-30.6933"/>
+  <object id="217" x="645" y="585" width="145" height="5" rotation="-309.803"/>
+  <object id="218" x="695" y="665" width="145" height="5" rotation="-328.211"/>
+  <object id="219" x="800" y="460" width="200" height="175"/>
+  <object id="220" x="835" y="435" width="130" height="220"/>
+ </objectgroup>
+ <objectgroup color="#0000ff" name="Waters"/>
+ <objectgroup color="#550000" name="Enemies">
+  <object id="202" x="1040" y="541.169" width="15" height="10"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="Player">
+  <object id="18" x="525" y="535" width="10" height="10"/>
+ </objectgroup>
+</map>

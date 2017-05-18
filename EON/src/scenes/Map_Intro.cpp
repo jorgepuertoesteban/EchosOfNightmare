@@ -37,6 +37,9 @@ Map_Intro::~Map_Intro(){
 void Map_Intro::Inicialice(EventListener* listener) {
 	m_listener = listener;
 }
+bool Map_Intro::Success() {
+	return true;
+}
 void Map_Intro::Update(){
 	if (m_start) {
 		EndMap();

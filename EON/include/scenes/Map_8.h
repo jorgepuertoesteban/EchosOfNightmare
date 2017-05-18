@@ -9,10 +9,10 @@ class ContactListener;
 class Goal;
 class Wall;
 
-class Map_Intro: public Map{
+class Map_8: public Map{
 	public:
-		Map_Intro(sf::View*);
-		virtual ~Map_Intro();
+		Map_8(sf::View*);
+		virtual ~Map_8();
 		virtual void Inicialice(EventListener*);
 		virtual void Update();
 		virtual void Render(sf::RenderWindow*);
@@ -36,25 +36,40 @@ class Map_Intro: public Map{
 		PVector<Rock>*      GetRocks();
 		virtual Player*     GetPlayer();
 private:
+		bool Start();
+		void StartFinish();
 		void EndMap();
+		void UpdateIntro();
+		void UpdateGameObjects();
 		void UpdateSoundWaves();
+		void UpdateEnemies();
+		void UpdateRocks();
 		void UpdateText();
+		void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		sf::Font                 m_font;
 		sf::Text                 m_text;
-		sf::RectangleShape       m_rect;
 		sf::Clock                m_clockStart,
 			                     m_clockEnd;
 		sf::View                 *m_view;
 		PVector<SoundWave>       m_soundWaves;
-		PVector<GameObject>      m_Walls;
+		PVector<Enemy>           m_enemies;
+		PVector<Rock>            m_rocks;
+		PVector<GameObject>      m_gameObjects,
+			                     m_Walls,
+			                     m_Waters;
+		Pointer<GameObject>      m_pGoal;
 		Pointer<ContactListener> m_pContactListener;
 		PhysicWorld              *m_physiworld;
 		EventListener			 *m_listener;
+		Pointer<Player>			 m_player;
 		bool                     m_start,
-			                     m_end,
-								 m_finished;
-		const char               *m_path        = "Media/Maps/Intro.tmx",
-						         *m_tutoStrings = "Press ENTER to start";
+								 m_end,
+								 m_success,
+								 m_finished,
+							     m_learn;
+		const char               *m_path        = "Media/Maps/map8.tmx",
+		                         *m_mapName     = "Give up",
+						         *m_tutoStrings = "";
 };
 

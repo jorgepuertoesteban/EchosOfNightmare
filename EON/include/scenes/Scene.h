@@ -13,5 +13,6 @@ class Scene :public nocopy {
 		virtual void Render(sf::RenderWindow*) = 0;
 		virtual void CheckEvents() = 0;
 		virtual bool End() = 0;
+		virtual bool Success() = 0;
 };
 

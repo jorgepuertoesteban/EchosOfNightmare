@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="240">
+ <objectgroup color="#aa0000" name="DeadWalls"/>
+ <objectgroup color="#81be31" name="Goal">
+  <object id="238" x="551.743" y="1039.86" width="98.6469" height="170.39"/>
+ </objectgroup>
+ <objectgroup color="#000000" name="Walls">
+  <object id="205" x="1162.49" y="1597.64" width="8.9679" height="340.78" rotation="-89.7263"/>
+  <object id="207" x="1157.93" y="673.912" width="8.9679" height="385.62" rotation="-89.7263"/>
+  <object id="211" x="1782.81" y="1277.75" width="295.941" height="8.9679" rotation="-89.7263"/>
+  <object id="212" x="819.239" y="1054.72" width="267.593" height="8.9679" rotation="-58.244"/>
+  <object id="213" x="1692.15" y="1483.58" width="295.941" height="8.9679" rotation="-69.7263"/>
+  <object id="214" x="1593.2" y="1545.89" width="295.941" height="8.9679" rotation="-49.7263"/>
+  <object id="215" x="851.656" y="959.425" width="295.941" height="8.9679" rotation="-49.7263"/>
+  <object id="216" x="914.946" y="852.111" width="295.941" height="8.9679" rotation="-39.7263"/>
+  <object id="218" x="1476.23" y="1626.04" width="295.941" height="8.9679" rotation="-39.7263"/>
+  <object id="219" x="1413.46" y="1625.74" width="295.941" height="8.9679" rotation="-29.7263"/>
+  <object id="220" x="987.073" y="771.744" width="295.941" height="8.9679" rotation="-29.7263"/>
+  <object id="221" x="1314.77" y="1634.24" width="295.941" height="8.9679" rotation="-19.7263"/>
+  <object id="223" x="996.214" y="735.916" width="295.941" height="8.9679" rotation="-19.7263"/>
+  <object id="224" x="993.195" y="1486.81" width="295.941" height="8.9679" rotation="-124.003"/>
+  <object id="225" x="1190.45" y="1607.85" width="295.941" height="8.9679" rotation="-144.003"/>
+  <object id="226" x="1078.72" y="1552.75" width="295.941" height="8.9679" rotation="-134.003"/>
+  <object id="227" x="956.785" y="1480.37" width="295.941" height="8.9679" rotation="-114.003"/>
+  <object id="228" x="1325.9" y="1616.36" width="295.941" height="8.9679" rotation="-164.003"/>
+  <object id="229" x="1659.77" y="762.226" width="295.941" height="8.9679" rotation="-304.568"/>
+  <object id="230" x="1461.32" y="643.134" width="295.941" height="8.9679" rotation="-324.568"/>
+  <object id="231" x="1573.6" y="697.139" width="295.941" height="8.9679" rotation="-314.568"/>
+  <object id="232" x="1696.24" y="768.308" width="295.941" height="8.9679" rotation="-294.568"/>
+  <object id="233" x="1325.8" y="635.97" width="295.941" height="8.9679" rotation="-344.568"/>
+  <object id="234" x="554.349" y="1244.98" width="44.8395" height="286.973" rotation="-89.7263"/>
+  <object id="235" x="546.281" y="1056.62" width="71.7432" height="286.973" rotation="-89.7263"/>
+  <object id="239" x="506.903" y="986.052" width="62.7753" height="269.037"/>
+ </objectgroup>
+ <objectgroup color="#0000ff" name="Waters"/>
+ <objectgroup color="#550000" name="Enemies"/>
+ <objectgroup color="#00ff00" name="Player">
+  <object id="18" x="1317.13" y="1141.01" width="17.9358" height="17.9358" rotation="-89.7263"/>
+ </objectgroup>
+</map>

@@ -11,8 +11,10 @@
   <object id="196" x="1595" y="445" width="5" height="195"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="Waters"/>
- <objectgroup color="#550000" name="Enemies"/>
+ <objectgroup color="#550000" name="Enemies">
+  <object id="199" x="450" y="535" width="10" height="10"/>
+ </objectgroup>
  <objectgroup color="#00ff00" name="Player">
-  <object id="18" x="525" y="535" width="10" height="10"/>
+  <object id="18" x="537" y="533.667" width="10" height="10"/>
  </objectgroup>
 </map>

@@ -1,4 +1,4 @@
-#include "Map_1.h"
+#include "Map_5.h"
 #include "GameObject.h"
 #include "PhysicWorld.h"
 #include "VSoundWave.h"
@@ -24,7 +24,7 @@
 #include "SoundWave.h"
 #include <iostream>
 
-Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
+Map_5::Map_5(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
 	m_pPhysiworld.Reset(new PhysicWorld);
 	m_physiworld = m_pPhysiworld.Get();
 	m_pContactListener.Reset(new ContactListener(this)); 
@@ -40,7 +40,7 @@ Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_
 	m_text.setFillColor(sf::Color::White);
 	m_text.setString(m_mapName);
 }
-Map_1::~Map_1(){
+Map_5::~Map_5(){
 	m_enemies.Clear();
 	m_soundWaves.Clear();
 	m_gameObjects.Clear();
@@ -48,11 +48,11 @@ Map_1::~Map_1(){
 	m_pGoal.Reset(nullptr);
 	m_player.Reset(nullptr);
 }
-void Map_1::Inicialice(EventListener* listener) {
+void Map_5::Inicialice(EventListener* listener) {
 	m_listener = listener;
 	m_player.Get()->SetEventListener(listener);
 }
-bool Map_1::Start() {
+bool Map_5::Start() {
 	if (!m_start) {
 		if (m_clockStart.getElapsedTime().asMilliseconds() > 3000) {
 			sf::Vector2f pos(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height - 50);
@@ -66,7 +66,7 @@ bool Map_1::Start() {
 	}
 	return true;
 }
-void Map_1::Update(){
+void Map_5::Update(){
 	m_physiworld->Update();
 	CheckEvents();
 	UpdateEnemies();
@@ -84,7 +84,7 @@ void Map_1::Update(){
 	m_player.Get()->Update();
 	CheckFinish();
 }
-void Map_1::UpdateIntro() {
+void Map_5::UpdateIntro() {
 	int alpha = m_text.getFillColor().a;
 	if(alpha>=3)alpha -= 3;
 	else alpha = 0;
@@ -92,7 +92,7 @@ void Map_1::UpdateIntro() {
 	m_text.setPosition(pos);
 	m_text.setFillColor(sf::Color(255,255,255,alpha));
 }
-void Map_1::UpdateText() {
+void Map_5::UpdateText() {
 	if (m_learn) {
 		int alpha = m_text.getFillColor().a;
 		if (alpha > 150)alpha--;
@@ -105,7 +105,7 @@ void Map_1::UpdateText() {
 		}
 	}
 }
-void Map_1::Render(sf::RenderWindow *window){
+void Map_5::Render(sf::RenderWindow *window){
 	window->draw(m_text);
 	if (!Start()) {
 		return;
@@ -130,29 +130,29 @@ void Map_1::Render(sf::RenderWindow *window){
 		window->draw(*(*it));
 	}
 }
-void Map_1::CheckEvents() {
+void Map_5::CheckEvents() {
 }
-bool Map_1::Success() {
+bool Map_5::Success() {
 	return m_success;
 }
-void Map_1::ReadXML() {
+void Map_5::ReadXML() {
 	XMLReader reader;
 	reader.Inicialize(this, m_path);
 }
-void Map_1::Life() {
-	m_player.Get()->KissOfLife();
+void Map_5::Life() {
 	m_success = true;
+	m_player.Get()->KissOfLife();
 	StartFinish();
 }
-void Map_1::Dead() {
+void Map_5::Dead() {
 	m_player.Get()->KissOfDead();
 	StartFinish();
 }
-void Map_1::StartFinish() {
+void Map_5::StartFinish() {
 	m_clockEnd.restart();
 	m_finished = true;
 }
-GameObject* Map_1::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos, Vec2 size) {
+GameObject* Map_5::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos, Vec2 size) {
 	m_physiworld->CreateBody(pB,  pos,  size);
 	vB->Initialize(size);
 	GameObject* gObj = new GameObject();
@@ -160,17 +160,17 @@ GameObject* Map_1::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos, Ve
 	m_gameObjects.Add(gObj);
 	return gObj;
 }
-void Map_1::CreateEnemy(Vec2 pos) {
+void Map_5::CreateEnemy(Vec2 pos) {
 	GameObject *goEnemy = CreateGameObject(new PBEnemy, new VEnemy, pos, Vec2(35,35));
 	goEnemy->SetVisible(false);
 	m_enemies.Add(new Enemy(goEnemy, this));
 }
-void Map_1::CreatePlayer(Vec2 pos) {
+void Map_5::CreatePlayer(Vec2 pos) {
 	GameObject *goPlayer = CreateGameObject(new PBPlayer, new VPlayer, pos, Vec2(35, 35));
 	m_player.Reset(new Player(goPlayer, this));
 	sf::Vector2f posText(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height);
 }
-void Map_1::CreateRock(Vec2 pos, Vec2 dir) {
+void Map_5::CreateRock(Vec2 pos, Vec2 dir) {
 	PBRock      *pR = new PBRock;
 	VSoundWave  *vB = new VSoundWave;
 	Vec2 size(5, 5);
@@ -181,7 +181,7 @@ void Map_1::CreateRock(Vec2 pos, Vec2 dir) {
 	gObj->SetLinearVelocity(dir);
 	m_rocks.Add(new Rock(gObj,this));
 }
-void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
+void Map_5::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	PBGoal *pgoal = new PBGoal;
 	VWall  *vgoal = new VWall;
 	m_physiworld->CreateBody(pgoal, pos, size);
@@ -195,7 +195,7 @@ void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	gObj->SetVisible(false);
 	m_pGoal.Reset(gObj);
 }
-void Map_1::CreateWater(Vec2 pos, Vec2 size, int rotation) {
+void Map_5::CreateWater(Vec2 pos, Vec2 size, int rotation) {
 	PBWater *pwater = new PBWater;
 	VWall  *vwall = new VWall;
 	m_physiworld->CreateBody(pwater, pos, size);
@@ -209,7 +209,7 @@ void Map_1::CreateWater(Vec2 pos, Vec2 size, int rotation) {
 	gObj->SetVisible(false);
 	m_Waters.Add(gObj);
 }
-void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
+void Map_5::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	PBWall *pwall = new PBWall;
 	VWall  *vwall = new VWall;
 	m_physiworld->CreateBody(pwall, pos, size);
@@ -223,7 +223,7 @@ void Map_1::CreateWall(Vec2 pos, Vec2 size, int rotation) {
 	gObj->SetVisible(false);
 	m_Walls.Add(gObj);
 }
-void Map_1::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {
+void Map_5::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {
 	PBDeadWall *pwall = new PBDeadWall;
 	VDeadWall  *vwall = new VDeadWall;
 	m_physiworld->CreateBody(pwall, pos, size);
@@ -237,7 +237,7 @@ void Map_1::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {
 	gObj->SetVisible(false);
 	m_Walls.Add(gObj);
 }
-void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r, int g, int b, PhysicBody *pB) {
+void Map_5::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r, int g, int b, PhysicBody *pB) {
 	if (!pB) {
 		PBSoundWave *pSW = new PBSoundWave;
 		pB = pSW;
@@ -250,26 +250,26 @@ void Map_1::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r, 
 	gObj->SetLinearVelocity(dir);
 	m_soundWaves.Add(new SoundWave(gObj,lifetime,r,g,b));
 }
-Player* Map_1::GetPlayer() {
+Player* Map_5::GetPlayer() {
 	return m_player.Get();
 }
 
-PVector<SoundWave>* Map_1::GetSoundWaves() {
+PVector<SoundWave>* Map_5::GetSoundWaves() {
 	return &m_soundWaves;
 }
-PVector<Enemy>* Map_1::GetEnemies() {
+PVector<Enemy>* Map_5::GetEnemies() {
 	return &m_enemies;
 }
-PVector<Rock>* Map_1::GetRocks() {
+PVector<Rock>* Map_5::GetRocks() {
 	return &m_rocks;
 }
-bool Map_1::End() {
+bool Map_5::End() {
 	return m_end;
 }
-void Map_1::EndMap() {
+void Map_5::EndMap() {
 	m_end = true;
 }
-void Map_1::CheckFinish() {
+void Map_5::CheckFinish() {
 	if (m_finished && !m_end && m_clockEnd.getElapsedTime().asMilliseconds() > 4000) {
 		auto itEn = m_enemies.GetBegin();
 		while (itEn != m_enemies.GetEnd()) {
@@ -284,12 +284,12 @@ void Map_1::CheckFinish() {
 		EndMap();
 	}
 }
-void Map_1::UpdateGameObjects() {
+void Map_5::UpdateGameObjects() {
 	for (auto itGO = m_gameObjects.GetBegin(); itGO != m_gameObjects.GetEnd(); itGO++) {
 		(*itGO)->Update();
 	}
 }
-void Map_1::UpdateSoundWaves() {
+void Map_5::UpdateSoundWaves() {
 	auto itSW = m_soundWaves.GetBegin();
 	while (itSW != m_soundWaves.GetEnd()) {
 		(*itSW)->Update();
@@ -302,12 +302,12 @@ void Map_1::UpdateSoundWaves() {
 		}
 	}
 }
-void Map_1::UpdateEnemies() {
+void Map_5::UpdateEnemies() {
 	for (auto it = m_enemies.GetBegin(); it != m_enemies.GetEnd(); it++) {
 		(*it)->Update();
 	}
 }
-void Map_1::UpdateRocks() {
+void Map_5::UpdateRocks() {
 	for (auto it = m_rocks.GetBegin(); it != m_rocks.GetEnd(); it++) {
 		(*it)->Update();
 	}

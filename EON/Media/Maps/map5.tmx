@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="202">
+ <objectgroup color="#aa0000" name="DeadWalls"/>
+ <objectgroup color="#81be31" name="Goal">
+  <object id="197" x="1055" y="405" width="135" height="280"/>
+ </objectgroup>
+ <objectgroup color="#000000" name="Walls">
+  <object id="139" x="415" y="685" width="780" height="5"/>
+  <object id="149" x="415" y="405" width="5" height="280"/>
+  <object id="150" x="415" y="400" width="775" height="5"/>
+  <object id="196" x="1190" y="400" width="5" height="285"/>
+ </objectgroup>
+ <objectgroup color="#0000ff" name="Waters"/>
+ <objectgroup color="#550000" name="Enemies">
+  <object id="200" x="710" y="435" width="10" height="10"/>
+  <object id="201" x="880" y="635" width="10" height="15"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="Player">
+  <object id="18" x="537" y="533.667" width="10" height="10"/>
+ </objectgroup>
+</map>

@@ -18,6 +18,7 @@ class Map: public Scene {
 		virtual void Inicialice(EventListener*) = 0;
 		virtual void Update() = 0;
 		virtual void CheckEvents() = 0;
+		virtual bool Success() = 0;
 		virtual void Life() = 0;
 		virtual void Dead() = 0;
 		virtual bool End() = 0;
