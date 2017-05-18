@@ -101,7 +101,7 @@ void Map_Intro::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int
 void Map_Intro::CreatePlayer(Vec2 pos) {
 	//USADO PARA CREAR LAS ONDAS
 	auto plus = rand() % 45;
-	int cont = 15;
+	unsigned int cont = 15;
 	for (unsigned int i = 0; i < cont; i++) {
 		float angle = ((i / (float)cont) * 360) + plus;
 		CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 6, Vec2(10,10), 99999);
