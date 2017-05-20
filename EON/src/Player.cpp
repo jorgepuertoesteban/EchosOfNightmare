@@ -9,11 +9,12 @@
 Player::Player(GameObject *gObj, Map *map)
 	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr), m_inWater(false),
 	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false){
+	m_buffer.loadFromFile("Media/Sounds/Step1.wav");
+	m_soundStep.setBuffer(m_buffer);
 }
 Player::~Player() {
 }
 void Player::Update() {
-
 	if (m_clockEvents.getElapsedTime().asMilliseconds() > 100) {
 		CheckEvents();
 		Move();
@@ -21,6 +22,7 @@ void Player::Update() {
 	}
 	if (!m_finish) {
 		if (Step()) {
+			m_soundStep.play();
 			if (m_inWater) {
 				GenerateSound(25, 25, 4);
 			}

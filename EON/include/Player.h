@@ -2,6 +2,7 @@
 
 #include "Vec2.h"
 #include "SFML\Graphics.hpp"
+#include "SFML\Audio.hpp"
 
 class GameObject;
 class EventListener;
@@ -39,21 +40,23 @@ class Player {
 		void CheckEvents();
 		void CalcAngle();
 		void ThrowRock(bool);
-		Vec2	       m_dir;
-		unsigned int   m_speed;
-		float		   m_angle;
-		GameObject     *m_gObj;
-		Map            *m_map;
-		Direction      m_sDirection;
-		bool           m_sound,
-			           m_rock,
-			           m_walking,
-			           m_kissOfDead,			
-			           m_kissOfLife,
-					   m_inWater,
-					   m_finish;
-		sf::Clock      m_clockSound,
-					   m_clockStep,
-					   m_clockEvents;
-		EventListener  *m_events;
+		sf::SoundBuffer m_buffer;
+		sf::Sound       m_soundStep;
+		Vec2	        m_dir;
+		unsigned int    m_speed;
+		float		    m_angle;
+		GameObject      *m_gObj;
+		Map             *m_map;
+		Direction       m_sDirection;
+		bool            m_sound,
+			            m_rock,
+			            m_walking,
+			            m_kissOfDead,			
+			            m_kissOfLife,
+					    m_inWater,
+					    m_finish;
+		sf::Clock       m_clockSound,
+					    m_clockStep,
+					    m_clockEvents;
+		EventListener   *m_events;
 };

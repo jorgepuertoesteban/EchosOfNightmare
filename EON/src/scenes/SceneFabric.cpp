@@ -10,8 +10,7 @@
 #include "Map_8.h"
 
 
-SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(-1){
-	m_scene.Reset(new Map_Intro(m_view));
+SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(1){
 }
 SceneFabric::~SceneFabric(){
 

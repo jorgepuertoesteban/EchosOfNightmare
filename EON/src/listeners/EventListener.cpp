@@ -21,7 +21,8 @@ void EventListener::CheckEvents(){
 		const Event2Method * it = m_events;
 		while (it->event != -1){
 			if (it->event == event_recieved.type) {
-				(this->*it->Event2Method::p)(event_recieved.key.code);
+				if(event_recieved.key.code>=0 && event_recieved.key.code<= sf::Keyboard::KeyCount)
+					(this->*it->Event2Method::p)(event_recieved.key.code);
 				break;
 			}
 			it++;
