@@ -40,12 +40,17 @@ class Player {
 		void CheckEvents();
 		void CalcAngle();
 		void ThrowRock(bool);
-		sf::SoundBuffer m_bufferStep;
+		sf::SoundBuffer m_bufferStep[3];
 		sf::SoundBuffer m_bufferClap;
+		sf::SoundBuffer m_bufferDeath;
+		sf::SoundBuffer m_bufferLife;
 		sf::Sound       m_soundStep;
 		sf::Sound       m_soundClap;
+		sf::Sound       m_soundDeath;
+		sf::Sound       m_soundLife;
 		Vec2	        m_dir;
-		unsigned int    m_speed;
+		unsigned int    m_speed,
+						m_stepCount;
 		float		    m_angle;
 		GameObject      *m_gObj;
 		Map             *m_map;
@@ -61,4 +66,5 @@ class Player {
 					    m_clockStep,
 					    m_clockEvents;
 		EventListener   *m_events;
+
 };

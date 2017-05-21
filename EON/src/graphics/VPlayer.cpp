@@ -41,7 +41,7 @@ void   VPlayer::SetPosition(Vec2 pos){
 				m_stop = false;
 				m_move = true;
 			}
-			else if (m_clockMove.getElapsedTime().asMilliseconds() > 400) {
+			else if (m_clockMove.getElapsedTime().asMilliseconds() > 500) {
 				m_actNumText = ((m_actNumText) % 2) +1;
 				m_actualTxt = &m_texture[m_actNumText];
 				addSprite = true;

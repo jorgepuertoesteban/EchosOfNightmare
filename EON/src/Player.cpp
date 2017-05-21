@@ -8,10 +8,15 @@
 
 Player::Player(GameObject *gObj, Map *map)
 	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr), m_inWater(false),
-	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false){
-	m_bufferStep.loadFromFile("Media/Sounds/Step1.wav");
-	m_soundStep.setBuffer(m_bufferStep);
+	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false), m_stepCount(0){
+	m_bufferStep[0].loadFromFile("Media/Sounds/Step1.wav");
+	m_bufferStep[1].loadFromFile("Media/Sounds/Step2.wav");
+	m_bufferStep[2].loadFromFile("Media/Sounds/Step3.wav");
+	m_bufferDeath.loadFromFile("Media/Sounds/Death.wav");
+	m_bufferLife.loadFromFile("Media/Sounds/Door.wav");
+	m_soundDeath.setBuffer(m_bufferDeath);
 	m_soundClap.setBuffer(m_bufferClap);
+	m_soundLife.setBuffer(m_bufferLife);
 }
 Player::~Player() {
 }
@@ -23,7 +28,9 @@ void Player::Update() {
 	}
 	if (!m_finish) {
 		if (Step()) {
+			m_soundStep.setBuffer(m_bufferStep[m_stepCount]);
 			m_soundStep.play();
+			m_stepCount = (m_stepCount+1) % 3;
 			if (m_inWater) {
 				GenerateSound(25, 25, 4);
 			}
@@ -39,8 +46,14 @@ void Player::Update() {
 			for (unsigned int i = 0; i < count; i++) {
 				float angle = ((i / (float)count) * 360);
 				int r, g, b;
-				if (m_kissOfDead) r = 102, g = 0, b = 0;
-				if (m_kissOfLife) r = 255, g = 255, b = 255;
+				if (m_kissOfDead) {
+					m_soundDeath.play();
+					r = 102, g = 0, b = 0;
+				}
+				if (m_kissOfLife) {
+					m_soundLife.play();
+					r = 255, g = 255, b = 255;
+				}
 				m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * 4, cosf(angle*3.14f / 180.f) * 4), Vec2(16, 16), count, r, g, b);
 			}
 			m_finish = true;
@@ -157,12 +170,15 @@ void Player::MakeSound(bool key_pressed){
 		if (time > 2) {
 			numRays = time;
 			if (numRays < 35) {
+				m_soundClap.setVolume(10);
 				m_bufferClap.loadFromFile("Media/Sounds/Clap3.wav");
 			}
 			else if (numRays < 50) {
+				m_soundClap.setVolume(30);
 				m_bufferClap.loadFromFile("Media/Sounds/Clap2.wav");
 			}
 			else {
+				m_soundClap.setVolume(60);
 				m_bufferClap.loadFromFile("Media/Sounds/Clap1.wav");
 				numRays = 50;
 			}
