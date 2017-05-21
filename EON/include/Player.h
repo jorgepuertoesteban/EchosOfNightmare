@@ -40,8 +40,10 @@ class Player {
 		void CheckEvents();
 		void CalcAngle();
 		void ThrowRock(bool);
-		sf::SoundBuffer m_buffer;
+		sf::SoundBuffer m_bufferStep;
+		sf::SoundBuffer m_bufferClap;
 		sf::Sound       m_soundStep;
+		sf::Sound       m_soundClap;
 		Vec2	        m_dir;
 		unsigned int    m_speed;
 		float		    m_angle;

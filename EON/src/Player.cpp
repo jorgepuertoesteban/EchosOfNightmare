@@ -9,8 +9,9 @@
 Player::Player(GameObject *gObj, Map *map)
 	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr), m_inWater(false),
 	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false){
-	m_buffer.loadFromFile("Media/Sounds/Step1.wav");
-	m_soundStep.setBuffer(m_buffer);
+	m_bufferStep.loadFromFile("Media/Sounds/Step1.wav");
+	m_soundStep.setBuffer(m_bufferStep);
+	m_soundClap.setBuffer(m_bufferClap);
 }
 Player::~Player() {
 }
@@ -130,7 +131,7 @@ bool Player::Step() {
 			m_walking = true;
 			m_clockStep.restart();
 		}
-		if ( ( !m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 310)
+		if ( ( !m_sDirection.Shift && m_clockStep.getElapsedTime().asMilliseconds() > 500)
 			||((m_sDirection.Shift || m_inWater) && m_clockStep.getElapsedTime().asMilliseconds() > 600)) {
 			m_clockStep.restart();
 			return true;
@@ -155,9 +156,17 @@ void Player::MakeSound(bool key_pressed){
 		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds()/10;
 		if (time > 2) {
 			numRays = time;
-			if (numRays > 50) {
+			if (numRays < 35) {
+				m_bufferClap.loadFromFile("Media/Sounds/Clap3.wav");
+			}
+			else if (numRays < 50) {
+				m_bufferClap.loadFromFile("Media/Sounds/Clap2.wav");
+			}
+			else {
+				m_bufferClap.loadFromFile("Media/Sounds/Clap1.wav");
 				numRays = 50;
 			}
+			m_soundClap.play();
 			GenerateSound(numRays, numRays, 4);
 		}
 	}
@@ -175,7 +184,7 @@ void Player::GenerateSound(unsigned int count, unsigned int lifetime , float vel
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
-		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(8,8), lifetime);
+		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(5,5), lifetime);
 	}
 }
 void Player::SetEventListener(EventListener *events) {
