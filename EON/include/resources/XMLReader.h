@@ -25,11 +25,13 @@ class XMLReader{
 		void AddWater();
 		void AddGoal();
 		void AddDeadWall();
+		void AddMechanism();
 		Map*    m_map;
 		float   m_x,
 				m_y,
 				m_width,
 				m_height,
 				m_rotation;
-		static const Layer2Method m_layers[7];
+		int		m_name;
+		static const Layer2Method m_layers[8];
 };

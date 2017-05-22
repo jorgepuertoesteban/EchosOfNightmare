@@ -36,7 +36,7 @@ class Map: public Scene {
 		virtual void        CreateSoundWave (Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r = 255, int g = 255, int b = 255, PhysicBody * = nullptr) = 0;
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos) = 0;
 		virtual PVector<SoundWave>* GetSoundWaves() = 0;
-		virtual PVector<Mechanism>* GetMechanism() = 0;
+		virtual PVector<Mechanism>* GetMechanisms() = 0;
 		virtual PVector<Enemy>*     GetEnemies() = 0;
 		virtual PVector<Rock>*      GetRocks() = 0;
 		virtual Player*             GetPlayer() = 0;

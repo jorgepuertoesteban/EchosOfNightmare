@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="203">
  <objectgroup color="#aa0000" name="DeadWalls"/>
  <objectgroup color="#ffff00" name="Mechanisms">
-  <object id="201" x="780" y="510" width="95" height="65"/>
+  <object id="201" name="1" x="780" y="510" width="95" height="65"/>
  </objectgroup>
  <objectgroup color="#aa007f" name="Doors">
   <object id="202" x="1060" y="445" width="165" height="190"/>

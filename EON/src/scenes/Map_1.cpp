@@ -126,7 +126,7 @@ void Map_1::Render(sf::RenderWindow *window){
 	for (auto it = m_soundWaves.GetBegin(); it != m_soundWaves.GetEnd(); it++) {
 		window->draw(*(*it));
 	}
-	if (!m_finished) {
+	if (!m_finished) { 
 		for (auto it = m_gameObjects.GetBegin(); it != m_gameObjects.GetEnd(); it++) {
 			if ((*it)->Visible())
 				window->draw(*(*it));
@@ -280,6 +280,9 @@ Player* Map_1::GetPlayer() {
 
 PVector<SoundWave>* Map_1::GetSoundWaves() {
 	return &m_soundWaves;
+}
+PVector<Mechanism>* Map_1::GetMechanisms() {
+	return &m_mechanisms;
 }
 PVector<Enemy>* Map_1::GetEnemies() {
 	return &m_enemies;

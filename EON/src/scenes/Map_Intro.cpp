@@ -8,6 +8,7 @@
 #include "ContactListener.h"
 #include "XMLReader.h"
 #include "EventListener.h"
+#include "Mechanism.h"
 #include "SoundWave.h"
 #include <iostream>
 
@@ -105,10 +106,10 @@ void Map_Intro::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int
 void Map_Intro::CreatePlayer(Vec2 pos) {
 	//USADO PARA CREAR LAS ONDAS
 	auto plus = rand() % 45;
-	unsigned int cont = 15;
+	unsigned int cont = 7;
 	for (unsigned int i = 0; i < cont; i++) {
 		float angle = ((i / (float)cont) * 360) + plus;
-		CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 6, Vec2(10,10), 99999);
+		CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 6, Vec2(8,8), 99999);
 	}
 
 }
@@ -149,6 +150,9 @@ GameObject* Map_Intro::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos
 PVector<Enemy>* Map_Intro::GetEnemies() {
 	return nullptr;
 }
+PVector<Mechanism>* Map_Intro::GetMechanisms() {
+	return nullptr;
+}
 PVector<Rock>* Map_Intro::GetRocks() {
 	return nullptr;
 }
@@ -159,6 +163,7 @@ void Map_Intro::Life() {}
 void Map_Intro::Dead() {}
 void Map_Intro::CreateEnemy(Vec2 pos) {}
 void Map_Intro::CreateRock(Vec2 pos, Vec2 dir) {}
+void Map_Intro::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {}
 void Map_Intro::CreateGoal(Vec2 pos, Vec2 size, int rotation) {}
 void Map_Intro::CreateWater(Vec2 pos, Vec2 size, int rotation) {}
 void Map_Intro::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {}

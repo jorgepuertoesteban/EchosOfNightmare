@@ -18,9 +18,11 @@
 #include "physicbodies\PBWater.h"
 #include "physicbodies\PBGoal.h"
 #include "physicbodies\PBDeadWall.h"
+#include "physicbodies\PBMechanism.h"
 #include "ContactListener.h"
 #include "XMLReader.h"
 #include "EventListener.h"
+#include "Mechanism.h"
 #include "SoundWave.h"
 #include <iostream>
 
@@ -188,6 +190,20 @@ void Map_2::CreateRock(Vec2 pos, Vec2 dir) {
 	gObj->SetLinearVelocity(dir);
 	m_rocks.Add(new Rock(gObj,this));
 }
+void Map_2::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {
+	PBMechanism *pmechanism = new PBMechanism;
+	VWall  *vwall = new VWall;
+	m_physiworld->CreateBody(pmechanism, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pmechanism->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pmechanism, vwall);
+	gObj->SetVisible(false);
+	//m_mechanisms.Add(new Mechanism(gObj, door));
+}
 void Map_2::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	PBGoal *pgoal = new PBGoal;
 	VWall  *vgoal = new VWall;
@@ -263,6 +279,9 @@ Player* Map_2::GetPlayer() {
 
 PVector<SoundWave>* Map_2::GetSoundWaves() {
 	return &m_soundWaves;
+}
+PVector<Mechanism>* Map_2::GetMechanisms() {
+	return &m_mechanisms;
 }
 PVector<Enemy>* Map_2::GetEnemies() {
 	return &m_enemies;
