@@ -140,10 +140,12 @@
     <ClCompile Include="src\graphics\VWall.cpp" />
     <ClCompile Include="src\listeners\ContactListener.cpp" />
     <ClCompile Include="src\listeners\EventListener.cpp" />
+    <ClCompile Include="src\Mechanism.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBDeadWall.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBEnemy.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBEnemySoundWave.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBGoal.cpp" />
+    <ClCompile Include="src\physics\physicbodies\PBMechanism.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBPlayer.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBRock.cpp" />
     <ClCompile Include="src\physics\physicbodies\PBSoundWave.cpp" />
@@ -183,10 +185,12 @@
     <ClInclude Include="include\graphics\VWall.h" />
     <ClInclude Include="include\listeners\ContactListener.h" />
     <ClInclude Include="include\listeners\EventListener.h" />
+    <ClInclude Include="include\Mechanism.h" />
     <ClInclude Include="include\physics\physicbodies\PBDeadWall.h" />
     <ClInclude Include="include\physics\physicbodies\PBEnemy.h" />
     <ClInclude Include="include\physics\physicbodies\PBEnemySoundWave.h" />
     <ClInclude Include="include\physics\physicbodies\PBGoal.h" />
+    <ClInclude Include="include\physics\physicbodies\PBMechanism.h" />
     <ClInclude Include="include\physics\physicbodies\PBPlayer.h" />
     <ClInclude Include="include\physics\physicbodies\PBRock.h" />
     <ClInclude Include="include\physics\physicbodies\PBSoundWave.h" />

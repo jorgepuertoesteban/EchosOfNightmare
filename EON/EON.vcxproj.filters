@@ -138,6 +138,12 @@
     <ClCompile Include="src\scenes\Map_7.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="src\physics\physicbodies\PBMechanism.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mechanism.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\resources\nocopy.h">
@@ -279,6 +285,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="include\scenes\Map_6.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\physicbodies\PBMechanism.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mechanism.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

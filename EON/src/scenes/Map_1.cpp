@@ -18,10 +18,12 @@
 #include "physicbodies\PBWater.h"
 #include "physicbodies\PBGoal.h"
 #include "physicbodies\PBDeadWall.h"
+#include "physicbodies\PBMechanism.h"
 #include "ContactListener.h"
 #include "XMLReader.h"
 #include "EventListener.h"
 #include "SoundWave.h"
+#include "Mechanism.h"
 #include <iostream>
 
 Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
@@ -201,6 +203,21 @@ void Map_1::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	gObj->Inicialize(pgoal, vgoal);
 	gObj->SetVisible(false);
 	m_pGoal.Reset(gObj);
+}
+
+void Map_1::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {
+	PBMechanism *pmechanism = new PBMechanism;
+	VWall  *vwall = new VWall;
+	m_physiworld->CreateBody(pmechanism, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pmechanism->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pmechanism, vwall);
+	gObj->SetVisible(false);
+	//m_mechanisms.Add(new Mechanism(gObj, door));
 }
 void Map_1::CreateWater(Vec2 pos, Vec2 size, int rotation) {
 	PBWater *pwater = new PBWater;

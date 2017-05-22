@@ -1,5 +1,6 @@
 #include "ContactListener.h"
 #include "SoundWave.h"
+#include "Mechanism.h"
 #include "Enemy.h"
 #include "Rock.h"
 #include "Player.h"
@@ -58,6 +59,9 @@ void ContactListener::SWaveDWallBegin() {
 }
 void ContactListener::SWaveGoalBegin() {
 	GetSoundWave()->SetColor(60, 224, 6);
+}
+void ContactListener::SWaveMechanismBegin() {
+	GetSoundWave()->SetColor(230, 230, 0);
 }
 void ContactListener::SWaveWaterBegin() {
 	GetSoundWave()->SetColor(4, 64, 124);
