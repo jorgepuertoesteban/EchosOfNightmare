@@ -39,6 +39,12 @@ Map_6::Map_6(sf::View* view):m_end(false), m_start(false), m_finished(false), m_
 	m_text.setFont(m_font);
 	m_text.setFillColor(sf::Color::White);
 	m_text.setString(m_mapName);
+
+	m_bufferIntro.loadFromFile("Media/Sounds/Intro.wav");
+	m_music.openFromFile("Media/Sounds/Ambient.wav");
+	m_soundIntro.setBuffer(m_bufferIntro);
+	m_music.setVolume(20);
+	m_soundIntro.play();
 }
 Map_6::~Map_6(){
 	m_enemies.Clear();
@@ -60,6 +66,7 @@ bool Map_6::Start() {
 			m_text.setCharacterSize(20);
 			m_text.setFillColor(sf::Color::White);
 			m_text.setString(m_tutoStrings);
+			m_music.play();
 			m_start = true;
 		}
 		return false;

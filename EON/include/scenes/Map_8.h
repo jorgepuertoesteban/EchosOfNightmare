@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Pointer.h"
 #include "PVector.h"
+#include "SFML\Audio.hpp"
 
 class PhysicWorld;
 class ContactListener;
@@ -47,6 +48,9 @@ private:
 		void UpdateText();
 		void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
+		sf::Music				 m_music;
+		sf::SoundBuffer          m_bufferIntro;
+		sf::Sound                m_soundIntro;
 		sf::Font                 m_font;
 		sf::Text                 m_text;
 		sf::Clock                m_clockStart,

@@ -29,6 +29,9 @@ Map_Intro::Map_Intro(sf::View* view):m_end(false), m_start(false){
 	m_text.setFillColor(sf::Color::White);
 	m_text.setString(m_tutoStrings);
 	m_text.setPosition(sf::Vector2f(0 - m_text.getLocalBounds().width / 2, 100));
+
+	m_bufferIntro.loadFromFile("Media/Sounds/Intro.wav");
+	m_soundIntro.setBuffer(m_bufferIntro);
 }
 Map_Intro::~Map_Intro(){
 	m_soundWaves.Clear();
@@ -63,6 +66,7 @@ void Map_Intro::Render(sf::RenderWindow *window){
 }
 void Map_Intro::CheckEvents() {
 	if (!m_start && m_listener->IsKeyDown(sf::Keyboard::Return)) {
+		m_soundIntro.play();
 		m_start = true;
 	}
 }

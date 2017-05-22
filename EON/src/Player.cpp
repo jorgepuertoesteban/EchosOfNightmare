@@ -200,7 +200,7 @@ void Player::GenerateSound(unsigned int count, unsigned int lifetime , float vel
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
-		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(5,5), lifetime);
+		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(16, 16), lifetime);
 	}
 }
 void Player::SetEventListener(EventListener *events) {
