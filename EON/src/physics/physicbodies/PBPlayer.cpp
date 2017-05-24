@@ -26,7 +26,7 @@ void PBPlayer::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 1;
 	fixtureDef.filter.categoryBits = C_PLAYER;
-	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER | C_ENEMY;
+	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER | C_ENEMY | C_MECHANISM;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	fixture->SetUserData((void*)D_PLAYER);
 }

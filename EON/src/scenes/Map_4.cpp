@@ -24,6 +24,7 @@
 #include "EventListener.h"
 #include "Mechanism.h"
 #include "SoundWave.h"
+#include "Door.h"
 #include <iostream>
 
 Map_4::Map_4(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
@@ -81,6 +82,7 @@ void Map_4::Update(){
 	UpdateEnemies();
 	UpdateGameObjects();
 	UpdateSoundWaves();
+	UpdateDoors();
 	UpdateRocks();
 	m_view->setCenter(m_player.Get()->GetPosition().x, m_player.Get()->GetPosition().y);
 	if (!Start()) {
@@ -202,7 +204,21 @@ void Map_4::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {
 	GameObject* gObj = new GameObject();
 	gObj->Inicialize(pmechanism, vwall);
 	gObj->SetVisible(false);
-	//m_mechanisms.Add(new Mechanism(gObj, door));
+	m_mechanisms.Add(new Mechanism(gObj, door));
+}
+void Map_4::CreateDoor(Vec2 pos, Vec2 size, int rotation, int door) {
+	PBWall *pwall = new PBWall;
+	VWall  *vwall = new VWall;
+	m_physiworld->CreateBody(pwall, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pwall->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pwall, vwall);
+	gObj->SetVisible(false);
+	m_doors.Add(new Door(gObj, this, door));
 }
 void Map_4::CreateGoal(Vec2 pos, Vec2 size, int rotation) {
 	PBGoal *pgoal = new PBGoal;
@@ -286,6 +302,9 @@ PVector<SoundWave>* Map_4::GetSoundWaves() {
 PVector<Enemy>* Map_4::GetEnemies() {
 	return &m_enemies;
 }
+PVector<Door>* Map_4::GetDoors() {
+	return &m_doors;
+}
 PVector<Rock>* Map_4::GetRocks() {
 	return &m_rocks;
 }
@@ -336,5 +355,17 @@ void Map_4::UpdateEnemies() {
 void Map_4::UpdateRocks() {
 	for (auto it = m_rocks.GetBegin(); it != m_rocks.GetEnd(); it++) {
 		(*it)->Update();
+	}
+}
+void Map_4::UpdateDoors() {
+	auto it = m_doors.GetBegin();
+	while (it != m_doors.GetEnd()) {
+		if ((*it)->GetPressed()) {
+			int index = std::distance(m_doors.GetBegin(), it);
+			it = m_doors.Remove(index);
+		}
+		else {
+			it++;
+		}
 	}
 }

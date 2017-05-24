@@ -30,6 +30,7 @@ class Map_Intro: public Map{
 		virtual void        CreateWall(Vec2 pos, Vec2 size, int rotation);
 		virtual void        CreateWater(Vec2 pos,Vec2 size, int rotation);
 		virtual void        CreateDeadWall(Vec2 pos, Vec2 size, int rotation);
+		virtual void        CreateDoor(Vec2 pos, Vec2 size, int rotation, int id);
 		virtual void        CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door);
 		virtual void        CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int r = 255, int g = 255, int b = 255, PhysicBody * = nullptr);
 		virtual GameObject* CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 size, Vec2 pos);
@@ -37,6 +38,7 @@ class Map_Intro: public Map{
 		PVector<Mechanism>* GetMechanisms();
 		PVector<Enemy>*     GetEnemies();
 		PVector<Rock>*      GetRocks();
+		PVector<Door>*      GetDoors();
 		virtual Player*     GetPlayer();
 private:
 		void EndMap();

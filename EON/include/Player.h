@@ -23,8 +23,6 @@ class Player {
 		void MakeSound(bool);
 		void GenerateSound(unsigned int count, unsigned int lifetime, float velocity);
 	private:
-
-
 		struct Direction {
 			bool W = false;
 			bool S = false;
@@ -34,7 +32,6 @@ class Player {
 			int lastH = 0;
 			int lastV = 0;
 		};
-
 		void Move();
 		void CalcDir();
 		void CheckEvents();

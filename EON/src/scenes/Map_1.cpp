@@ -24,6 +24,7 @@
 #include "EventListener.h"
 #include "SoundWave.h"
 #include "Mechanism.h"
+#include "Door.h"
 #include <iostream>
 
 Map_1::Map_1(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
@@ -53,7 +54,6 @@ Map_1::~Map_1(){
 	m_soundWaves.Clear();
 	m_gameObjects.Clear();
 	m_pGoal.Reset(nullptr);
-	m_pGoal.Reset(nullptr);
 	m_player.Reset(nullptr);
 }
 void Map_1::Inicialice(EventListener* listener) {
@@ -82,6 +82,8 @@ void Map_1::Update(){
 	UpdateGameObjects();
 	UpdateSoundWaves();
 	UpdateRocks();
+	UpdateMechanisms();
+	UpdateDoors();
 	m_view->setCenter(m_player.Get()->GetPosition().x, m_player.Get()->GetPosition().y);
 	if (!Start()) {
 		UpdateIntro();
@@ -217,7 +219,21 @@ void Map_1::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {
 	GameObject* gObj = new GameObject();
 	gObj->Inicialize(pmechanism, vwall);
 	gObj->SetVisible(false);
-	//m_mechanisms.Add(new Mechanism(gObj, door));
+	m_mechanisms.Add(new Mechanism(gObj, door));
+}
+void Map_1::CreateDoor(Vec2 pos, Vec2 size, int rotation, int door) {
+	PBWall *pwall = new PBWall;
+	VWall  *vwall = new VWall;
+	m_physiworld->CreateBody(pwall, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	vwall->SetRotation((float)rotation);
+	float radians = rotation * 3.141592653589793f / 180.f;
+	pwall->SetRotationFromCorner(radians);
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pwall, vwall);
+	gObj->SetVisible(false);
+	m_doors.Add(new Door(gObj,this, door));
 }
 void Map_1::CreateWater(Vec2 pos, Vec2 size, int rotation) {
 	PBWater *pwater = new PBWater;
@@ -290,6 +306,9 @@ PVector<Enemy>* Map_1::GetEnemies() {
 PVector<Rock>* Map_1::GetRocks() {
 	return &m_rocks;
 }
+PVector<Door>* Map_1::GetDoors() {
+	return &m_doors;
+}
 bool Map_1::End() {
 	return m_end;
 }
@@ -337,5 +356,29 @@ void Map_1::UpdateEnemies() {
 void Map_1::UpdateRocks() {
 	for (auto it = m_rocks.GetBegin(); it != m_rocks.GetEnd(); it++) {
 		(*it)->Update();
+	}
+}
+void Map_1::UpdateMechanisms() {
+	auto it = m_mechanisms.GetBegin();
+	while (it != m_mechanisms.GetEnd()) {
+		if ((*it)->GetPressed()) {
+			int index = std::distance(m_mechanisms.GetBegin(), it);
+			it = m_mechanisms.Remove(index);
+		}
+		else {
+			it++;
+		}
+	}
+}
+void Map_1::UpdateDoors() {
+	auto it = m_doors.GetBegin();
+	while (it != m_doors.GetEnd()) {
+		if ((*it)->GetPressed()) {
+			int index = std::distance(m_doors.GetBegin(), it);
+			it = m_doors.Remove(index);
+		}
+		else {
+			it++;
+		}
 	}
 }

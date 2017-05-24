@@ -3,6 +3,7 @@
 #include "Mechanism.h"
 #include "Enemy.h"
 #include "Rock.h"
+#include "Door.h"
 #include "Player.h"
 #include "Map.h"
 
@@ -50,7 +51,6 @@ void ContactListener::PlayerWaterBegin() {
 void ContactListener::PlayerWaterEnd() {
 	m_map->GetPlayer()->SetInWater(false);
 }
-
 void ContactListener::KillPlayer(){
 	m_map->Dead();
 }
@@ -62,6 +62,16 @@ void ContactListener::SWaveGoalBegin() {
 }
 void ContactListener::SWaveMechanismBegin() {
 	GetSoundWave()->SetColor(230, 230, 0);
+}
+void ContactListener::PlayerMechanism() {
+	Mechanism* mecha = GetMechanism();
+	mecha->Press();
+	auto doors = m_map->GetDoors();
+	for (auto it = doors->GetBegin(); it != doors->GetEnd(); ++it) {
+		if ((*it)->GetId() == mecha->GetDoor()) {
+			(*it)->Press();
+		}
+	}
 }
 void ContactListener::SWaveWaterBegin() {
 	GetSoundWave()->SetColor(4, 64, 124);
@@ -97,6 +107,16 @@ Enemy* ContactListener::GetEnemy() {
 Rock* ContactListener::GetRock() {
 	auto rocks = m_map->GetRocks();
 	for (auto it = rocks->GetBegin(); it != rocks->GetEnd(); ++it) {
+		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
+			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
+			return (*it);
+		}
+	}
+	return nullptr;
+}
+Mechanism* ContactListener::GetMechanism() {
+	auto mechanisms = m_map->GetMechanisms();
+	for (auto it = mechanisms->GetBegin(); it != mechanisms->GetEnd(); ++it) {
 		if ((*it)->GetId() == (int)contact->GetFixtureA()->GetBody()->GetUserData()
 			|| (*it)->GetId() == (int)contact->GetFixtureB()->GetBody()->GetUserData()) {
 			return (*it);

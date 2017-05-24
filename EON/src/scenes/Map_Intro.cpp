@@ -8,7 +8,6 @@
 #include "ContactListener.h"
 #include "XMLReader.h"
 #include "EventListener.h"
-#include "Mechanism.h"
 #include "SoundWave.h"
 #include <iostream>
 
@@ -153,6 +152,9 @@ PVector<Enemy>* Map_Intro::GetEnemies() {
 PVector<Mechanism>* Map_Intro::GetMechanisms() {
 	return nullptr;
 }
+PVector<Door>* Map_Intro::GetDoors() {
+	return nullptr;
+}
 PVector<Rock>* Map_Intro::GetRocks() {
 	return nullptr;
 }
@@ -164,6 +166,7 @@ void Map_Intro::Dead() {}
 void Map_Intro::CreateEnemy(Vec2 pos) {}
 void Map_Intro::CreateRock(Vec2 pos, Vec2 dir) {}
 void Map_Intro::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {}
+void Map_Intro::CreateDoor(Vec2 pos, Vec2 size, int rotation, int door) {}
 void Map_Intro::CreateGoal(Vec2 pos, Vec2 size, int rotation) {}
 void Map_Intro::CreateWater(Vec2 pos, Vec2 size, int rotation) {}
 void Map_Intro::CreateDeadWall(Vec2 pos, Vec2 size, int rotation) {}

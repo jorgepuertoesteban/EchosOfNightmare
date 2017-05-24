@@ -25,13 +25,14 @@ class ContactListener: public b2ContactListener{
 			unsigned long B;
 			void (ContactListener::*p)();
 		};
-    	const Contact2Method beginContact[12] = {
+    	const Contact2Method beginContact[13] = {
 			  { D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer          }
 			 ,{ D_SOUNDWAVE      , D_DEADWALL      , &ContactListener::SWaveDWallBegin     }
 			 ,{ D_SOUNDWAVE      , D_GOAL          , &ContactListener::SWaveGoalBegin      }
 			 ,{ D_SOUNDWAVE      , D_WATER         , &ContactListener::SWaveWaterBegin     }
 			 ,{ D_SOUNDWAVE      , D_ENEMY         , &ContactListener::SWaveEnemy          }
 			 ,{ D_SOUNDWAVE      , D_MECHANISM     , &ContactListener::SWaveMechanismBegin }
+			 ,{ D_PLAYER         , D_MECHANISM     , &ContactListener::PlayerMechanism     }
 			 ,{ D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer          }
 			 ,{ D_PLAYER         , D_ENEMY         , &ContactListener::KillPlayer          }
 			 ,{ D_PLAYER         , D_GOAL          , &ContactListener::Win                 }
@@ -57,6 +58,7 @@ class ContactListener: public b2ContactListener{
 		void Win();
 		void RockColision();
 		void KillPlayer();
+		void PlayerMechanism();
 		void SWaveDWallBegin();
 		void SWaveGoalBegin();
 		void SWaveWaterBegin();

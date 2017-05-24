@@ -31,7 +31,7 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1;
 	fixtureDef.density = 0 ;
 	fixtureDef.filter.categoryBits = C_SOUNDWAVE;
-	fixtureDef.filter.maskBits = C_WALL|C_DEADWALL|C_GOAL|C_WATER|C_ENEMY;
+	fixtureDef.filter.maskBits = C_WALL|C_DEADWALL|C_GOAL|C_WATER|C_ENEMY|C_MECHANISM;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	fixture->SetUserData((void*)D_SOUNDWAVE);
 }

@@ -144,6 +144,9 @@
     <ClCompile Include="src\Mechanism.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="src\Door.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\resources\nocopy.h">
@@ -291,6 +294,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="include\Mechanism.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Door.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

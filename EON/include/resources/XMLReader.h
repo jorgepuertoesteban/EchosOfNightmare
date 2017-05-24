@@ -24,6 +24,7 @@ class XMLReader{
 		void AddWall();
 		void AddWater();
 		void AddGoal();
+		void AddDoor();
 		void AddDeadWall();
 		void AddMechanism();
 		Map*    m_map;
@@ -33,5 +34,5 @@ class XMLReader{
 				m_height,
 				m_rotation;
 		int		m_name;
-		static const Layer2Method m_layers[8];
+		static const Layer2Method m_layers[9];
 };

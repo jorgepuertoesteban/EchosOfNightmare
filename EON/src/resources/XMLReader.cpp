@@ -5,12 +5,13 @@
 #include "Map.h"
 #include <iostream>
 
-const Layer2Method XMLReader::m_layers[8] = {
+const Layer2Method XMLReader::m_layers[9] = {
 	 { "Player"       , &AddPlayer    }
 	,{ "Enemies"      , &AddEnemy     }
 	,{ "Walls"        , &AddWall      }
 	,{ "DeadWalls"    , &AddDeadWall  }
 	,{ "Goal"         , &AddGoal      }
+	,{ "Doors"        , &AddDoor      }
 	,{ "Waters"       , &AddWater     }
 	,{ "Mechanisms"   , &AddMechanism }
 	,{ "0"            , 0             }
@@ -66,5 +67,8 @@ void XMLReader::AddWater() {
 	m_map->CreateWater(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation);
 }
 void XMLReader::AddMechanism() {
-	m_map->CreateMechanism(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation,m_name);
+	m_map->CreateMechanism(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation, m_name);
+}
+void XMLReader::AddDoor() {
+	m_map->CreateDoor(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation, m_name);
 }
