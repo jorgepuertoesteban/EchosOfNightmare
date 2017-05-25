@@ -7,6 +7,7 @@ class Door {
 	public:
 		Door(GameObject * = nullptr, Map *map = nullptr, int id = 0);
 		~Door();
+		void Update();
 		void Press();
 		bool GetPressed();
 		int  GetId();

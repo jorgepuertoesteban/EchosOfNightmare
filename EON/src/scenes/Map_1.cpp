@@ -373,6 +373,7 @@ void Map_1::UpdateMechanisms() {
 void Map_1::UpdateDoors() {
 	auto it = m_doors.GetBegin();
 	while (it != m_doors.GetEnd()) {
+		(*it)->Update();
 		if ((*it)->GetPressed()) {
 			int index = std::distance(m_doors.GetBegin(), it);
 			it = m_doors.Remove(index);

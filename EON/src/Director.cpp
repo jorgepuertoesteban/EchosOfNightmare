@@ -9,7 +9,7 @@ Director::Director():m_closed(false){
 	settings.antialiasingLevel = 10;
 	m_view = sf::View(sf::FloatRect(0, 0, (float)vM.width, (float)vM.height));
 	//m_pWindow.Reset(new sf::RenderWindow(vM, "Echoes of nightmare.", sf::Style::Fullscreen, settings));
-	m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(600,600*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
+	m_pWindow.Reset(new sf::RenderWindow(sf::VideoMode(1900,1900*9/16.f), "Echoes of nightmare.", sf::Style::Default, settings));
 	m_window = m_pWindow.Get();
 	m_eventListener.Inicialize(m_window);
 	m_window->setVerticalSyncEnabled(true);
