@@ -47,6 +47,7 @@ Map_7::Map_7(sf::View* view):m_end(false), m_start(false), m_finished(false), m_
 	m_music.openFromFile("Media/Sounds/Ambient.wav");
 	m_soundIntro.setBuffer(m_bufferIntro);
 	m_music.setVolume(20);
+	m_music.setLoop(true);
 	m_soundIntro.play();
 }
 Map_7::~Map_7(){

@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="233">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="275">
  <objectgroup color="#aa0000" name="DeadWalls">
-  <object id="225" x="1235" y="385" width="185" height="455"/>
-  <object id="226" x="1550" y="250" width="180" height="450"/>
+  <object id="257" x="850" y="770" width="275" height="140"/>
+  <object id="258" x="920" y="425" width="145" height="110"/>
+  <object id="259" x="915" y="1145" width="155" height="115"/>
+  <object id="273" x="1530" y="700" width="285" height="65"/>
+  <object id="274" x="1525" y="905" width="285" height="90"/>
  </objectgroup>
  <objectgroup color="#81be31" name="Goal">
-  <object id="197" x="1870" y="435" width="135" height="185"/>
+  <object id="260" x="1995" y="770" width="85" height="130"/>
  </objectgroup>
  <objectgroup color="#000000" name="Walls">
-  <object id="139" x="415" y="635" width="675" height="5"/>
-  <object id="149" x="415" y="445" width="5" height="195"/>
-  <object id="150" x="415" y="445" width="675" height="5"/>
-  <object id="201" x="1095" y="825" width="775" height="5"/>
-  <object id="202" x="1090" y="245" width="775" height="5"/>
-  <object id="203" x="1090" y="250" width="5" height="195"/>
-  <object id="204" x="1090" y="635" width="5" height="195"/>
-  <object id="205" x="2005" y="420" width="5" height="195"/>
-  <object id="206" x="1865" y="425" width="140" height="10"/>
-  <object id="207" x="1865" y="615" width="140" height="10"/>
-  <object id="230" x="1860" y="245" width="5" height="190"/>
-  <object id="232" x="1865" y="625" width="5" height="205"/>
+  <object id="139" x="155" y="910" width="535" height="5"/>
+  <object id="149" x="155" y="765" width="5" height="150"/>
+  <object id="150" x="155" y="765" width="535" height="5"/>
+  <object id="203" x="915" y="540" width="5" height="321.734" rotation="45"/>
+  <object id="234" x="990" y="625" width="5" height="201.525" rotation="45"/>
+  <object id="236" x="915" y="430" width="5" height="115"/>
+  <object id="238" x="685" y="915" width="5" height="325.269" rotation="-45"/>
+  <object id="240" x="850" y="915" width="5" height="197.99" rotation="-45"/>
+  <object id="241" x="990" y="630" width="5" height="201.525" rotation="-45"/>
+  <object id="242" x="1067.5" y="542.5" width="5" height="321.734" rotation="-45"/>
+  <object id="243" x="1295" y="910" width="5" height="328.805" rotation="45"/>
+  <object id="244" x="1132.5" y="912.5" width="5" height="197.99" rotation="45"/>
+  <object id="247" x="850" y="765" width="280" height="5"/>
+  <object id="248" x="850" y="910" width="285" height="5"/>
+  <object id="249" x="1810" y="760" width="280" height="5"/>
+  <object id="250" x="1810" y="905" width="280" height="5"/>
+  <object id="251" x="1065" y="430" width="5" height="115"/>
+  <object id="252" x="915" y="1140" width="5" height="115"/>
+  <object id="253" x="1065" y="1140" width="5" height="115"/>
+  <object id="254" x="915" y="1255" width="155" height="5"/>
+  <object id="255" x="915" y="425" width="155" height="5"/>
+  <object id="256" x="2085" y="760" width="5" height="150"/>
+  <object id="264" x="1295" y="905" width="240" height="5"/>
+  <object id="265" x="1295" y="760" width="235" height="5"/>
+  <object id="266" x="1575" y="705" width="5" height="74.2458" rotation="45"/>
+  <object id="267" x="1752.5" y="707.5" width="5" height="77.7813" rotation="-45"/>
+  <object id="268" x="1525" y="912.5" width="5" height="76.014" rotation="-45"/>
+  <object id="269" x="1807.5" y="910" width="5" height="72.4784" rotation="45"/>
+  <object id="270" x="1575" y="705" width="185" height="5"/>
+  <object id="271" x="1575" y="960" width="185" height="5"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="Waters"/>
  <objectgroup color="#550000" name="Enemies"/>
  <objectgroup color="#00ff00" name="Player">
-  <object id="18" x="525" y="535" width="10" height="10"/>
+  <object id="18" x="230" y="835" width="10" height="10"/>
  </objectgroup>
 </map>
