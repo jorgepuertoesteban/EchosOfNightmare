@@ -82,6 +82,7 @@ void Map_7::Update(){
 	CheckEvents();
 	UpdateEnemies();
 	UpdateGameObjects();
+	UpdateMechanisms();
 	UpdateSoundWaves();
 	UpdateDoors();
 	UpdateRocks();
@@ -358,9 +359,22 @@ void Map_7::UpdateRocks() {
 		(*it)->Update();
 	}
 }
+void Map_7::UpdateMechanisms() {
+	auto it = m_mechanisms.GetBegin();
+	while (it != m_mechanisms.GetEnd()) {
+		if ((*it)->GetPressed()) {
+			int index = std::distance(m_mechanisms.GetBegin(), it);
+			it = m_mechanisms.Remove(index);
+		}
+		else {
+			it++;
+		}
+	}
+}
 void Map_7::UpdateDoors() {
 	auto it = m_doors.GetBegin();
 	while (it != m_doors.GetEnd()) {
+		(*it)->Update();
 		if ((*it)->GetPressed()) {
 			int index = std::distance(m_doors.GetBegin(), it);
 			it = m_doors.Remove(index);

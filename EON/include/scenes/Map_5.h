@@ -80,7 +80,7 @@ private:
 								 m_finished,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map5.tmx",
-		                         *m_mapName     = "Silence",
+		                         *m_mapName     = "Hunt",
 						         *m_tutoStrings = "Use Shift keys to sneak";
 };
 

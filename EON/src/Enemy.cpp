@@ -14,7 +14,7 @@ Enemy::~Enemy() {
 void Enemy::Update() {
 	Move();	
 	if (m_clockSound.getElapsedTime().asMilliseconds() > 500) {
-		GenerateSound(rand() % 4 + 5);
+		GenerateSound(rand() % 10 + 6);
 		m_clockSound.restart();
 	}
 }

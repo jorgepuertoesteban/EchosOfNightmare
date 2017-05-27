@@ -1,5 +1,6 @@
 #include <SFML\Audio.hpp>
 #include "Pointer.h"
+#include "Vec2.h"
 
 class GameObject;
 class Map;
@@ -9,6 +10,7 @@ class Door {
 		~Door();
 		void Update();
 		void Press();
+		void MakeNoise(int num, Vec2 pos);
 		bool GetPressed();
 		int  GetId();
 private:

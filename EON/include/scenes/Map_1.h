@@ -81,7 +81,7 @@ private:
 			                     m_success,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map1.tmx",
-		                         *m_mapName     = "Dark",
+		                         *m_mapName     = "Blind",
 						         *m_tutoStrings = "Use W,A,S,D keys to walk";
 };
 

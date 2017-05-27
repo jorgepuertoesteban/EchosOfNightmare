@@ -80,7 +80,7 @@ private:
 								 m_finished,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map6.tmx",
-		                         *m_mapName     = "Trick",
-						         *m_tutoStrings = "Use Start to throw a rock";
+		                         *m_mapName     = "Calm",
+						         *m_tutoStrings = "";
 };
 

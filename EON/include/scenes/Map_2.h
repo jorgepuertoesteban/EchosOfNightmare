@@ -80,7 +80,7 @@ private:
 								 m_finished,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map2.tmx",
-		                         *m_mapName     = "Loneless",
+		                         *m_mapName     = "Scape",
 						         *m_tutoStrings = "Hold and release Space to make noise";
 };
 

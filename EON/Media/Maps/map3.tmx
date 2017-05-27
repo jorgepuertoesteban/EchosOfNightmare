@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="275">
  <objectgroup color="#aa0000" name="DeadWalls">
-  <object id="257" x="850" y="770" width="275" height="140"/>
-  <object id="258" x="920" y="425" width="145" height="110"/>
-  <object id="259" x="915" y="1145" width="155" height="115"/>
-  <object id="273" x="1530" y="700" width="285" height="65"/>
-  <object id="274" x="1525" y="905" width="285" height="90"/>
+  <object id="257" x="1164.28" y="926.008" width="399.354" height="203.307"/>
+  <object id="258" x="1265.93" y="425" width="210.568" height="159.742"/>
+  <object id="259" x="1258.67" y="1470.58" width="225.09" height="167.003"/>
+  <object id="273" x="2151.77" y="824.354" width="413.876" height="94.3928"/>
+  <object id="274" x="2144.51" y="1122.05" width="413.876" height="130.698"/>
  </objectgroup>
  <objectgroup color="#81be31" name="Goal">
-  <object id="260" x="1995" y="770" width="85" height="130"/>
+  <object id="260" x="2827.04" y="926.008" width="123.437" height="188.786"/>
  </objectgroup>
  <objectgroup color="#000000" name="Walls">
-  <object id="139" x="155" y="910" width="535" height="5"/>
-  <object id="149" x="155" y="765" width="5" height="150"/>
-  <object id="150" x="155" y="765" width="535" height="5"/>
-  <object id="203" x="915" y="540" width="5" height="321.734" rotation="45"/>
-  <object id="234" x="990" y="625" width="5" height="201.525" rotation="45"/>
-  <object id="236" x="915" y="430" width="5" height="115"/>
-  <object id="238" x="685" y="915" width="5" height="325.269" rotation="-45"/>
-  <object id="240" x="850" y="915" width="5" height="197.99" rotation="-45"/>
-  <object id="241" x="990" y="630" width="5" height="201.525" rotation="-45"/>
-  <object id="242" x="1067.5" y="542.5" width="5" height="321.734" rotation="-45"/>
-  <object id="243" x="1295" y="910" width="5" height="328.805" rotation="45"/>
-  <object id="244" x="1132.5" y="912.5" width="5" height="197.99" rotation="45"/>
-  <object id="247" x="850" y="765" width="280" height="5"/>
-  <object id="248" x="850" y="910" width="285" height="5"/>
-  <object id="249" x="1810" y="760" width="280" height="5"/>
-  <object id="250" x="1810" y="905" width="280" height="5"/>
-  <object id="251" x="1065" y="430" width="5" height="115"/>
-  <object id="252" x="915" y="1140" width="5" height="115"/>
-  <object id="253" x="1065" y="1140" width="5" height="115"/>
-  <object id="254" x="915" y="1255" width="155" height="5"/>
-  <object id="255" x="915" y="425" width="155" height="5"/>
-  <object id="256" x="2085" y="760" width="5" height="150"/>
-  <object id="264" x="1295" y="905" width="240" height="5"/>
-  <object id="265" x="1295" y="760" width="235" height="5"/>
-  <object id="266" x="1575" y="705" width="5" height="74.2458" rotation="45"/>
-  <object id="267" x="1752.5" y="707.5" width="5" height="77.7813" rotation="-45"/>
-  <object id="268" x="1525" y="912.5" width="5" height="76.014" rotation="-45"/>
-  <object id="269" x="1807.5" y="910" width="5" height="72.4784" rotation="45"/>
-  <object id="270" x="1575" y="705" width="185" height="5"/>
-  <object id="271" x="1575" y="960" width="185" height="5"/>
+  <object id="139" x="155" y="1129.32" width="776.925" height="7.26098"/>
+  <object id="149" x="155" y="918.747" width="7.26098" height="217.829"/>
+  <object id="150" x="155" y="918.747" width="776.925" height="7.26098"/>
+  <object id="203" x="1258.67" y="592.003" width="7.26098" height="467.221" rotation="45"/>
+  <object id="234" x="1367.58" y="715.439" width="7.26098" height="292.654" rotation="45"/>
+  <object id="236" x="1258.67" y="432.261" width="7.26098" height="167.003"/>
+  <object id="238" x="924.664" y="1136.58" width="7.26098" height="472.354" rotation="-45"/>
+  <object id="240" x="1164.28" y="1136.58" width="7.26098" height="287.52" rotation="-45"/>
+  <object id="241" x="1367.58" y="722.7" width="7.26098" height="292.654" rotation="-45"/>
+  <object id="242" x="1480.13" y="595.633" width="7.26098" height="467.221" rotation="-45"/>
+  <object id="243" x="1810.5" y="1129.32" width="7.26098" height="477.489" rotation="45"/>
+  <object id="244" x="1574.52" y="1132.95" width="7.26098" height="287.52" rotation="45"/>
+  <object id="247" x="1164.28" y="918.747" width="406.615" height="7.26098"/>
+  <object id="248" x="1164.28" y="1129.32" width="413.876" height="7.26098"/>
+  <object id="249" x="2558.39" y="911.486" width="406.615" height="7.26098"/>
+  <object id="250" x="2558.39" y="1122.05" width="406.615" height="7.26098"/>
+  <object id="251" x="1476.5" y="432.261" width="7.26098" height="167.003"/>
+  <object id="252" x="1258.67" y="1463.32" width="7.26098" height="167.003"/>
+  <object id="253" x="1476.5" y="1463.32" width="7.26098" height="167.003"/>
+  <object id="254" x="1258.67" y="1630.32" width="225.09" height="7.26098"/>
+  <object id="255" x="1258.67" y="425" width="225.09" height="7.26098"/>
+  <object id="256" x="2957.74" y="911.486" width="7.26098" height="217.829"/>
+  <object id="264" x="1810.5" y="1122.05" width="348.527" height="7.26098"/>
+  <object id="265" x="1810.5" y="911.486" width="341.266" height="7.26098"/>
+  <object id="266" x="2217.12" y="831.615" width="7.26098" height="107.819" rotation="45"/>
+  <object id="267" x="2474.88" y="835.245" width="7.26098" height="112.954" rotation="-45"/>
+  <object id="268" x="2144.51" y="1132.95" width="7.26098" height="110.387" rotation="-45"/>
+  <object id="269" x="2554.75" y="1129.32" width="7.26098" height="105.253" rotation="45"/>
+  <object id="270" x="2217.12" y="831.615" width="268.656" height="7.26098"/>
+  <object id="271" x="2217.12" y="1201.93" width="268.656" height="7.26098"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="Waters"/>
  <objectgroup color="#550000" name="Enemies"/>
  <objectgroup color="#00ff00" name="Player">
-  <object id="18" x="230" y="835" width="10" height="10"/>
+  <object id="18" x="263.915" y="1020.4" width="14.522" height="14.522"/>
  </objectgroup>
 </map>

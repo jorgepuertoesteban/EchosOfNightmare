@@ -80,7 +80,7 @@ private:
 								 m_finished,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map4.tmx",
-		                         *m_mapName     = "Run",
+		                         *m_mapName     = "Fear",
 						         *m_tutoStrings = "";
 };
 

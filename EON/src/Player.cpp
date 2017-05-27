@@ -28,6 +28,12 @@ void Player::Update() {
 	}
 	if (!m_finish) {
 		if (Step()) {
+			if (!m_sDirection.Shift) {
+				m_soundStep.setVolume(100);
+			}
+			else {
+				m_soundStep.setVolume(25);
+			}
 			m_soundStep.setBuffer(m_bufferStep[m_stepCount]);
 			m_soundStep.play();
 			m_stepCount = (m_stepCount+1) % 3;
@@ -38,7 +44,7 @@ void Player::Update() {
 				GenerateSound(15, 15, 4);
 			}
 			else{
-				GenerateSound(7, 20, 1 / 1.5f);
+				GenerateSound(10, 15, 1);
 			}
 		}
 		if (m_kissOfDead || m_kissOfLife) {

@@ -10,11 +10,21 @@ Door::~Door(){
 }
 void Door::Update() {
 	if (m_pressed) {
-		auto plus = rand() % 45;
-		for (unsigned int i = 0; i < 40; i++) {
-			float angle = ((i / (float)40) * 360) + plus;
-			m_map->CreateSoundWave(m_gObj.Get()->GetPosition(), Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 5, Vec2(8, 8), 20);
-		}
+		auto num = rand() % 15 + 10;
+		auto desp = 32;
+		Vec2 pos = m_gObj.Get()->GetPosition();
+		MakeNoise(num , pos);
+		MakeNoise(num, Vec2(pos.x + desp, pos.y + desp));
+		MakeNoise(num, Vec2(pos.x + desp, pos.y - desp));
+		MakeNoise(num, Vec2(pos.x - desp, pos.y + desp));
+		MakeNoise(num, Vec2(pos.x - desp, pos.y - desp));
+	}
+}
+void Door::MakeNoise(int num, Vec2 pos) {
+	auto plus = rand() % 45;
+	for (unsigned int i = 0; i < num; i++) {
+		float angle = ((i / (float)num) * 360) + plus;
+		m_map->CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 5, Vec2(8, 8), 20);
 	}
 }
 void Door::Press() {

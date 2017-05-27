@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="276">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1000" height="500" tilewidth="5" tileheight="5" nextobjectid="278">
  <objectgroup color="#aa0000" name="DeadWalls"/>
  <objectgroup color="#550000" name="Doors"/>
  <objectgroup color="#ffff00" name="Mechanisms"/>

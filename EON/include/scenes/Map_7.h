@@ -51,7 +51,8 @@ private:
 		void UpdateRocks();
 		void UpdateDoors();
 		void UpdateText();
-		void CheckFinish();
+		void UpdateMechanisms();
+			void CheckFinish();
 		Pointer<PhysicWorld>     m_pPhysiworld;
 		sf::Music				 m_music;
 		sf::SoundBuffer          m_bufferIntro;
@@ -80,7 +81,7 @@ private:
 								 m_finished,
 							     m_learn;
 		const char               *m_path        = "Media/Maps/map7.tmx",
-		                         *m_mapName     = "Trap",
+		                         *m_mapName     = "Strange",
 						         *m_tutoStrings = "";
 };
 

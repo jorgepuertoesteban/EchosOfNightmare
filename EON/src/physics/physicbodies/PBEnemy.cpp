@@ -25,7 +25,7 @@ void PBEnemy::InitBody(b2Vec2 pos, b2Vec2 tam) {
 void PBEnemy::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
 	b2CircleShape circleShape;
-	circleShape.m_radius = tam.x / 2;
+	circleShape.m_radius = tam.x / 1.5f;
 	fixtureDef.shape = &circleShape;
 	fixtureDef.friction = 0.01f;
 	fixtureDef.restitution = 1.f;
