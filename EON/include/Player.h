@@ -37,10 +37,12 @@ class Player {
 		void CheckEvents();
 		void CalcAngle();
 		void ThrowRock(bool);
-		sf::SoundBuffer m_bufferStep[3];
-		sf::SoundBuffer m_bufferClap;
+		sf::SoundBuffer m_bufferStep[4];
+		sf::SoundBuffer m_bufferWater[2];
+		sf::SoundBuffer m_bufferClap[3];
 		sf::SoundBuffer m_bufferDeath;
 		sf::SoundBuffer m_bufferLife;
+		sf::Sound       m_soundWater;
 		sf::Sound       m_soundStep;
 		sf::Sound       m_soundClap;
 		sf::Sound       m_soundDeath;

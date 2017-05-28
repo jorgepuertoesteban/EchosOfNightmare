@@ -5,23 +5,27 @@
 #include <math.h>
 #include <iostream>
 
-
 Player::Player(GameObject *gObj, Map *map)
 	:m_gObj(gObj),m_map(map),m_dir(Vec2(0,0)), m_speed(2),m_sound(false), m_events(nullptr), m_inWater(false),
 	m_walking(false),m_angle(0),m_kissOfDead(false), m_kissOfLife(false), m_finish(false),m_rock(false), m_stepCount(0){
 	m_bufferStep[0].loadFromFile("Media/Sounds/Step1.wav");
 	m_bufferStep[1].loadFromFile("Media/Sounds/Step2.wav");
 	m_bufferStep[2].loadFromFile("Media/Sounds/Step3.wav");
+	m_bufferStep[3].loadFromFile("Media/Sounds/WaterStep.wav");
+	m_bufferClap[0].loadFromFile("Media/Sounds/Clap3.wav");
+	m_bufferClap[1].loadFromFile("Media/Sounds/Clap2.wav");
+	m_bufferClap[2].loadFromFile("Media/Sounds/Clap1.wav");
+	m_bufferWater[0].loadFromFile("Media/Sounds/WaterEntrance.wav");
+	m_bufferWater[1].loadFromFile("Media/Sounds/WaterExit.wav");
 	m_bufferDeath.loadFromFile("Media/Sounds/Death.wav");
 	m_bufferLife.loadFromFile("Media/Sounds/Door.wav");
 	m_soundDeath.setBuffer(m_bufferDeath);
-	m_soundClap.setBuffer(m_bufferClap);
 	m_soundLife.setBuffer(m_bufferLife);
 }
 Player::~Player() {
 }
 void Player::Update() {
-	if (m_clockEvents.getElapsedTime().asMilliseconds() > 100) {
+	if (m_clockEvents.getElapsedTime().asMilliseconds() > 50) {
 		CheckEvents();
 		Move();
 		m_clockEvents.restart();
@@ -34,14 +38,18 @@ void Player::Update() {
 			else {
 				m_soundStep.setVolume(25);
 			}
-			m_soundStep.setBuffer(m_bufferStep[m_stepCount]);
-			m_soundStep.play();
+			if(m_inWater)
+				m_soundStep.setBuffer(m_bufferStep[4]);
+			else
+				m_soundStep.setBuffer(m_bufferStep[m_stepCount]);
+			if(!m_sDirection.Shift || m_inWater)
+				m_soundStep.play();
 			m_stepCount = (m_stepCount+1) % 3;
 			if (m_inWater) {
 				GenerateSound(25, 25, 4);
 			}
 			else if (!m_sDirection.Shift) {
-				GenerateSound(15, 15, 4);
+				GenerateSound(25, 15, 4);
 			}
 			else{
 				GenerateSound(10, 15, 1);
@@ -173,6 +181,55 @@ void Player::MakeSound(bool key_pressed){
 	}
 	if(!m_finish && m_sound && !key_pressed){
 		m_sound = false;
+		int cant;
+		int lifetime;
+		int vel;
+		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds();
+		if (time > 2500)
+			time = 2500;
+		if (time < 433) {
+			m_soundClap.setBuffer(m_bufferClap[0]);
+			if (time < 400) {
+				m_soundClap.setVolume(10);
+				cant = 12;
+				lifetime = 15;
+			}
+			else {
+				m_soundClap.setVolume(30);
+				cant = 24;
+				lifetime = 28;
+			}
+		}
+		else if (time < 866) {
+			m_soundClap.setBuffer(m_bufferClap[1]);
+			if(time < 1200) {
+				m_soundClap.setVolume(50);
+				cant = 36;
+				lifetime = 39;
+			}
+			else {
+				m_soundClap.setVolume(70);
+				cant = 48;
+				lifetime = 62;
+			}
+		}
+		else {
+			m_soundClap.setBuffer(m_bufferClap[2]);
+			if (time < 2000) {
+				m_soundClap.setVolume(90);
+				cant = 80;
+				lifetime = 100;
+			}
+			else {
+				m_soundClap.setVolume(100);
+				cant = 100;
+				lifetime = 120;
+			}
+		}
+		m_soundClap.play();
+		GenerateSound(cant, lifetime, 6);
+
+		/*
 		int numRays;
 		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds()/10;
 		if (time > 2) {
@@ -188,11 +245,11 @@ void Player::MakeSound(bool key_pressed){
 			else {
 				m_soundClap.setVolume(60);
 				m_bufferClap.loadFromFile("Media/Sounds/Clap1.wav");
-				numRays = 50;
+				numRays = 70;
 			}
 			m_soundClap.play();
-			GenerateSound(numRays, numRays, 4);
-		}
+			GenerateSound(numRays, numRays, 6);
+		}*/
 	}
 }
 void Player::ThrowRock(bool rock) {
@@ -208,12 +265,17 @@ void Player::GenerateSound(unsigned int count, unsigned int lifetime , float vel
 	auto plus = rand() % 45;
 	for (unsigned int i = 0; i < count; i++) {
 		float angle = ((i / (float)count) * 360) + plus ;
-		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(8.5, 8.5), lifetime);
+		m_map->CreateSoundWave(m_gObj->GetPosition(), Vec2(sinf(angle*3.14f / 180.f) * velocity, cosf(angle*3.14f / 180.f) * velocity),Vec2(5, 5), lifetime);
 	}
 }
 void Player::SetEventListener(EventListener *events) {
 	m_events = events;
 }
 void Player::SetInWater(bool aux) {
+	if(aux)
+		m_soundWater.setBuffer(m_bufferWater[0]);
+	else
+		m_soundWater.setBuffer(m_bufferWater[1]);
+	m_soundWater.play();
 	m_inWater = aux;
 }

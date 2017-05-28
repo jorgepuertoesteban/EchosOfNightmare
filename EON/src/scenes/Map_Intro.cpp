@@ -26,7 +26,9 @@ Map_Intro::Map_Intro(sf::View* view):m_end(false), m_start(false){
 	m_rect.setPosition(sf::Vector2f(-2000,-2000));
 	m_text.setCharacterSize(60);
 	m_text.setFont(m_font);
-	m_text.setFillColor(sf::Color::White);
+	sf::Color color = sf::Color::White;
+	color.a = 250;
+	m_text.setFillColor(color);
 	m_text.setString(m_tutoStrings);
 	m_text.setPosition(sf::Vector2f(0 - m_text.getLocalBounds().width / 2, 100));
 
@@ -54,7 +56,18 @@ void Map_Intro::Update(){
 }
 void Map_Intro::UpdateText() {
 	sf::Color color = m_text.getFillColor();
-	color.a = color.a - 5;
+	if (!m_black) {
+		if (color.a > 100)
+			color.a = color.a - 10;
+		else
+			m_black = true;
+	}
+	else {
+		if (color.a < 250)
+			color.a = color.a + 10;
+		else
+			m_black = false;
+	}
 	m_text.setFillColor(color);
 }
 void Map_Intro::Render(sf::RenderWindow *window){
@@ -101,14 +114,13 @@ void Map_Intro::CreateSoundWave(Vec2 pos, Vec2 dir, Vec2 size, int lifetime, int
 	gObj->SetLinearVelocity(dir);
 	m_soundWaves.Add(new SoundWave(gObj,lifetime,r,g,b));
 }
-
 void Map_Intro::CreatePlayer(Vec2 pos) {
 	//USADO PARA CREAR LAS ONDAS
 	auto plus = rand() % 45;
-	unsigned int cont = 7;
+	unsigned int cont = 12;
 	for (unsigned int i = 0; i < cont; i++) {
 		float angle = ((i / (float)cont) * 360) + plus;
-		CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 6, Vec2(8,8), 99999);
+		CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 6, Vec2(4,4), 99999);
 	}
 
 }

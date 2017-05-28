@@ -60,8 +60,9 @@ private:
 		EventListener			 *m_listener;
 		bool                     m_start,
 			                     m_end,
-								 m_finished;
+								 m_finished,
+								 m_black;
 		const char               *m_path        = "Media/Maps/Intro.tmx",
-						         *m_tutoStrings = "Press ENTER to start";
+						         *m_tutoStrings = "Play";
 };
 
