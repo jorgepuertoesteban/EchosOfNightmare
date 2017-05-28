@@ -2,6 +2,7 @@
 
 #include "Vec2.h"
 #include "SFML\Graphics.hpp"
+#include "SFML\Audio.hpp"
 
 class GameObject;
 class Map;
@@ -19,6 +20,8 @@ private:
 		void CalcDir();
 		bool ReachTarget();
 		void GenerateSound(unsigned int count);
+		sf::SoundBuffer m_buffer;
+		sf::Sound       m_sound;
 		bool         m_stoped;
 		Vec2	     m_target,
 					 m_dir;

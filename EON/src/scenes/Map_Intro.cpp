@@ -20,7 +20,7 @@ Map_Intro::Map_Intro(sf::View* view):m_end(false), m_start(false){
 	m_view = view;
 	m_view->setCenter(0,0);
 	m_clockStart.restart();
-	m_font.loadFromFile("Media/Fonts/Bitter-Bold.ttf");
+	m_font.loadFromFile("Media/Fonts/OpenSans-Regular.ttf");
 	m_rect.setFillColor(sf::Color(255, 255, 255, 0));
 	m_rect.setSize(sf::Vector2f(4000, 4000));
 	m_rect.setPosition(sf::Vector2f(-2000,-2000));

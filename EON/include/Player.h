@@ -64,6 +64,7 @@ class Player {
 		sf::Clock       m_clockSound,
 					    m_clockStep,
 					    m_clockEvents;
+		unsigned int    m_timeStep;
 		EventListener   *m_events;
 
 };

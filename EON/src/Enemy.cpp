@@ -8,6 +8,13 @@
 Enemy::Enemy(GameObject *gObj, Map *map)
 	:m_gObj(gObj),m_dir(Vec2(0,0)), m_speed(2), m_target(Vec2(0, 0)), m_map(map), m_stoped(true){
 	m_clockSound.restart();
+	m_buffer.loadFromFile("Media/Sounds/Enemy.wav");
+	m_sound.setBuffer(m_buffer);
+	m_sound.setRelativeToListener(true);
+	m_sound.setMinDistance(.5f);
+	m_sound.setAttenuation(4000);
+	m_sound.setLoop(true);
+	m_sound.play();
 }
 Enemy::~Enemy() {
 }
@@ -17,6 +24,7 @@ void Enemy::Update() {
 		GenerateSound(rand() % 10 + 6);
 		m_clockSound.restart();
 	}
+	m_sound.setPosition(m_gObj->GetPosition().x, m_gObj->GetPosition().y,0);
 }
 void Enemy::Move() {
 	if (!m_stoped) {

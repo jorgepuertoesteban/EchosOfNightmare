@@ -35,7 +35,7 @@ Map_2::Map_2(sf::View* view):m_end(false), m_start(false), m_finished(false), m_
 	ReadXML();
 	m_view = view;
 	m_clockStart.restart();
-	m_font.loadFromFile("Media/Fonts/Bitter-Bold.ttf");
+	m_font.loadFromFile("Media/Fonts/OpenSans-Regular.ttf");
 
 	m_text.setPosition(sf::Vector2f(0,-2000));
 	m_text.setCharacterSize(100);
