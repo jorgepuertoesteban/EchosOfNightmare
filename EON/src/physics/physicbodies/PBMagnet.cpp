@@ -1,45 +1,39 @@
-#include "physicbodies\PBEnemy.h"
+#include "physicbodies\PBMagnet.h"
 #include "PhysicWorld.h"
 
-PBEnemy::PBEnemy(){
-    m_pJoint  = nullptr;
+PBMagnet::PBMagnet(){
     m_pBody   = nullptr;
     m_category = 0;
     m_userData = 0;
     m_mask = 0;
 }
-PBEnemy::~PBEnemy(){
+PBMagnet::~PBMagnet(){
     DestroyBody();
 }
-int PBEnemy::Inicialize(b2Vec2 pos, b2Vec2 tam){
+int PBMagnet::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
-void PBEnemy::Stop() {
+void PBMagnet::InitBody(b2Vec2 pos, b2Vec2 tam) {
+	return PhysicBody::DefInitBody(pos, tam);
+}
+void PBMagnet::Stop() {
 	PhysicBody::DefStop();
 }
-void PBEnemy::InitBody(b2Vec2 pos, b2Vec2 tam) {
-	b2BodyDef bodyDef;
-	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
-	bodyDef.type = b2_dynamicBody;
-	m_pBody = m_pWorld->CreateBody(&bodyDef);
-	m_bodyId = PhysicBody::GenerateId();
-	m_pBody->SetUserData((void*)m_bodyId);
-}
-void PBEnemy::InitFixtures(b2Vec2 tam) {
+void PBMagnet::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
 	b2CircleShape circleShape;
-	circleShape.m_radius = tam.x / 1.5f;
+	circleShape.m_radius = (tam.x / 2);
 	fixtureDef.shape = &circleShape;
 	fixtureDef.friction = 0.01f;
 	fixtureDef.restitution = 1.f;
-	fixtureDef.density = 1;
+	fixtureDef.density = 0.01f;
 	fixtureDef.isSensor = true;
-	fixtureDef.filter.categoryBits = C_ENEMY;
+	fixtureDef.filter.categoryBits = C_MAGNET;
 	fixtureDef.filter.maskBits = C_PLAYER|C_SOUNDWAVE;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
-	fixture->SetUserData((void*)D_ENEMY);
+	fixture->SetUserData((void*)D_MAGNET);
 }
-void PBEnemy::Catch(int id) {
+void PBMagnet::Catch(int id) {
 	b2RevoluteJointDef jointDef;
 	jointDef.bodyA = m_pBody;
 	jointDef.bodyB = GetBodyWithId(id);
@@ -48,62 +42,62 @@ void PBEnemy::Catch(int id) {
 	m_pJoint = (b2RevoluteJoint*)m_pWorld->CreateJoint(&jointDef);
 	m_pJoint->EnableMotor(true);
 }
-void PBEnemy::Release() {
+void PBMagnet::Release() {
 	if (m_pJoint)
 		m_pWorld->DestroyJoint(m_pJoint);
 	m_pJoint = nullptr;
 }
-void PBEnemy::ApplyForce(b2Vec2 force) {
-	PhysicBody::DefApplyForce(force);
-}
-void PBEnemy::DestroyFixtures() {
+void PBMagnet::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();
 }
-void PBEnemy::DestroyBody() {
+void PBMagnet::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
+}
+void PBMagnet::DestroyBody() {
 	PhysicBody::DefDestroyBody();
 }
-b2Vec2 PBEnemy::GetPosition(){
+b2Vec2 PBMagnet::GetPosition(){
 	return PhysicBody::DefGetPosition();
 }
-b2Vec2 PBEnemy::GetLinearVelocity(){
+b2Vec2 PBMagnet::GetLinearVelocity(){
     return PhysicBody::DefGetLinearVelocity();
 }
-float    PBEnemy::GetRotation(){
+float  PBMagnet::GetRotation(){
     return PhysicBody::DefGetRotation();
 }
-int    PBEnemy::GetId(){
+int    PBMagnet::GetId(){
     return PhysicBody::DefGetId();
 }
-b2Vec2 PBEnemy::GetVertexPosition(int vertex) {
+b2Vec2 PBMagnet::GetVertexPosition(int vertex) {
 	return PhysicBody::DefGetVertexPosition(vertex);
 }
-void   PBEnemy::SetRotation(float angle){
+void   PBMagnet::SetRotation(float angle){
 	PhysicBody::DefSetRotation(angle);
 }
-void   PBEnemy::SetRotationFromCorner(float angle) {
+void   PBMagnet::SetRotationFromCorner(float angle) {
 	PhysicBody::DefSetRotationFromCorner(angle);
 }
-void   PBEnemy::SetWorld(b2World* world) {
+void   PBMagnet::SetWorld(b2World* world) {
 	PhysicBody::DefSetWorld(world);
 }
-void   PBEnemy::SetFixedRotation(bool fixed){
+void   PBMagnet::SetFixedRotation(bool fixed){
 	PhysicBody::DefSetFixedRotation(fixed);
 }
-void   PBEnemy::SetPosition(b2Vec2 pos){
+void   PBMagnet::SetPosition(b2Vec2 pos){
 	PhysicBody::DefSetPosition(pos);
 }
-void   PBEnemy::SetAngularVelocity(float vel){
+void   PBMagnet::SetAngularVelocity(float vel){
 	PhysicBody::DefSetAngularVelocity(vel);
 }
-void   PBEnemy::SetLinearVelocity(b2Vec2 vel){
+void   PBMagnet::SetLinearVelocity(b2Vec2 vel){
 	PhysicBody::DefSetLinearVelocity(vel);
 }
-void   PBEnemy::SetCategory(uint16 i){
+void   PBMagnet::SetCategory(uint16 i){
     PhysicBody::DefSetCategory(i);
 }
-void   PBEnemy::SetUserData(int i){
+void   PBMagnet::SetUserData(int i){
     PhysicBody::DefSetUserData(i);
 }
-void   PBEnemy::SetMask(uint16 i){
+void   PBMagnet::SetMask(uint16 i){
     PhysicBody::DefSetMask(i);
 }

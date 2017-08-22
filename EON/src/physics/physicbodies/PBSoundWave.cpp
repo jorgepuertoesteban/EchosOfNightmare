@@ -14,6 +14,9 @@ PBSoundWave::~PBSoundWave(){
 int PBSoundWave::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
+void PBSoundWave::Stop() {
+	PhysicBody::DefStop();
+}
 void PBSoundWave::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
@@ -31,7 +34,7 @@ void PBSoundWave::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1;
 	fixtureDef.density = 0 ;
 	fixtureDef.filter.categoryBits = C_SOUNDWAVE;
-	fixtureDef.filter.maskBits = C_WALL|C_DEADWALL|C_GOAL|C_WATER|C_ENEMY|C_MECHANISM;
+	fixtureDef.filter.maskBits = C_WALL|C_DEADWALL|C_GOAL|C_WATER|C_ENEMY|C_MECHANISM|C_MAGNET;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	fixture->SetUserData((void*)D_SOUNDWAVE);
 }
@@ -48,6 +51,9 @@ void PBSoundWave::Release() {
 	if (m_pJoint)
 		m_pWorld->DestroyJoint(m_pJoint);
 	m_pJoint = nullptr;
+}
+void PBSoundWave::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBSoundWave::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();

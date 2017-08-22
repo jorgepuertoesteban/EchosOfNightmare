@@ -7,7 +7,8 @@ class PBDeadWall: public PhysicBody{
         PBDeadWall();
         virtual ~PBDeadWall();
         virtual int   Inicialize(b2Vec2 pos, b2Vec2 tam);
-        virtual b2Vec2 GetPosition();
+		virtual void   ApplyForce(b2Vec2 force);
+		virtual b2Vec2 GetPosition();
 		virtual b2Vec2 GetLinearVelocity();
         virtual float  GetRotation();
         virtual int    GetId();
@@ -23,7 +24,8 @@ class PBDeadWall: public PhysicBody{
         virtual void   SetCategory(uint16 i);
         virtual void   SetUserData(int i);
         virtual void   SetMask(uint16 i);
-        virtual void   Catch(int id);
+		virtual void   Catch(int id);
+		virtual void   Stop();
         virtual void   Release();
 
     private:

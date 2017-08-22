@@ -14,6 +14,9 @@ PBWall::~PBWall(){
 int PBWall::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
+void PBWall::Stop() {
+	PhysicBody::DefStop();
+}
 void PBWall::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
@@ -51,6 +54,9 @@ void PBWall::Release() {
 }
 void PBWall::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();
+}
+void PBWall::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBWall::DestroyBody() {
 	PhysicBody::DefDestroyBody();

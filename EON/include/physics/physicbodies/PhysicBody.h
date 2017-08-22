@@ -23,7 +23,9 @@ class PhysicBody{
         virtual void   SetCategory(uint16 i) = 0;
         virtual void   SetUserData(int i) = 0;
         virtual void   SetMask(uint16 i) = 0;
-        virtual void   Catch(int id) = 0;
+		virtual void   ApplyForce(b2Vec2 force) = 0;
+		virtual void   Catch(int id) = 0;
+		virtual void   Stop() = 0;
         virtual void   Release() = 0;
 
     protected:
@@ -37,8 +39,10 @@ class PhysicBody{
         b2Vec2  DefGetPosition();
         b2Vec2  DefGetLinearVelocity();
         void    DefSetFixedRotation(bool fixed);
-        float   DefGetRotation();
-        int     DefGetId();
+		void    DefApplyForce(b2Vec2 force);
+		float   DefGetRotation();
+		int     DefGetId();
+		void    DefStop();
 		b2Vec2  DefGetVertexPosition(int vertex);
 		void    DefSetRotation(float angle);
 		void    DefSetRotationFromCorner(float angle);
@@ -62,6 +66,7 @@ class PhysicBody{
         uint16           m_category;
         int              m_userData;
         uint16           m_mask;
+		bool             m_stopped = false;
 		const float PPM = 64.0f;
 		const float MPP = 1.0f / PPM;
     private:

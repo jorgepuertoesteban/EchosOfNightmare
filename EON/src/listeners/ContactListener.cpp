@@ -63,6 +63,10 @@ void ContactListener::SWaveGoalBegin() {
 void ContactListener::SWaveMechanismBegin() {
 	GetSoundWave()->SetColor(230, 230, 0);
 }
+void ContactListener::SWaveMagnet() {
+	GetSoundWave()->SetDead(true);
+	GetSoundWave()->SetColor(230, 0, 230);
+}
 void ContactListener::PlayerMechanism() {
 	Mechanism* mecha = GetMechanism();
 	mecha->Press();

@@ -10,6 +10,7 @@ class SoundWave;
 class VisualBody;
 class Mechanism;
 class Player;
+class Magnet;
 class Enemy;
 class Rock;
 class Door;
@@ -26,6 +27,7 @@ class Map: public Scene {
 		virtual bool End() = 0;
 		virtual void EndMap() = 0;
 		virtual void ReadXML() = 0;
+		virtual void        CreateMagnet(Vec2 pos) = 0;
 		virtual void        CreateEnemy(Vec2 pos) = 0;
 		virtual void        CreatePlayer(Vec2 pos) = 0;
 		virtual void        CreateRock(Vec2 pos, Vec2 dir) = 0;
@@ -40,6 +42,7 @@ class Map: public Scene {
 		virtual PVector<SoundWave>* GetSoundWaves() = 0;
 		virtual PVector<Mechanism>* GetMechanisms() = 0;
 		virtual PVector<Enemy>*     GetEnemies() = 0;
+		virtual PVector<Magnet>*    GetMagnets() = 0;
 		virtual PVector<Door>*      GetDoors() = 0;
 		virtual PVector<Rock>*      GetRocks() = 0;
 		virtual Player*             GetPlayer() = 0;

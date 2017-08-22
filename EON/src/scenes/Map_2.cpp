@@ -13,6 +13,7 @@
 #include "physicbodies\PBRock.h"
 #include "physicbodies\PBSoundWave.h"
 #include "physicbodies\PBPlayer.h"
+#include "physicbodies\PBMagnet.h"
 #include "physicbodies\PBEnemy.h"
 #include "physicbodies\PBWall.h"
 #include "physicbodies\PBWater.h"
@@ -25,6 +26,7 @@
 #include "Mechanism.h"
 #include "SoundWave.h"
 #include "Door.h"
+#include "Magnet.h"
 #include <iostream>
 
 Map_2::Map_2(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true),m_success(false) {
@@ -85,6 +87,7 @@ void Map_2::Update(){
 	UpdateSoundWaves();
 	UpdateDoors();
 	UpdateRocks();
+	UpdateMagnets();
 	m_view->setCenter(m_player.Get()->GetPosition().x, m_player.Get()->GetPosition().y);
 	if (!Start()) {
 		UpdateIntro();
@@ -192,6 +195,18 @@ void Map_2::CreateRock(Vec2 pos, Vec2 dir) {
 	gObj->Inicialize(pR, vB);
 	gObj->SetLinearVelocity(dir);
 	m_rocks.Add(new Rock(gObj,this));
+}
+void Map_2::CreateMagnet(Vec2 pos) {
+	PBMagnet *pmagnet = new PBMagnet;
+	VWall  *vwall = new VWall;
+	Vec2 size{ 100,100 };
+	m_physiworld->CreateBody(pmagnet, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pmagnet, vwall);
+	gObj->SetVisible(false);
+	m_magnets.Add(new Magnet(gObj, this));
 }
 void Map_2::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {
 	PBMechanism *pmechanism = new PBMechanism;
@@ -309,6 +324,9 @@ PVector<Door>* Map_2::GetDoors() {
 PVector<Rock>* Map_2::GetRocks() {
 	return &m_rocks;
 }
+PVector<Magnet>* Map_2::GetMagnets() {
+	return &m_magnets;
+}
 bool Map_2::End() {
 	return m_end;
 }
@@ -344,8 +362,33 @@ void Map_2::UpdateSoundWaves() {
 			itSW = m_soundWaves.Remove(index);
 		}
 		else {
+
+			Vec2 itWc = (*itSW)->GetPosition() / 64.f;
+			float itM{ 0.1f };
+
+			auto itMg = m_magnets.GetBegin();
+			while (itMg != m_magnets.GetEnd()) {
+
+				auto cont = 0;
+
+				Vec2 mWc = (*itMg)->GetPosition() / 64.f;
+				float  mM{ 1.0f };
+
+
+				b2Vec2 delta(mWc.x - itWc.x, mWc.y - itWc.y);
+				float r = delta.Length() / 10;
+				float force = 9.8f * mM * itM / (r*r);
+
+				delta.Normalize();
+				Vec2 delta2{ force *delta.x, force *delta.y };
+				(*itSW)->ApplyForce(delta2);
+
+				itMg++;
+			}
+
 			itSW++;
 		}
+
 	}
 }
 void Map_2::UpdateEnemies() {
@@ -369,5 +412,11 @@ void Map_2::UpdateDoors() {
 		else {
 			it++;
 		}
+	}
+}
+void Map_2::UpdateMagnets() {
+	auto it = m_magnets.GetBegin();
+	while (it != m_magnets.GetEnd()) {
+		(*it)->Update();
 	}
 }

@@ -22,7 +22,7 @@ void Door::Update() {
 }
 void Door::MakeNoise(int num, Vec2 pos) {
 	auto plus = rand() % 45;
-	for (unsigned int i = 0; i < num; i++) {
+	for (auto i = 0; i < num; i++) {
 		float angle = ((i / (float)num) * 360) + plus;
 		m_map->CreateSoundWave(pos, Vec2(sinf(angle*3.14f / 180.f), cosf(angle*3.14f / 180.f)) * 5, Vec2(8, 8), 20);
 	}

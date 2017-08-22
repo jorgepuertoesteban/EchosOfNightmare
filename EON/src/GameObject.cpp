@@ -44,6 +44,9 @@ int GameObject::SetMode(PhysicBody* body){
     m_pPhysicBody->SetLinearVelocity(vel);
     return m_id;
 }
+void GameObject::ApplyForce(Vec2 force) {
+	m_pPhysicBody->ApplyForce(b2Vec2{ force.x,force.y });
+}
 void GameObject::SetVisible(bool visible){
 	m_pVisualBody->SetVisible(visible);
 }
@@ -64,6 +67,9 @@ void GameObject::SetPosition(Vec2 pos){
 }
 void GameObject::Catch(int id){
     m_pPhysicBody->Catch(id);
+}
+void GameObject::Stop() {
+	m_pPhysicBody->Stop();
 }
 void GameObject::Release(){
     m_pPhysicBody->Release();

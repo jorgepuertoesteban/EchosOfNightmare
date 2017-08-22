@@ -14,6 +14,9 @@ PBDeadWall::~PBDeadWall(){
 int PBDeadWall::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
+void PBDeadWall::Stop() {
+	PhysicBody::DefStop();
+}
 void PBDeadWall::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
@@ -49,6 +52,9 @@ void PBDeadWall::Release() {
 	if (m_pJoint)
 		m_pWorld->DestroyJoint(m_pJoint);
 	m_pJoint = nullptr;
+}
+void PBDeadWall::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBDeadWall::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();

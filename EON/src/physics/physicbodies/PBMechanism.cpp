@@ -17,6 +17,9 @@ int PBMechanism::Inicialize(b2Vec2 pos, b2Vec2 tam){
 void PBMechanism::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	return PhysicBody::DefInitBody(pos, tam);
 }
+void PBMechanism::Stop() {
+	PhysicBody::DefStop();
+}
 void PBMechanism::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
 	b2PolygonShape polyShape;
@@ -44,6 +47,9 @@ void PBMechanism::Release() {
 	if (m_pJoint)
 		m_pWorld->DestroyJoint(m_pJoint);
 	m_pJoint = nullptr;
+}
+void PBMechanism::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBMechanism::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();

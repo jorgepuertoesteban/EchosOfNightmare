@@ -21,6 +21,7 @@ class Player {
 		void SetInWater(bool);
 		void SetEventListener(EventListener *events);
 		void MakeSound(bool);
+		void ApplyForce(Vec2);
 		void GenerateSound(unsigned int count, unsigned int lifetime, float velocity);
 	private:
 		struct Direction {

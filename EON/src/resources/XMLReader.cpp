@@ -5,7 +5,7 @@
 #include "Map.h"
 #include <iostream>
 
-const Layer2Method XMLReader::m_layers[9] = {
+const Layer2Method XMLReader::m_layers[10] = {
 	 { "Player"       , &AddPlayer    }
 	,{ "Enemies"      , &AddEnemy     }
 	,{ "Walls"        , &AddWall      }
@@ -14,6 +14,7 @@ const Layer2Method XMLReader::m_layers[9] = {
 	,{ "Doors"        , &AddDoor      }
 	,{ "Waters"       , &AddWater     }
 	,{ "Mechanisms"   , &AddMechanism }
+	,{ "Magnets"      , &AddMagnet    }
 	,{ "0"            , 0             }
 };
 XMLReader::XMLReader()
@@ -71,4 +72,7 @@ void XMLReader::AddMechanism() {
 }
 void XMLReader::AddDoor() {
 	m_map->CreateDoor(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation, m_name);
+}
+void XMLReader::AddMagnet() {
+	m_map->CreateMagnet(Vec2(m_x, m_y));
 }

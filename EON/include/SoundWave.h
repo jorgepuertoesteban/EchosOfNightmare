@@ -17,9 +17,12 @@ class SoundWave : public sf::Drawable {
 		void Update();
 		bool GetDead();
 		int  GetId();
+		Vec2 GetPosition();
 		Vec2 GetOrigin();
 		void SetColor(int, int, int);
+		void SetDead(bool);
 		void ResetColor();
+		void ApplyForce(Vec2 force);
 	private:
 
 		struct Point {

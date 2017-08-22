@@ -81,6 +81,10 @@ void Player::KissOfDead() {
 void Player::KissOfLife() {
 	m_kissOfLife = true;
 }
+void Player::ApplyForce(Vec2 force) {
+	if(!m_kissOfDead)m_gObj->ApplyForce(force);
+}
+
 void Player::Move() {
 	if (!m_finish) {
 		CalcDir();
@@ -185,7 +189,6 @@ void Player::MakeSound(bool key_pressed){
 		m_sound = false;
 		int cant;
 		int lifetime;
-		int vel;
 		sf::Int32 time = m_clockSound.getElapsedTime().asMilliseconds();
 		if (time > 2500)
 			time = 2500;

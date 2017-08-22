@@ -17,6 +17,9 @@ int PBPlayer::Inicialize(b2Vec2 pos, b2Vec2 tam){
 void PBPlayer::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	return PhysicBody::DefInitBody( pos,  tam);
 }
+void PBPlayer::Stop() {
+	PhysicBody::DefStop();
+}
 void PBPlayer::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
 	b2PolygonShape polyShape;
@@ -26,7 +29,7 @@ void PBPlayer::InitFixtures(b2Vec2 tam) {
 	fixtureDef.restitution = 1.f;
 	fixtureDef.density = 1;
 	fixtureDef.filter.categoryBits = C_PLAYER;
-	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER | C_ENEMY | C_MECHANISM;
+	fixtureDef.filter.maskBits = C_DEADWALL|C_WALL|C_GOAL | C_WATER | C_ENEMY | C_MECHANISM | C_MAGNET;
 	b2Fixture* fixture = m_pBody->CreateFixture(&fixtureDef);
 	fixture->SetUserData((void*)D_PLAYER);
 }
@@ -46,6 +49,9 @@ void PBPlayer::Release() {
 }
 void PBPlayer::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();
+}
+void PBPlayer::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBPlayer::DestroyBody() {
 	PhysicBody::DefDestroyBody();

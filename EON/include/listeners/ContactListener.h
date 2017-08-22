@@ -7,6 +7,7 @@ class ContactListener;
 class SoundWave;
 class Mechanism;
 class Player;
+class Magnet;
 class Enemy;
 class Rock;
 class Map;
@@ -25,13 +26,15 @@ class ContactListener: public b2ContactListener{
 			unsigned long B;
 			void (ContactListener::*p)();
 		};
-    	const Contact2Method beginContact[13] = {
+    	const Contact2Method beginContact[15] = {
 			  { D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer          }
+		     ,{ D_PLAYER         , D_MAGNET        , &ContactListener::KillPlayer          }
 			 ,{ D_SOUNDWAVE      , D_DEADWALL      , &ContactListener::SWaveDWallBegin     }
 			 ,{ D_SOUNDWAVE      , D_GOAL          , &ContactListener::SWaveGoalBegin      }
 			 ,{ D_SOUNDWAVE      , D_WATER         , &ContactListener::SWaveWaterBegin     }
 			 ,{ D_SOUNDWAVE      , D_ENEMY         , &ContactListener::SWaveEnemy          }
 			 ,{ D_SOUNDWAVE      , D_MECHANISM     , &ContactListener::SWaveMechanismBegin }
+			 ,{ D_SOUNDWAVE      , D_MAGNET        , &ContactListener::SWaveMagnet         }
 			 ,{ D_PLAYER         , D_MECHANISM     , &ContactListener::PlayerMechanism     }
 			 ,{ D_PLAYER         , D_DEADWALL      , &ContactListener::KillPlayer          }
 			 ,{ D_PLAYER         , D_ENEMY         , &ContactListener::KillPlayer          }
@@ -58,6 +61,7 @@ class ContactListener: public b2ContactListener{
 		void Win();
 		void RockColision();
 		void KillPlayer();
+		void SWaveMagnet();
 		void PlayerMechanism();
 		void SWaveDWallBegin();
 		void SWaveGoalBegin();

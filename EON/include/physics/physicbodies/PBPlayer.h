@@ -7,7 +7,8 @@ class PBPlayer: public PhysicBody{
         PBPlayer();
         virtual ~PBPlayer();
         virtual int   Inicialize(b2Vec2 pos, b2Vec2 tam);
-        virtual b2Vec2 GetPosition();
+		virtual void   ApplyForce(b2Vec2 force);
+		virtual b2Vec2 GetPosition();
 		virtual b2Vec2 GetLinearVelocity();
         virtual float  GetRotation();
         virtual int    GetId();
@@ -24,7 +25,8 @@ class PBPlayer: public PhysicBody{
         virtual void   SetUserData(int i);
         virtual void   SetMask(uint16 i);
         virtual void   Catch(int id);
-        virtual void   Release();
+		virtual void   Stop();
+		virtual void   Release();
 
     private:
     	virtual void   InitBody(b2Vec2 pos,b2Vec2 tam);

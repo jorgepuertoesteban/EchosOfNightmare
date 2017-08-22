@@ -27,7 +27,9 @@ class GameObject : public sf::Drawable {
         virtual void   SetAngularVelocity(float imp);
         virtual void   SetLinearVelocity(Vec2 vel);
         virtual void   SetPosition(Vec2 pos);
-        virtual void   Catch(int id);
+		virtual void   ApplyForce(Vec2 force);
+		virtual void   Stop();
+		virtual void   Catch(int id);
         virtual void   Release();
 		virtual bool   Visible();
     private:

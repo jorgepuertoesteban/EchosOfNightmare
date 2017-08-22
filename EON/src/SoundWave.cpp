@@ -65,8 +65,15 @@ void SoundWave::Update() {
 bool SoundWave::GetDead() {
 	return m_dead;
 }
+void SoundWave::SetDead(bool aux) {
+	m_gObj.Get()->Stop();
+	m_TrailFree = aux;
+}
 int  SoundWave::GetId() {
 	return m_gObj.Get()->GetId();
+}
+Vec2 SoundWave::GetPosition() {
+	return m_gObj.Get()->GetPosition();
 }
 Vec2 SoundWave::GetOrigin() {
 	return m_origin;
@@ -76,6 +83,9 @@ void SoundWave::SetColor(int r, int g, int b) {
 }
 void SoundWave::ResetColor() {
 	m_r = m_oR, m_g = m_oG, m_b = m_oB;
+}
+void SoundWave::ApplyForce(Vec2 force) {
+	m_gObj.Get()->ApplyForce(force);
 }
 void SoundWave::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(m_trail, states);

@@ -161,6 +161,9 @@ GameObject* Map_Intro::CreateGameObject(PhysicBody* pB, VisualBody* vB, Vec2 pos
 PVector<Enemy>* Map_Intro::GetEnemies() {
 	return nullptr;
 }
+PVector<Magnet>* Map_Intro::GetMagnets() {
+	return nullptr;
+}
 PVector<Mechanism>* Map_Intro::GetMechanisms() {
 	return nullptr;
 }
@@ -176,6 +179,7 @@ Player* Map_Intro::GetPlayer() {
 void Map_Intro::Life() {}
 void Map_Intro::Dead() {}
 void Map_Intro::CreateEnemy(Vec2 pos) {}
+void Map_Intro::CreateMagnet(Vec2 pos) {};
 void Map_Intro::CreateRock(Vec2 pos, Vec2 dir) {}
 void Map_Intro::CreateMechanism(Vec2 pos, Vec2 size, int rotation, int door) {}
 void Map_Intro::CreateDoor(Vec2 pos, Vec2 size, int rotation, int door) {}

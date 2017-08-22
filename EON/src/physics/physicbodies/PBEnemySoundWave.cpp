@@ -14,6 +14,9 @@ PBEnemySoundWave::~PBEnemySoundWave(){
 int PBEnemySoundWave::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
+void PBEnemySoundWave::Stop() {
+	PhysicBody::DefStop();
+}
 void PBEnemySoundWave::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
@@ -49,6 +52,9 @@ void PBEnemySoundWave::Release() {
 	if (m_pJoint)
 		m_pWorld->DestroyJoint(m_pJoint);
 	m_pJoint = nullptr;
+}
+void PBEnemySoundWave::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBEnemySoundWave::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();

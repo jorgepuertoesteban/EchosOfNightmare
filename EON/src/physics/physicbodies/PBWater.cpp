@@ -14,6 +14,9 @@ PBWater::~PBWater(){
 int PBWater::Inicialize(b2Vec2 pos, b2Vec2 tam){
 	return PhysicBody::DefInicialize( pos,  tam);
 }
+void PBWater::Stop() {
+	PhysicBody::DefStop();
+}
 void PBWater::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(pos.x + (tam.x / 2), -1 * (pos.y - (tam.y / 2)));
@@ -55,6 +58,9 @@ void PBWater::DestroyFixtures() {
 }
 void PBWater::DestroyBody() {
 	PhysicBody::DefDestroyBody();
+}
+void PBWater::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 b2Vec2 PBWater::GetPosition(){
 	return PhysicBody::DefGetPosition();

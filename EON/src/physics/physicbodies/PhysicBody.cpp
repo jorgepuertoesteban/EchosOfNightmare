@@ -53,6 +53,9 @@ void PhysicBody::DefSetRotationFromCorner(float angle) {
 		m_pBody->SetTransform(m_pBody->GetPosition() + p1 - p2, m_pBody->GetAngle());
 	}
 }
+void PhysicBody::DefApplyForce(b2Vec2 force) {
+	if(!m_stopped)m_pBody->ApplyForceToCenter(force,false);
+}
 void PhysicBody::DefSetWorld(b2World* world) {
 	m_pWorld = world;
 }
@@ -82,6 +85,11 @@ int PhysicBody::GenerateId(){
 	c_id++;
 	return c_id;
 }
+void PhysicBody::DefStop() {
+	m_pBody->SetLinearVelocity(b2Vec2{0,0});
+	m_stopped = true;
+}
+
 b2Body* PhysicBody::GetBodyWithId(int id){
 	for ( b2Body* b = m_pWorld->GetBodyList(); b; b = b->GetNext()){
         if((int)b->GetUserData() == id){

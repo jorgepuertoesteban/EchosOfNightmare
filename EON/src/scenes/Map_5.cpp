@@ -14,6 +14,7 @@
 #include "physicbodies\PBSoundWave.h"
 #include "physicbodies\PBPlayer.h"
 #include "physicbodies\PBEnemy.h"
+#include "physicbodies\PBMagnet.h"
 #include "physicbodies\PBWall.h"
 #include "physicbodies\PBWater.h"
 #include "physicbodies\PBGoal.h"
@@ -25,6 +26,7 @@
 #include "Mechanism.h"
 #include "SoundWave.h"
 #include "Door.h"
+#include "Magnet.h"
 #include <iostream>
 
 Map_5::Map_5(sf::View* view):m_end(false), m_start(false), m_finished(false), m_learn(true), m_success(false) {
@@ -85,6 +87,7 @@ void Map_5::Update(){
 	UpdateSoundWaves();
 	UpdateDoors();
 	UpdateRocks();
+	UpdateMagnets();
 	m_view->setCenter(m_player.Get()->GetPosition().x, m_player.Get()->GetPosition().y);
 	if (!Start()) {
 		UpdateIntro();
@@ -181,6 +184,18 @@ void Map_5::CreatePlayer(Vec2 pos) {
 	GameObject *goPlayer = CreateGameObject(new PBPlayer, new VPlayer, pos, Vec2(35, 35));
 	m_player.Reset(new Player(goPlayer, this));
 	sf::Vector2f posText(m_player.Get()->GetPosition().x - (m_text.getLocalBounds().width / 2), m_player.Get()->GetPosition().y - m_text.getLocalBounds().height);
+}
+void Map_5::CreateMagnet(Vec2 pos) {
+	PBMagnet *pmagnet = new PBMagnet;
+	VWall  *vwall = new VWall;
+	Vec2 size{ 100,100 };
+	m_physiworld->CreateBody(pmagnet, pos, size);
+	vwall->Initialize(size);
+	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
+	GameObject* gObj = new GameObject();
+	gObj->Inicialize(pmagnet, vwall);
+	gObj->SetVisible(false);
+	m_magnets.Add(new Magnet(gObj, this));
 }
 void Map_5::CreateRock(Vec2 pos, Vec2 dir) {
 	PBRock      *pR = new PBRock;
@@ -309,6 +324,9 @@ PVector<Enemy>* Map_5::GetEnemies() {
 PVector<Rock>* Map_5::GetRocks() {
 	return &m_rocks;
 }
+PVector<Magnet>* Map_5::GetMagnets() {
+	return &m_magnets;
+}
 bool Map_5::End() {
 	return m_end;
 }
@@ -344,8 +362,33 @@ void Map_5::UpdateSoundWaves() {
 			itSW = m_soundWaves.Remove(index);
 		}
 		else {
+
+			Vec2 itWc = (*itSW)->GetPosition() / 64.f;
+			float itM{ 0.1f };
+
+			auto itMg = m_magnets.GetBegin();
+			while (itMg != m_magnets.GetEnd()) {
+
+				auto cont = 0;
+
+				Vec2 mWc = (*itMg)->GetPosition() / 64.f;
+				float  mM{ 1.0f };
+
+
+				b2Vec2 delta(mWc.x - itWc.x, mWc.y - itWc.y);
+				float r = delta.Length() / 10;
+				float force = 9.8f * mM * itM / (r*r);
+
+				delta.Normalize();
+				Vec2 delta2{ force *delta.x, force *delta.y };
+				(*itSW)->ApplyForce(delta2);
+
+				itMg++;
+			}
+
 			itSW++;
 		}
+
 	}
 }
 void Map_5::UpdateEnemies() {
@@ -369,5 +412,11 @@ void Map_5::UpdateDoors() {
 		else {
 			it++;
 		}
+	}
+}
+void Map_5::UpdateMagnets() {
+	auto it = m_magnets.GetBegin();
+	while (it != m_magnets.GetEnd()) {
+		(*it)->Update();
 	}
 }

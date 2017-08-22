@@ -17,6 +17,9 @@ int PBGoal::Inicialize(b2Vec2 pos, b2Vec2 tam){
 void PBGoal::InitBody(b2Vec2 pos, b2Vec2 tam) {
 	return PhysicBody::DefInitBody(pos, tam);
 }
+void PBGoal::Stop() {
+	PhysicBody::DefStop();
+}
 void PBGoal::InitFixtures(b2Vec2 tam) {
 	b2FixtureDef fixtureDef;
 	b2PolygonShape polyShape;
@@ -47,6 +50,9 @@ void PBGoal::Release() {
 }
 void PBGoal::DestroyFixtures() {
 	PhysicBody::DefDestroyFixtures();
+}
+void PBGoal::ApplyForce(b2Vec2 force) {
+	PhysicBody::DefApplyForce(force);
 }
 void PBGoal::DestroyBody() {
 	PhysicBody::DefDestroyBody();
