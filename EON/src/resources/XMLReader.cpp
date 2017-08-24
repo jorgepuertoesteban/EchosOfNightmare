@@ -74,5 +74,5 @@ void XMLReader::AddDoor() {
 	m_map->CreateDoor(Vec2(m_x, m_y), Vec2(m_width, m_height), (int)m_rotation, m_name);
 }
 void XMLReader::AddMagnet() {
-	m_map->CreateMagnet(Vec2(m_x, m_y));
+	m_map->CreateMagnet(Vec2(m_x- m_width, m_y- m_height));
 }

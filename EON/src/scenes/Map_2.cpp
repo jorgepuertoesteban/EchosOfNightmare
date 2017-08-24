@@ -200,7 +200,7 @@ void Map_2::CreateMagnet(Vec2 pos) {
 	PBMagnet *pmagnet = new PBMagnet;
 	VWall  *vwall = new VWall;
 	Vec2 size{ 100,100 };
-	m_physiworld->CreateBody(pmagnet, pos, size);
+	m_physiworld->CreateBody(pmagnet, pos- size/2, size);
 	vwall->Initialize(size);
 	vwall->SetPosition(Vec2(pos.x + (size.x / 2.f), pos.y + (size.y / 2.f)));
 	GameObject* gObj = new GameObject();
