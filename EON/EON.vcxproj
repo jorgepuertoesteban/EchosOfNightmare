@@ -162,6 +162,7 @@
     <ClCompile Include="src\resources\XMLReader.cpp" />
     <ClCompile Include="src\Rock.cpp" />
     <ClCompile Include="src\scenes\Map_1.cpp" />
+    <ClCompile Include="src\scenes\Map_10.cpp" />
     <ClCompile Include="src\scenes\Map_2.cpp" />
     <ClCompile Include="src\scenes\Map_3.cpp" />
     <ClCompile Include="src\scenes\Map_4.cpp" />
@@ -169,6 +170,8 @@
     <ClCompile Include="src\scenes\Map_6.cpp" />
     <ClCompile Include="src\scenes\Map_7.cpp" />
     <ClCompile Include="src\scenes\Map_8.cpp" />
+    <ClCompile Include="src\scenes\Map_9.cpp" />
+    <ClCompile Include="src\scenes\Map_End.cpp" />
     <ClCompile Include="src\scenes\Map_Intro.cpp" />
     <ClCompile Include="src\scenes\Scene.cpp" />
     <ClCompile Include="src\scenes\SceneFabric.cpp" />
@@ -215,6 +218,7 @@
     <ClInclude Include="include\Rock.h" />
     <ClInclude Include="include\scenes\Map.h" />
     <ClInclude Include="include\scenes\Map_1.h" />
+    <ClInclude Include="include\scenes\Map_10.h" />
     <ClInclude Include="include\scenes\Map_2.h" />
     <ClInclude Include="include\scenes\Map_3.h" />
     <ClInclude Include="include\scenes\Map_4.h" />
@@ -222,6 +226,8 @@
     <ClInclude Include="include\scenes\Map_6.h" />
     <ClInclude Include="include\scenes\Map_7.h" />
     <ClInclude Include="include\scenes\Map_8.h" />
+    <ClInclude Include="include\scenes\Map_9.h" />
+    <ClInclude Include="include\scenes\Map_End.h" />
     <ClInclude Include="include\scenes\Map_Intro.h" />
     <ClInclude Include="include\scenes\Scene.h" />
     <ClInclude Include="include\scenes\SceneFabric.h" />

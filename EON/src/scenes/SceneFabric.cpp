@@ -8,9 +8,12 @@
 #include "Map_6.h"
 #include "Map_7.h"
 #include "Map_8.h"
+#include "Map_9.h"
+#include "Map_10.h"
+#include "Map_End.h"
 
 
-SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(2){
+SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(10){
 }
 SceneFabric::~SceneFabric(){
 
@@ -58,5 +61,8 @@ void SceneFabric::Map4()       { m_scene.Reset(new Map_4     (m_view)); }
 void SceneFabric::Map5()       { m_scene.Reset(new Map_5     (m_view)); }
 void SceneFabric::Map6()       { m_scene.Reset(new Map_6     (m_view)); }
 void SceneFabric::Map7()       { m_scene.Reset(new Map_7     (m_view)); }
-void SceneFabric::Map8()       { m_scene.Reset(new Map_8      (m_view)); }
+void SceneFabric::Map8()       { m_scene.Reset(new Map_8     (m_view)); }
+void SceneFabric::Map9()       { m_scene.Reset(new Map_9     (m_view)); }
+void SceneFabric::Map10()      { m_scene.Reset(new Map_10    (m_view)); }
+void SceneFabric::End  ()      { m_scene.Reset(new Map_End   (m_view)); }
 void SceneFabric::NullPointer(){ m_scene.Reset(nullptr); }

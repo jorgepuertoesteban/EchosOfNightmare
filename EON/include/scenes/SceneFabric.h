@@ -17,7 +17,7 @@ class SceneFabric{
 			int A;
 			void (SceneFabric::*p)();
 		};
-		const Num2Scene scenes[10] = {
+		const Num2Scene scenes[14] = {
 			 { 0       , &SceneFabric::Intro       }
 			,{ 1       , &SceneFabric::Map1        }
 			,{ 2       , &SceneFabric::Map2        }
@@ -27,7 +27,11 @@ class SceneFabric{
 			,{ 6       , &SceneFabric::Map6        }
 			,{ 7       , &SceneFabric::Map7        }
 			,{ 8       , &SceneFabric::Map8        }
-			,{ 9       , &SceneFabric::NullPointer }
+			,{ 8       , &SceneFabric::Map8        }
+			,{ 9       , &SceneFabric::Map9        }
+			,{ 10      , &SceneFabric::Map10       }
+			,{ 11      , &SceneFabric::End         }
+			,{ 12      , &SceneFabric::NullPointer }
 		};
 		void Intro();
 		void Map1();
@@ -38,6 +42,9 @@ class SceneFabric{
 		void Map6();
 		void Map7();
 		void Map8();
+		void Map9();
+		void Map10();
+		void End();
 		void NullPointer();
 		sf::View*       m_view;
 		Pointer<Scene>  m_scene;

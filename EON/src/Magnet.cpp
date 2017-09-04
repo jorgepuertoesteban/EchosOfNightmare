@@ -5,6 +5,10 @@
 Magnet::Magnet(GameObject *gObj, Map* map) : m_map(map) {
 	m_gObj.Reset(gObj);
 	m_clockWaves.restart();
+	m_buffer.loadFromFile("Media/Sounds/portal.ogg");
+	m_sound.setBuffer(m_buffer);
+	m_sound.setLoop(true);
+	m_sound.play();
 }
 Magnet::~Magnet(){
 	
