@@ -13,7 +13,7 @@
 #include "Map_End.h"
 
 
-SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(10){
+SceneFabric::SceneFabric(sf::View* view):m_view(view), m_Number(-1){
 }
 SceneFabric::~SceneFabric(){
 
